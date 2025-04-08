@@ -28,7 +28,13 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS
-app.use(cors());
+//app.use(cors());
+const cors = require('cors');
+app.use(cors({
+  origin: 'https://seetsi1997.github.io',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
 // Connection timeout middleware
 app.use((req, res, next) => {

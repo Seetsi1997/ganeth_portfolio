@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaAward, FaBriefcase, FaCertificate, FaFolder } from "react-icons/fa";
 import ME from "../../assets/about_me.jpg";
-import { getCertificates, getCompany, getExperience, getProjects } from '../../services/api';
 import "./about.css";
 
 
@@ -609,93 +608,53 @@ const About = () => {
 
   // Use Effect
   useEffect(() => {
-    // Fetch Project List | Fetch Work History List |  Fetch Certificate List  |  Fetch Company List
-    const fetchProjects = async () => {
+    const fetchAllData = async () => {
       setIsLoading(true);
+      setErrors({});
+      
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/projects`);
-        setProjects(response.data);
+        // Parallel API calls for better performance
+        const [projectsRes, workHistoryRes, certificatesRes, companiesRes] = await Promise.all([
+          axios.get(`${process.env.REACT_APP_API_URL}/projects`),
+          axios.get(`${process.env.REACT_APP_API_URL}/workhistories`),
+          axios.get(`${process.env.REACT_APP_API_URL}/certificates`),
+          axios.get(`${process.env.REACT_APP_API_URL}/companies`, {
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            withCredentials: true
+          })
+        ]);
+  
+        // Set states with proper data fallbacks
+        setProjects(projectsRes.data?.data || projectsRes.data || []);
+        setWorks(workHistoryRes.data?.data || workHistoryRes.data || []);
+        setCertificatesName(certificatesRes.data?.data || certificatesRes.data || []);
+        setCompaniesName(companiesRes.data?.data || companiesRes.data || []);
+  
+        // Update counts
+        setCounts({
+          projects: projectsRes.data?.length || 0,
+          certificates: certificatesRes.data?.length || 0,
+          companies: companiesRes.data?.length || 0,
+          experiences: workHistoryRes.data?.length || 0,
+        });
+  
       } catch (error) {
-        console.error("Error fetching projects:", error);
+        console.error("API Error:", error);
+        setErrors({
+          projects: error.response?.status === 404 ? "Projects not found" : "Failed to load projects",
+          workHistory: error.response?.status === 404 ? "Work history not found" : "Failed to load work history",
+          certificates: error.response?.status === 404 ? "Certificates not found" : "Failed to load certificates",
+          companies: error.response?.status === 404 ? "Companies not found" : "Failed to load companies"
+        });
       } finally {
         setIsLoading(false);
       }
     };
-
-    const fetchWorkHistory = async () => {
-      setIsLoading(true);
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/workhistories`);
-        // Make sure to set the correct state variable
-        setWorks(response.data.data || response.data || []);
-      } catch (error) {
-        console.error("Error fetching history:", error);
-        setErrors({ fetch: "Failed to load work history" });
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    const fetchCertificate = async () => {
-      setIsLoading(true);
-      try {
-        const response = await axios.get( `${process.env.REACT_APP_API_URL}/certificates`);
-
-        setCertificatesName(response.data.data || response.data || []);
-      } catch (error) {
-        console.error("Error fetching certificate: ", error);
-        setErrors({ fetch: "Failed to load certificates name" });
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    const fetchCompanies = async () => {
-      try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/companies`);
-        setCompaniesName(response.data); // Make sure this matches your API response structure
-        console.log("Fetched companies:", response.data);
-      } catch (error) {
-        console.error("Error fetching companies:", error);
-      }
-    };
-
-    const fetchData = async () => {
-      try {
-        const projectsData = await getProjects();
-        const certificatesData = await getCertificates();
-        const companyData = await getCompany();
-        const experienceData = await getExperience();
-
-        setProjects(projectsData);
-        setCertificatesName(certificatesData);
-        setCompaniesName(companyData)
-        setWorks(experienceData);
-
-        setCounts(prev => ({
-          ...prev,
-          projects: projectsData.length,
-          certificates: certificatesData.length,
-          companies: companyData.length,
-          experiences: experienceData.length,
-        }));
-      } catch (error) {
-        console.error('Error loading data:', error);
-        setProjects([]);
-        setCertificatesName([]);
-        setCompaniesName([]);
-        setWorks([]);
-      }
-    };
-
-    //
-
-    fetchWorkHistory();
-    fetchProjects();
-    fetchCertificate();
-    fetchCompanies();
-    fetchData();
-
+  
+    fetchAllData();
   }, []);
 
   return (
