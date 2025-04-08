@@ -613,7 +613,7 @@ const About = () => {
     const fetchProjects = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("http://localhost:5001/projects");
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/projects`);
         setProjects(response.data);
       } catch (error) {
         console.error("Error fetching projects:", error);
@@ -625,7 +625,7 @@ const About = () => {
     const fetchWorkHistory = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("http://localhost:5001/workhistories");
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/workhistories`);
         // Make sure to set the correct state variable
         setWorks(response.data.data || response.data || []);
       } catch (error) {
@@ -639,7 +639,7 @@ const About = () => {
     const fetchCertificate = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get("http://localhost:5001/certificates");
+        const response = await axios.get( `${process.env.REACT_APP_API_URL}/certificates`);
 
         setCertificatesName(response.data.data || response.data || []);
       } catch (error) {
@@ -652,7 +652,7 @@ const About = () => {
 
     const fetchCompanies = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/companies");
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/companies`);
         setCompaniesName(response.data); // Make sure this matches your API response structure
         console.log("Fetched companies:", response.data);
       } catch (error) {

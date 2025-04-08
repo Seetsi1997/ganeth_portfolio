@@ -16,7 +16,7 @@ const Testimonial = () => {
   const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
-    axios.get("testimonials")
+    axios.get(`${process.env.REACT_APP_API_URL}/testimonials`)
       .then(response => setTestimonials(response.data))
       .catch(error => console.error("Error fetching testimonials:", error));
   }, []);
