@@ -1,0 +1,131 @@
+/* =================  ADD DETAILS ON POPUP SECTION FORM FOR (TESTIMONIALS)  ================= */
+.add__testimonial-form-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-primary-variant);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition), visibility var(--transition);
+}
+  
+.add__testimonial-form-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+  
+.add__testimonial-form-content {
+    background: var(--color-bg-variant);
+    padding: 1.5rem; /* Reduced from 2rem */
+    border-radius: 10px;
+    position: relative;
+    max-width: 400px; /* Reduced from 500px */
+    width: 90%;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: scale(0.9);
+    transition: var(--transition);
+}
+  
+.add__testimonial-form-popup.active .add__testimonial-form-content {
+    transform: scale(1);
+}
+  
+.close__testimonial-form {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-light);
+    transition: color 0.2s ease;
+    background: transparent;
+    border: none;
+}
+  
+.close__testimonial-form:hover {
+    color: var(--color-white);
+}
+  
+.add__testimonial-form-content h2 {
+    font-size: 1.2rem; /* Reduced from 18px */
+    color: var(--color-white);
+    margin-bottom: 1rem; /* Reduced from 1.5rem */
+    text-align: center;
+}
+  
+.add__testimonial-form-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem; /* Reduced from 1rem */
+}
+  
+.add__testimonial-form-content input,
+.add__testimonial-form-content textarea {
+    padding: 0.6rem; /* Reduced from 0.8rem */
+    border-radius: 5px;
+    border: 1px solid var(--color-primary-variant);
+    background: var(--color-bg);
+    color: var(--color-white);
+    font-size: 0.85rem; /* Reduced from 0.9rem */
+    width: 100%; 
+    transition: border-color var(--transition); 
+}
+
+.add__testimonial-form-content input.error,
+.add__testimonial-form-content textarea.error {
+    border-color: var(--color-red);
+}
+  
+.add__testimonial-form-content textarea {
+    min-height: 80px; /* Reduced from 100px */
+    resize: none;
+}
+  
+.add__testimonial-form-content button[type="submit"] {
+    padding: 0.7rem; /* Reduced from 0.8rem */
+    border-radius: 5px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+  
+.add__testimonial-form-content button[type="submit"]:hover {
+    background: var(--color-primary-variant);
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 0.8rem; /* Reduced from 1rem */
+    width: 100%;
+}
+  
+.form-group input.error,
+.form-group textarea.error {
+    border-color: var(--color-red) !important;
+    box-shadow: 0 0 0 2px var(--color-bg-3);
+}
+
+.error {
+    border-color: var(--color-red)
+}
+  
+.error-message {
+    color: var(--color-red);
+    font-size: 0.75rem;
+    display: block;
+    margin-top: 0.2rem; 
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
+}
