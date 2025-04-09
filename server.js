@@ -28,7 +28,17 @@ const app = express();
 app.use(express.json());
 
 // Enable CORS
-app.use(cors());
+const corsOptions = {
+  origin: [
+    'https://seetsi1997.github.io', // Your GitHub Pages URL
+    'http://localhost:3000'         // For local development
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
+
+app.use(cors(corsOptions));
 //const cors = require('cors');
 /*app.use(cors({
   origin: 'https://seetsi1997.github.io',
