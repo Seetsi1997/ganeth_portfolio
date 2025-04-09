@@ -2,8 +2,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-import path from "path";
+import path, { dirname } from "path";
+import { fileURLToPath } from 'url';
 
+// Import routes
 import certificatesRoutes from './src/routes/certificatesRoutes.js';
 import companyRoutes from './src/routes/companyRoutes.js';
 import educationRoutes from './src/routes/educationRoutes.js';
@@ -13,6 +15,11 @@ import servicesRoutes from './src/routes/serviceRoutes.js';
 import testimonialsRoutes from './src/routes/testimonialsRoutes.js';
 import workHistoryRoutes from './src/routes/workHistoryRoutes.js';
 import workRoutes from './src/routes/workRoutes.js';
+
+
+// Get directory name in ES module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Load environment variables
 dotenv.config();
@@ -36,7 +43,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// --- UPDATED: Simplified CORS Configuration ---
+// CORS Configuration
 const allowedOrigins = [
   'https://seetsi1997.github.io',
   'https://seetsi1997.github.io/ganeth_portfolio',
@@ -54,8 +61,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// --- OPTIONAL: Temporarily disabled host validation (for testing) ---
-// Uncomment this only when you need strict host checking in production
+// Optional host validation
 app.use((req, res, next) => {
   if (
     process.env.NODE_ENV === 'production' &&
@@ -71,7 +77,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// --- UPDATED: Database Connection ---
+// Database Connection
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
@@ -82,7 +88,7 @@ const connectDB = async () => {
   }
 };
 
-// --- ROUTES GO HERE ---
+// Routes
 app.use('/educations', educationRoutes);
 app.use('/testimonials', testimonialsRoutes);
 app.use("/projects", projectsRoutes);
@@ -94,11 +100,16 @@ app.use('/services', servicesRoutes);
 app.use('/portfolios', portfoliosRoutes);
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, 'build')));
+const staticPath = path.join(__dirname, 'build');
+app.use(express.static(staticPath));
 
-// All other routes should return the React app
+// Handle client-side routing
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(staticPath, 'index.html'), (err) => {
+    if (err) {
+      res.status(404).json({ message: 'Page not found' });
+    }
+  });
 });
 
 // Global Error Handling Middleware
