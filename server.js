@@ -29,7 +29,7 @@ app.use(express.json());
 
 // Enable CORS
 //app.use(cors());
-const cors = require('cors');
+//const cors = require('cors');
 app.use(cors({
   origin: 'https://seetsi1997.github.io',
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
