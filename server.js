@@ -35,11 +35,14 @@ const app = express();
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI, {
-      serverSelectionTimeoutMS: 5000,  // Keep this for connection timeout
-      socketTimeoutMS: 30000,         // Keep this for socket timeout
-      retryWrites: true,              // Keep this for retryable writes
-      w: 'majority',                  // Fixed typo: changed 'majority' to 'majority'
-      family: 4                       // Keep this to force IPv4
+      serverSelectionTimeoutMS: 10000,  // Increased timeout
+      socketTimeoutMS: 45000,
+      retryWrites: true,
+      w: 'majority',
+      connectTimeoutMS: 10000,
+      maxPoolSize: 10,
+      ssl: true,  // Explicitly enable SSL
+      tlsAllowInvalidCertificates: false
     });
     
     console.log("✅ MongoDB connected");
