@@ -16,6 +16,8 @@ import workRoutes from './src/routes/workRoutes.js';
 
 // Load environment variables
 dotenv.config();
+const mongoURI = process.env.MONGO_URI;
+const adminSecret = process.env.ADMIN_SECRET;
 
 // Verify MongoDB URI
 if (!process.env.MONGO_URI) {
@@ -54,7 +56,6 @@ app.use(cors(corsOptions));
 
 // --- OPTIONAL: Temporarily disabled host validation (for testing) ---
 // Uncomment this only when you need strict host checking in production
-/*
 app.use((req, res, next) => {
   if (
     process.env.NODE_ENV === 'production' &&
@@ -69,7 +70,7 @@ app.use((req, res, next) => {
   }
   next();
 });
-*/
+
 
 // --- UPDATED: Database Connection ---
 const connectDB = async () => {
