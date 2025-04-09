@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 
+
 import certificatesRoutes from './src/routes/certificatesRoutes.js';
 import companyRoutes from './src/routes/companyRoutes.js';
 import educationRoutes from './src/routes/educationRoutes.js';
@@ -19,16 +20,21 @@ dotenv.config();
 // Verify MongoDB URI
 if (!process.env.MONGO_URI) {
   console.error("FATAL ERROR: MONGO_URI is not defined");
-  
   process.exit(1);
 }
 
 const app = express();
 
-// Middleware setup
+// Middleware to parse JSON
 app.use(express.json());
 
-// --- UPDATED: CORS Configuration ---
+// Debugging: Log incoming origins
+app.use((req, res, next) => {
+  console.log(`Incoming origin: ${req.headers.origin}`);
+  next();
+});
+
+// --- UPDATED: Simplified CORS Configuration ---
 const allowedOrigins = [
   'https://seetsi1997.github.io',
   'https://seetsi1997.github.io/ganeth_portfolio',
@@ -38,24 +44,17 @@ const allowedOrigins = [
 console.log(`Allowed CORS origin(s): ${allowedOrigins.join(', ')}`);
 
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  methods: ['GET', 'POST', 'OPTIONS'],
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
   credentials: true,
-  preflightContinue: false,
-  optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
-app.options('*', cors(corsOptions)); // Ensure preflight is handled
 
-// --- UPDATED: Host Validation Middleware ---
+// --- OPTIONAL: Temporarily disabled host validation (for testing) ---
+// Uncomment this only when you need strict host checking in production
+/*
 app.use((req, res, next) => {
   if (
     process.env.NODE_ENV === 'production' &&
@@ -70,19 +69,22 @@ app.use((req, res, next) => {
   }
   next();
 });
+*/
 
 // --- UPDATED: Database Connection ---
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB connected");
+    console.log("✅ MongoDB connected");
   } catch (err) {
-    console.error("MongoDB connection error:", err.message);
+    console.error("❌ MongoDB connection error:", err.message);
     process.exit(1);
   }
 };
 
-
+// --- ROUTES GO HERE ---
+// Example:
+// app.use('/educations', educationRoutes);
 // 4. Routes
 app.use('/educations', educationRoutes);
 app.use('/testimonials', testimonialsRoutes);
@@ -93,6 +95,12 @@ app.use('/companies', companyRoutes);
 app.use('/works', workRoutes);
 app.use('/services', servicesRoutes);
 app.use('/portfolios', portfoliosRoutes)
+
+// Global Error Handling Middleware
+
+
+
+
 
 // 6. Error Handling Middleware
 app.use((err, req, res, next) => {
