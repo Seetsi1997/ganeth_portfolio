@@ -2,7 +2,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-
+import path from "path";
 
 import certificatesRoutes from './src/routes/certificatesRoutes.js';
 import companyRoutes from './src/routes/companyRoutes.js';
@@ -71,7 +71,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 // --- UPDATED: Database Connection ---
 const connectDB = async () => {
   try {
@@ -84,9 +83,6 @@ const connectDB = async () => {
 };
 
 // --- ROUTES GO HERE ---
-// Example:
-// app.use('/educations', educationRoutes);
-// 4. Routes
 app.use('/educations', educationRoutes);
 app.use('/testimonials', testimonialsRoutes);
 app.use("/projects", projectsRoutes);
@@ -95,15 +91,17 @@ app.use('/certificates', certificatesRoutes);
 app.use('/companies', companyRoutes);
 app.use('/works', workRoutes);
 app.use('/services', servicesRoutes);
-app.use('/portfolios', portfoliosRoutes)
+app.use('/portfolios', portfoliosRoutes);
+
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, 'build')));
+
+// All other routes should return the React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 // Global Error Handling Middleware
-
-
-
-
-
-// 6. Error Handling Middleware
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: 'Internal Server Error' });
