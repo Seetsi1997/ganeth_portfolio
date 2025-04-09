@@ -47,11 +47,24 @@ app.use(cors(corsOptions));
 }));*/
 
 // Connection timeout middleware
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   res.setTimeout(5000, () => {
     console.error(`Timeout for ${req.method} ${req.url}`);
     res.status(504).json({ error: 'Request timeout' });
   });
+  next();
+});*/
+
+// Add this before your routes
+app.use((req, res, next) => {
+  const allowedHosts = [
+    'ganeth-portfolio.onrender.com',
+    'localhost' 
+  ];
+  
+  if (!allowedHosts.includes(req.headers.host)) {
+    return res.status(403).json({ error: 'Invalid Host header' });
+  }
   next();
 });
 
