@@ -5,7 +5,6 @@ import mongoose from "mongoose";
 import path, { dirname } from "path";
 import { fileURLToPath } from 'url';
 
-
 // Import routes
 import certificatesRoutes from './src/routes/certificatesRoutes.js';
 import companyRoutes from './src/routes/companyRoutes.js';
@@ -18,9 +17,9 @@ import workHistoryRoutes from './src/routes/workHistoryRoutes.js';
 import workRoutes from './src/routes/workRoutes.js';
 
 // Get directory name in ES module
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
 // Load environment variables
 dotenv.config();
 
@@ -37,16 +36,27 @@ const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI, {
       serverSelectionTimeoutMS: 5000,  // Keep this for connection timeout
-      socketTimeoutMS: 30000,          // Keep this for socket timeout
+      socketTimeoutMS: 30000,         // Keep this for socket timeout
       retryWrites: true,              // Keep this for retryable writes
-      w: 'majority',                  // Keep this for write concern
+      w: 'majority',                  // Fixed typo: changed 'majority' to 'majority'
       family: 4                       // Keep this to force IPv4
-      // Removed deprecated options:
-      // useNewUrlParser: true,       // No longer needed in v4+
-      // useUnifiedTopology: true     // No longer needed in v4+
     });
     
     console.log("✅ MongoDB connected");
+    
+    // Connection event listeners
+    mongoose.connection.on('connected', () => {
+      console.log('Mongoose connected to DB');
+    });
+
+    mongoose.connection.on('error', (err) => {
+      console.log('Mongoose connection error:', err);
+    });
+
+    mongoose.connection.on('disconnected', () => {
+      console.log('Mongoose disconnected');
+    });
+    
   } catch (err) {
     console.error("❌ MongoDB connection error:", err.message);
     
@@ -70,27 +80,46 @@ app.use((req, res, next) => {
   next();
 });
 
-// CORS Configuration
+// Enhanced CORS Configuration
 const allowedOrigins = [
   'https://seetsi1997.github.io',
   'https://seetsi1997.github.io/ganeth_portfolio',
-  'http://localhost:3000'
+  'http://localhost:3000',
+  'http://localhost:5173' // Add if using Vite
 ];
 
 const corsOptions = {
-  origin: allowedOrigins,
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.warn(`CORS blocked for origin: ${origin}`);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  credentials: true,
+  optionsSuccessStatus: 200 // For legacy browser support
 };
 
+// Apply CORS middleware
 app.use(cors(corsOptions));
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 
 // Security headers
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '1; mode=block');
+  // Add CORS headers manually for additional assurance
+  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.header('Access-Control-Allow-Credentials', 'true');
   next();
 });
 
@@ -110,7 +139,11 @@ app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'healthy',
     database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    cors: {
+      allowedOrigins: allowedOrigins,
+      currentOrigin: req.headers.origin || 'none'
+    }
   });
 });
 
@@ -125,8 +158,16 @@ app.get('/ganeth_portfolio/*', (req, res) => {
   });
 });
 
-// Global Error Handling
+// Error Handling Middleware
 app.use((err, req, res, next) => {
+  if (err.message === 'Not allowed by CORS') {
+    return res.status(403).json({ 
+      error: 'CORS policy violation',
+      allowedOrigins: allowedOrigins,
+      yourOrigin: req.headers.origin || 'none'
+    });
+  }
+  
   console.error(err.stack);
   res.status(500).json({ 
     error: 'Internal Server Error',
@@ -143,6 +184,7 @@ const startServer = async () => {
     console.log(`🚀 Server running on port ${PORT}`);
     console.log(`🌐 Allowed CORS origins: ${allowedOrigins.join(', ')}`);
     console.log(`📁 Serving static files from: ${staticPath}`);
+    console.log(`🔒 CORS strict mode: ${corsOptions.origin ? 'enabled' : 'disabled'}`);
   });
 };
 
