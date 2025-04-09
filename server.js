@@ -2,7 +2,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-import path, { dirname } from "path";
+import path from "path";
 import { fileURLToPath } from 'url';
 
 // Import routes
@@ -16,15 +16,12 @@ import testimonialsRoutes from './src/routes/testimonialsRoutes.js';
 import workHistoryRoutes from './src/routes/workHistoryRoutes.js';
 import workRoutes from './src/routes/workRoutes.js';
 
-
 // Get directory name in ES module
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const dirname = __dirname(__filename);
 
 // Load environment variables
 dotenv.config();
-const mongoURI = process.env.MONGO_URI;
-const adminSecret = process.env.ADMIN_SECRET;
 
 // Verify MongoDB URI
 if (!process.env.MONGO_URI) {
@@ -34,12 +31,28 @@ if (!process.env.MONGO_URI) {
 
 const app = express();
 
+// Enhanced MongoDB Connection
+const connectDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 30000,
+      retryWrites: true,
+      w: 'majority'
+    });
+    console.log("✅ MongoDB connected");
+  } catch (err) {
+    console.error("❌ MongoDB connection error:", err.message);
+    process.exit(1);
+  }
+};
+
 // Middleware to parse JSON
 app.use(express.json());
 
-// Debugging: Log incoming origins
+// Debugging middleware
 app.use((req, res, next) => {
-  console.log(`Incoming origin: ${req.headers.origin}`);
+  console.log(`Incoming request: ${req.method} ${req.path}`);
   next();
 });
 
@@ -50,43 +63,22 @@ const allowedOrigins = [
   'http://localhost:3000'
 ];
 
-console.log(`Allowed CORS origin(s): ${allowedOrigins.join(', ')}`);
-
 const corsOptions = {
   origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type'],
-  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 };
 
 app.use(cors(corsOptions));
 
-// Optional host validation
+// Security headers
 app.use((req, res, next) => {
-  if (
-    process.env.NODE_ENV === 'production' &&
-    req.headers.host !== 'ganeth-portfolio.onrender.com'
-  ) {
-    return res.status(403).json({
-      status: 'error',
-      message: 'Invalid host',
-      expected: 'ganeth-portfolio.onrender.com',
-      received: req.headers.host
-    });
-  }
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
   next();
 });
-
-// Database Connection
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("✅ MongoDB connected");
-  } catch (err) {
-    console.error("❌ MongoDB connection error:", err.message);
-    process.exit(1);
-  }
-};
 
 // Routes
 app.use('/educations', educationRoutes);
@@ -99,30 +91,48 @@ app.use('/works', workRoutes);
 app.use('/services', servicesRoutes);
 app.use('/portfolios', portfoliosRoutes);
 
-// Serve static files from the React app
-const staticPath = path.join(__dirname, 'build');
-app.use(express.static(staticPath));
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'healthy',
+    database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
+    timestamp: new Date().toISOString()
+  });
+});
 
-// Handle client-side routing
-app.get('*', (req, res) => {
+// Serve static files with base path for React Router
+const staticPath = path.join(dirname, 'build');
+app.use('/ganeth_portfolio', express.static(staticPath));
+app.get('/ganeth_portfolio/*', (req, res) => {
   res.sendFile(path.join(staticPath, 'index.html'), (err) => {
     if (err) {
-      res.status(404).json({ message: 'Page not found' });
+      res.status(404).json({ message: 'Not found' });
     }
   });
 });
 
-// Global Error Handling Middleware
+// Global Error Handling
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ error: 'Internal Server Error' });
+  res.status(500).json({ 
+    error: 'Internal Server Error',
+    message: err.message
+  });
 });
 
 // Start Server
-connectDB().then(() => {
+const startServer = async () => {
+  await connectDB();
+  
   const PORT = process.env.PORT || 5000;
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-    console.log(`Allowed CORS origins: ${corsOptions.origin.join(', ')}`);
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+    console.log(`🌐 Allowed CORS origins: ${allowedOrigins.join(', ')}`);
+    console.log(`📁 Serving static files from: ${staticPath}`);
   });
+};
+
+startServer().catch(err => {
+  console.error("🔥 Failed to start server:", err);
+  process.exit(1);
 });
