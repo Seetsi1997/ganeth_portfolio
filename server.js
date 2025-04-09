@@ -36,18 +36,27 @@ const app = express();
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 30000,
-      retryWrites: true,
-      w: 'majority',
-      family: 4 // 👈 Force IPv4
+      serverSelectionTimeoutMS: 5000,  // Keep this for connection timeout
+      socketTimeoutMS: 30000,          // Keep this for socket timeout
+      retryWrites: true,              // Keep this for retryable writes
+      w: 'majority',                  // Keep this for write concern
+      family: 4                       // Keep this to force IPv4
+      // Removed deprecated options:
+      // useNewUrlParser: true,       // No longer needed in v4+
+      // useUnifiedTopology: true     // No longer needed in v4+
     });
     
     console.log("✅ MongoDB connected");
   } catch (err) {
     console.error("❌ MongoDB connection error:", err.message);
+    
+    // More specific error handling
+    if (err.name === 'MongoNetworkError') {
+      console.error('Network error - check your connection and IP whitelisting');
+    } else if (err.name === 'MongooseServerSelectionError') {
+      console.error('Server selection error - check your MongoDB URI and cluster status');
+    }
+    
     process.exit(1);
   }
 };
