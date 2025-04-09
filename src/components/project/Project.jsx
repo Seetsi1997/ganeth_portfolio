@@ -40,9 +40,7 @@ const Portfolio = () => {
   const fetchPortfolioData = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_API_URL}/portfolios`
-      );
+      const response = await axios.get("https://ganeth-portfolio.onrender.com/portfolios");
       console.log("Full API response:", response);
       console.log("Response data:", response.data);
 
