@@ -30,7 +30,7 @@ const Portfolio = () => {
 
 
   useEffect(() => {
-   /**/
+    /**/
     // Fetch all projects (both approved and pending)
 
 
@@ -73,15 +73,15 @@ const Portfolio = () => {
       const response = await axios.patch(
         `${process.env.REACT_APP_API_URL}/portfolios/${projectId}/approve`
       );
-      
+
       if (response.data.success) {
         // Update both the list and modal view
-        setPortfolioData(prev => prev.map(project => 
-          project._id === projectId 
+        setPortfolioData(prev => prev.map(project =>
+          project._id === projectId
             ? { ...project, status: 'approved' }
             : project
         ));
-        
+
         setSelectedProject(prev => prev && { ...prev, status: 'approved' });
       }
     } catch (error) {
@@ -91,7 +91,7 @@ const Portfolio = () => {
       setIsUpdating(false);
     }
   };
-  
+
 
   const formatDate = (dateString) => {
     if (!dateString) return "N/A";
@@ -135,7 +135,7 @@ const Portfolio = () => {
           >
             <div className="portfolio__item-image">
               <img
-                src={project.imageUrl}
+                src={`${process.env.REACT_APP_API_URL || ''}${project.imageUrl}`}
                 alt={project.projectName}
                 onError={(e) => {
                   e.target.src = "/assets/me.jpg";
@@ -215,21 +215,21 @@ const Portfolio = () => {
             </div>
 
             <div className="footer-popup">
-            <div className="project__popup-approval">
-  <span className={`status-badge ${selectedProject.status.toLowerCase()}`}>
-    {selectedProject.status}
-  </span>
-  
-  {selectedProject.status.toLowerCase() === 'pending' && (
-    <button
-      className="approve-btn"
-      onClick={() => handleApproveProject(selectedProject._id)}
-      disabled={isUpdating}
-    >
-      {isUpdating ? 'Approving...' : 'Approve Project'}
-    </button>
-  )}
-</div>
+              <div className="project__popup-approval">
+                <span className={`status-badge ${selectedProject.status.toLowerCase()}`}>
+                  {selectedProject.status}
+                </span>
+
+                {selectedProject.status.toLowerCase() === 'pending' && (
+                  <button
+                    className="approve-btn"
+                    onClick={() => handleApproveProject(selectedProject._id)}
+                    disabled={isUpdating}
+                  >
+                    {isUpdating ? 'Approving...' : 'Approve Project'}
+                  </button>
+                )}
+              </div>
               <div className="project__popup-dates">
                 <span>Start: {formatDate(selectedProject.startDate)}</span>
                 <span>End: {formatDate(selectedProject.endDate)}</span>

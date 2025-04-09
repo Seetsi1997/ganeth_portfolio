@@ -80,7 +80,7 @@ const connectDB = async () => {
 app.use(express.json());
 
 // Serve static assets (e.g., images) from the 'assets' folder
-app.use('/assets', express.static(path.join(__dirname, 'assets')));
+app.use('/assets', express.static(path.join(__dirname, 'public/assets')));
 
 
 // Debugging middleware
