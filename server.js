@@ -2,8 +2,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
-import path from "path";
+import path, { dirname } from "path";
 import { fileURLToPath } from 'url';
+
 
 // Import routes
 import certificatesRoutes from './src/routes/certificatesRoutes.js';
@@ -17,9 +18,9 @@ import workHistoryRoutes from './src/routes/workHistoryRoutes.js';
 import workRoutes from './src/routes/workRoutes.js';
 
 // Get directory name in ES module
-const __filename = fileURLToPath(import.meta.url);
-const dirname = __dirname(__filename);
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 // Load environment variables
 dotenv.config();
 
@@ -101,7 +102,7 @@ app.get('/health', (req, res) => {
 });
 
 // Serve static files with base path for React Router
-const staticPath = path.join(dirname, 'build');
+const staticPath = path.join(__dirname, 'build');
 app.use('/ganeth_portfolio', express.static(staticPath));
 app.get('/ganeth_portfolio/*', (req, res) => {
   res.sendFile(path.join(staticPath, 'index.html'), (err) => {
