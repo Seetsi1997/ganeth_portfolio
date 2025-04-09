@@ -13,91 +13,69 @@ import testimonialsRoutes from './src/routes/testimonialsRoutes.js';
 import workHistoryRoutes from './src/routes/workHistoryRoutes.js';
 import workRoutes from './src/routes/workRoutes.js';
 
-// Load environment variables first
+// Load environment variables
 dotenv.config();
 
-console.log("MongoDB URI:", process.env.MONGO_URI);
-
-// Verify MongoDB URI is set
+// Verify MongoDB URI
 if (!process.env.MONGO_URI) {
-  console.error("FATAL ERROR: MONGO_URI is not defined in .env file.");
+  console.error("FATAL ERROR: MONGO_URI is not defined");
   process.exit(1);
 }
 
 const app = express();
+
+// Middleware setup
 app.use(express.json());
 
-// Enable CORS
+// 1. CORS Configuration
 const corsOptions = {
   origin: [
-    'https://seetsi1997.github.io',
-    'http://localhost:3000'
+    'https://seetsi1997.github.io', 
+    'http://localhost:3000' // For local development
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
-  // Explicitly expose headers if needed
-  exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar']
+  optionsSuccessStatus: 200 // For legacy browser support
 };
 
-// Apply to all routes
 app.use(cors(corsOptions));
 
-// Special handler for OPTIONS requests
-app.options('*', (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://seetsi1997.github.io');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.status(200).end();
-});
-//const cors = require('cors');
-/*app.use(cors({
-  origin: 'https://seetsi1997.github.io',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));*/
-
-// Connection timeout middleware
-/*app.use((req, res, next) => {
-  res.setTimeout(5000, () => {
-    console.error(`Timeout for ${req.method} ${req.url}`);
-    res.status(504).json({ error: 'Request timeout' });
-  });
-  next();
-});*/
-
-// Add this before your routes
+// 2. Host Validation Middleware
 app.use((req, res, next) => {
-  const allowedHosts = [
+  const validHosts = [
     'ganeth-portfolio.onrender.com',
-    'localhost' 
+    'localhost:5000'
   ];
   
-  if (!allowedHosts.includes(req.headers.host)) {
-    return res.status(403).json({ error: 'Invalid Host header' });
+  // Skip host validation in development
+  if (process.env.NODE_ENV === 'production' && 
+      !validHosts.includes(req.headers.host)) {
+    return res.status(403).json({ 
+      error: 'Forbidden - Invalid Host',
+      receivedHost: req.headers.host
+    });
   }
   next();
 });
 
-// Improved MongoDB connection with better error handling
+// 3. Database Connection
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGO_URI, {
       serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 10000
+      socketTimeoutMS: 10000,
+      useNewUrlParser: true,
+      useUnifiedTopology: true
     });
-    console.log(`MongoDB connected successfully` );
+    console.log("MongoDB connected");
   } catch (err) {
-    console.error('MongoDB connection error:', err.message);
+    console.error("MongoDB connection error:", err.message);
     process.exit(1);
   }
 };
 
-// Connect to database before starting server
-connectDB();
-
-// Routes
+// 4. Routes
 app.use('/educations', educationRoutes);
 app.use('/testimonials', testimonialsRoutes);
 app.use("/projects", projectsRoutes);
@@ -108,6 +86,26 @@ app.use('/works', workRoutes);
 app.use('/services', servicesRoutes);
 app.use('/portfolios', portfoliosRoutes)
 
-// Server setup
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// 5. Health Check Endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'healthy',
+    timestamp: new Date(),
+    dbStatus: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
+  });
+});
+
+// 6. Error Handling Middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: 'Internal Server Error' });
+});
+
+// Start Server
+connectDB().then(() => {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    console.log(`Allowed CORS origins: ${corsOptions.origin.join(', ')}`);
+  });
+});
