@@ -27,26 +27,34 @@ const app = express();
 // Middleware setup
 app.use(express.json());
 
-// 1. CORS Configuration
-// Updated CORS and Host configuration
+// --- UPDATED: CORS Configuration ---
+const allowedOrigins = ['https://seetsi1997.github.io', 'http://localhost:3000'];
+
 const corsOptions = {
-  origin: 'https://seetsi1997.github.io',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
   credentials: true,
-  preflightContinue: false, // Important for Render
+  preflightContinue: false,
   optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // Ensure preflight is handled
 
-
-// 2. Host Validation Middleware
-// Simplified host validation
+// --- UPDATED: Host Validation Middleware ---
 app.use((req, res, next) => {
-  if (process.env.NODE_ENV === 'production' && 
-      req.headers.host !== 'ganeth-portfolio.onrender.com') {
-    return res.status(403).json({ 
+  if (
+    process.env.NODE_ENV === 'production' &&
+    req.headers.host !== 'ganeth-portfolio.onrender.com'
+  ) {
+    return res.status(403).json({
       status: 'error',
       message: 'Invalid host',
       expected: 'ganeth-portfolio.onrender.com',
@@ -56,21 +64,17 @@ app.use((req, res, next) => {
   next();
 });
 
-// 3. Database Connection
+// --- UPDATED: Database Connection ---
 const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      serverSelectionTimeoutMS: 5000,
-      socketTimeoutMS: 10000,
-      useNewUrlParser: true,
-      useUnifiedTopology: true
-    });
+    await mongoose.connect(process.env.MONGO_URI);
     console.log("MongoDB connected");
   } catch (err) {
     console.error("MongoDB connection error:", err.message);
     process.exit(1);
   }
 };
+
 
 // 4. Routes
 app.use('/educations', educationRoutes);
@@ -82,15 +86,6 @@ app.use('/companies', companyRoutes);
 app.use('/works', workRoutes);
 app.use('/services', servicesRoutes);
 app.use('/portfolios', portfoliosRoutes)
-
-// 5. Health Check Endpoint
-app.get('/health', (req, res) => {
-  res.status(200).json({ 
-    status: 'healthy',
-    timestamp: new Date(),
-    dbStatus: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected'
-  });
-});
 
 // 6. Error Handling Middleware
 app.use((err, req, res, next) => {
