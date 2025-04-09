@@ -28,32 +28,29 @@ const app = express();
 app.use(express.json());
 
 // 1. CORS Configuration
+// Updated CORS and Host configuration
 const corsOptions = {
-  origin: [
-    'https://seetsi1997.github.io', 
-    'http://localhost:3000' // For local development
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: 'https://seetsi1997.github.io',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
   credentials: true,
-  optionsSuccessStatus: 200 // For legacy browser support
+  preflightContinue: false, // Important for Render
+  optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
 
+
 // 2. Host Validation Middleware
+// Simplified host validation
 app.use((req, res, next) => {
-  const validHosts = [
-    'ganeth-portfolio.onrender.com',
-    'localhost:5000'
-  ];
-  
-  // Skip host validation in development
   if (process.env.NODE_ENV === 'production' && 
-      !validHosts.includes(req.headers.host)) {
+      req.headers.host !== 'ganeth-portfolio.onrender.com') {
     return res.status(403).json({ 
-      error: 'Forbidden - Invalid Host',
-      receivedHost: req.headers.host
+      status: 'error',
+      message: 'Invalid host',
+      expected: 'ganeth-portfolio.onrender.com',
+      received: req.headers.host
     });
   }
   next();
