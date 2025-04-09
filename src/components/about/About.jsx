@@ -606,49 +606,74 @@ const About = () => {
     }
   };
 
-  // Use Effect
   useEffect(() => {
     const fetchAllData = async () => {
       setIsLoading(true);
       setErrors({});
       
       try {
-        // Parallel API calls for better performance
-        const [projectsRes, workHistoryRes, certificatesRes, companiesRes] = await Promise.all([
-          axios.get(`${process.env.REACT_APP_API_URL}/projects`),
-          axios.get(`${process.env.REACT_APP_API_URL}/workhistories`),
-          axios.get(`${process.env.REACT_APP_API_URL}/certificates`),
-          axios.get(`${process.env.REACT_APP_API_URL}/companies`, {
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            withCredentials: true
-          })
-        ]);
+        // Configure default axios settings
+        const apiClient = axios.create({
+          baseURL: process.env.REACT_APP_API_URL,
+          withCredentials: true,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          timeout: 10000 // 10 second timeout
+        });
   
-        // Set states with proper data fallbacks
-        setProjects(projectsRes.data?.data || projectsRes.data || []);
-        setWorks(workHistoryRes.data?.data || workHistoryRes.data || []);
-        setCertificatesName(certificatesRes.data?.data || certificatesRes.data || []);
-        setCompaniesName(companiesRes.data?.data || companiesRes.data || []);
+        // Parallel API calls with better error isolation
+        const requests = {
+          projects: apiClient.get('/projects'),
+          workHistory: apiClient.get('/workhistories'),
+          certificates: apiClient.get('/certificates'),
+          companies: apiClient.get('/companies')
+        };
+  
+        const responses = await Promise.allSettled(Object.values(requests));
+        
+        // Process responses
+        const result = {
+          projects: responses[0].status === 'fulfilled' ? responses[0].value.data : null,
+          workHistory: responses[1].status === 'fulfilled' ? responses[1].value.data : null,
+          certificates: responses[2].status === 'fulfilled' ? responses[2].value.data : null,
+          companies: responses[3].status === 'fulfilled' ? responses[3].value.data : null
+        };
+  
+        // Set states with fallbacks
+        setProjects(result.projects?.data || result.projects || []);
+        setWorks(result.workHistory?.data || result.workHistory || []);
+        setCertificatesName(result.certificates?.data || result.certificates || []);
+        setCompaniesName(result.companies?.data || result.companies || []);
   
         // Update counts
         setCounts({
-          projects: projectsRes.data?.length || 0,
-          certificates: certificatesRes.data?.length || 0,
-          companies: companiesRes.data?.length || 0,
-          experiences: workHistoryRes.data?.length || 0,
+          projects: result.projects?.length || 0,
+          certificates: result.certificates?.length || 0,
+          companies: result.companies?.length || 0,
+          experiences: result.workHistory?.length || 0,
         });
   
-      } catch (error) {
-        console.error("API Error:", error);
-        setErrors({
-          projects: error.response?.status === 404 ? "Projects not found" : "Failed to load projects",
-          workHistory: error.response?.status === 404 ? "Work history not found" : "Failed to load work history",
-          certificates: error.response?.status === 404 ? "Certificates not found" : "Failed to load certificates",
-          companies: error.response?.status === 404 ? "Companies not found" : "Failed to load companies"
+        // Set individual errors if any requests failed
+        const errorState = {};
+        Object.keys(requests).forEach((key, index) => {
+          if (responses[index].status === 'rejected') {
+            const error = responses[index].reason;
+            errorState[key] = error.response?.status === 404 
+              ? `${key} not found` 
+              : `Failed to load ${key}`;
+            console.error(`API Error (${key}):`, error);
+          }
         });
+        
+        if (Object.keys(errorState).length > 0) {
+          setErrors(errorState);
+        }
+  
+      } catch (error) {
+        console.error("Unexpected Error:", error);
+        setErrors({ general: "An unexpected error occurred" });
       } finally {
         setIsLoading(false);
       }
