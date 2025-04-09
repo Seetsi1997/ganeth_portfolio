@@ -46,6 +46,8 @@ const connectDB = async () => {
     });
     
     console.log("✅ MongoDB connected");
+    console.log("MONGO_URI:", process.env.MONGO_URI);
+
     
     // Connection event listeners
     mongoose.connection.on('connected', () => {
