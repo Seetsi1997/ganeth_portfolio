@@ -19,6 +19,7 @@ dotenv.config();
 // Verify MongoDB URI
 if (!process.env.MONGO_URI) {
   console.error("FATAL ERROR: MONGO_URI is not defined");
+  
   process.exit(1);
 }
 
@@ -29,6 +30,8 @@ app.use(express.json());
 
 // --- UPDATED: CORS Configuration ---
 const allowedOrigins = ['https://seetsi1997.github.io', 'http://localhost:3000'];
+console.log(`Allowed CORS origin(s): ${allowedOrigins.join(', ')}`);
+
 
 const corsOptions = {
   origin: (origin, callback) => {
