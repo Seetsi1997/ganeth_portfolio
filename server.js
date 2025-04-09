@@ -79,6 +79,10 @@ const connectDB = async () => {
 // Middleware to parse JSON
 app.use(express.json());
 
+// Serve static assets (e.g., images) from the 'assets' folder
+app.use('/assets', express.static(path.join(__dirname, 'assets')));
+
+
 // Debugging middleware
 app.use((req, res, next) => {
   console.log(`Incoming request: ${req.method} ${req.path}`);
