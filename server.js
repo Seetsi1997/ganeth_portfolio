@@ -29,13 +29,17 @@ const app = express();
 app.use(express.json());
 
 // --- UPDATED: CORS Configuration ---
-const allowedOrigins = ['https://seetsi1997.github.io', 'http://localhost:3000'];
-console.log(`Allowed CORS origin(s): ${allowedOrigins.join(', ')}`);
+const allowedOrigins = [
+  'https://seetsi1997.github.io',
+  'https://seetsi1997.github.io/ganeth_portfolio',
+  'http://localhost:3000'
+];
 
+console.log(`Allowed CORS origin(s): ${allowedOrigins.join(', ')}`);
 
 const corsOptions = {
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
+    if (!origin || allowedOrigins.some(o => origin.startsWith(o))) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
