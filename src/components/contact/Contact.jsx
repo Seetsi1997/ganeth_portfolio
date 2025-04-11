@@ -84,42 +84,6 @@ const Contact = () => {
     }
   };
 
-  // In your component
-  const handleMapClick = async (e) => {
-    // Only intercept Android clicks
-    if (!/Android/i.test(navigator.userAgent)) return;
-
-    e.preventDefault();
-    const mapsUrl = e.currentTarget.href;
-
-    // 1. First try with geo: URI
-    try {
-      window.location.href = `geo:0,0?q=Sagwityi+Street,+Commercia,+Gauteng+1685`;
-      await new Promise(resolve => setTimeout(resolve, 300));
-    } catch (err) {
-      console.log('Geo scheme failed');
-    }
-
-    // 2. Try with user-triggered intent
-    try {
-      // Create a temporary link element to satisfy user gesture requirement
-      const tempLink = document.createElement('a');
-      tempLink.href = `intent://maps?q=Sagwityi+Street,+Commercia,+Gauteng+1685#Intent;scheme=geo;package=com.google.android.apps.maps;end`;
-      tempLink.style.display = 'none';
-      document.body.appendChild(tempLink);
-      tempLink.click();
-      document.body.removeChild(tempLink);
-      await new Promise(resolve => setTimeout(resolve, 300));
-    } catch (err) {
-      console.log('Intent scheme failed');
-    }
-
-    // 3. Final fallback to web URL
-    window.open(mapsUrl, '_blank', 'noopener,noreferrer');
-  };
-
-
-
   return (
     <section id="contact">
       <h5>Get in touch with me</h5>
@@ -141,21 +105,6 @@ const Contact = () => {
             <FaWhatsapp className="contact__option-icon" />
             <h4>WhatsApp</h4>
             <a href="https://wa.me/27609440410">Chat on WhatsApp</a>
-          </article>
-
-          <article className="contact__option">
-            <FaMapMarkedAlt className='contact__option-icon' />
-            <h4>Location</h4>
-            <h5>Sagwityi Street, Commercia (Mayibuye), Gauteng</h5>
-            <a
-              href="https://www.google.com/maps?q=Sagwityi+Street,+Commercia,+Gauteng+1685"
-              onClick={handleMapClick}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="map-link"
-            >
-              View Location
-            </a>
           </article>
         </div>
 
