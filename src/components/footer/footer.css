@@ -1,0 +1,108 @@
+/* =================  GENERAL FOOTER STYLING  ================= */
+#footer{
+    padding: 6.5rem 0.5rem;
+}
+.footer {
+    background: var(--color-primary-variant);
+    color: var(--color-light);
+    padding: 2rem 0;
+    text-align: center;
+  }
+  
+  .footer__bg {
+    background: transparent;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  .footer__container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+  
+
+  .footer__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--color-white);
+  }
+  
+  .footer__subtitle {
+    font-size: 1rem;
+    color: var(--color-light)
+  }
+  
+  .footer__links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .footer__links li {
+    display: flex;
+    align-items: center;
+  }
+  
+  .footer__links i {
+    margin-right: 0.5rem;
+    color: var(--color-light)
+  }
+  
+  .footer__link {
+    color:var(--color-light);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  
+  .footer__link:hover {
+    color: var(--color-white); /* Blue color on hover */
+  }
+  
+  .footer__socials {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+  
+  .footer__socials a {
+    color: var(--color-light);
+    font-size: 1.2rem;
+    transition: var(--transition);
+  }
+  
+  .footer__socials a:hover {
+    color: var(--color-white);
+  }
+  
+
+  .footer__copy {
+    margin-top: 2rem;
+    font-size: 0.878rem;
+    color: var(--color-white);
+    font-style: oblique;
+  }
+  
+/* =================  MEDIA QUERIES (SMALL DEVICES)  ================= */
+  @media (min-width: 768px) {
+    .footer__container {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  
+    .footer__links {
+      justify-content: flex-start;
+    }
+  
+    .footer__socials {
+      justify-content: flex-end;
+    }
+  }
