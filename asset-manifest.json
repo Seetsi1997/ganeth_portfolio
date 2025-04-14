@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/ganeth_portfolio/static/css/main.eb1d4bb7.css",
+    "main.js": "/ganeth_portfolio/static/js/main.245a956a.js",
+    "static/media/me.jpg": "/ganeth_portfolio/static/media/me.fb045fa93fcf3665f76d.jpg",
+    "static/media/about_me.jpg": "/ganeth_portfolio/static/media/about_me.c227e791145bdc26bda7.jpg",
+    "index.html": "/ganeth_portfolio/index.html",
+    "main.eb1d4bb7.css.map": "/ganeth_portfolio/static/css/main.eb1d4bb7.css.map",
+    "main.245a956a.js.map": "/ganeth_portfolio/static/js/main.245a956a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.eb1d4bb7.css",
+    "static/js/main.245a956a.js"
+  ]
+}
