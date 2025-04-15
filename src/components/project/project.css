@@ -297,6 +297,7 @@
 .error-not-found {
   text-align: center;
   display: flex;
+  margin-top: 2rem;
   justify-content: center;
   align-items: center;
   color: var(--color-red);
@@ -305,6 +306,7 @@
 .loading-indicator {
   text-align: center;
   display: flex;
+  margin-top: 2rem;
   justify-content: center;
   align-items: center;
   color: var(--color-light);
