@@ -112,7 +112,7 @@ const Portfolio = () => {
   if (portfolioData.length === 0) return <div className="error-not-found">No projects found.</div>;*/
 
   return (
-    <section id="portfolio">
+    <section id="portfolio" className="section-emphasis">
       <h5>Browse My Recent Projects</h5>
       <h2>Portfolio</h2>
   

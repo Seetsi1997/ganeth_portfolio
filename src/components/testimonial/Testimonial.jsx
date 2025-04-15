@@ -22,7 +22,7 @@ const Testimonial = () => {
   }, []);
 
   return (
-    <section id='testimonials'>
+    <section id='testimonials' className="section-emphasis">
       <h5>What people are saying</h5>
       <h2>Testimonials</h2>
           

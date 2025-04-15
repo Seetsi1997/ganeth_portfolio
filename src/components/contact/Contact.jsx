@@ -86,7 +86,7 @@ const Contact = () => {
 
 
   return (
-    <section id="contact">
+    <section id="contact" className="section-emphasis">
       <h5>Get in touch with me</h5>
       <h2>Contact Me</h2>
 
