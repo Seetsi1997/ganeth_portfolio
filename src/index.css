@@ -172,7 +172,7 @@ img {
     position: relative;
 }
 
-.section-emphasis::after {
+/*.section-emphasis::after {
     content: "";
     display: block;
     height: 1px;
@@ -180,4 +180,4 @@ img {
     margin: 0 auto;
     width: 80%;
     opacity: 0.3;
-}
+}*/
