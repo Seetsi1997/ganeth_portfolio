@@ -266,7 +266,7 @@
 @media screen and (max-width: 600px) {
   #services {
     padding: 1.5rem 1rem;
-    margin-top: 3rem;
+    margin-top: 0;
   }
 
   .service__container {
