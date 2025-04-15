@@ -108,7 +108,7 @@ a:hover {
     color: var(--color-white);
 }
 
-.btn {
+.btn, .btn-primary {
     width: 150px; 
     display: inline-block;
     text-align: center;
@@ -130,7 +130,6 @@ a:hover {
     background: var(--color-primary);
     color: var(--color-bg);
     border-color: transparent;
-    width: 150px; 
 }
 
 img {
