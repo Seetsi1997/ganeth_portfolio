@@ -124,15 +124,21 @@
 }
 
 .service__popup-content {
+  border-radius: 10px;
   background: var(--color-bg-variant);
   padding: 2rem;
-  border-radius: 10px;
   max-width: 600px;
   width: 90%;
-  box-shadow: 0 4px 20px var(--color-approved);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
   position: relative;
   max-height: 80vh;
   overflow-y: auto;
+  transform: scale(0.95);
+  transition: all 0.3s ease;
+}
+
+.service-popup-overlay.active .service__popup-content {
+  transform: scale(1);
 }
 
 
