@@ -18,15 +18,16 @@
 .service-card {
   background: var(--color-primary-variant);
   border-radius: 10px;
-  padding: 1rem; 
+  padding: 1rem;
   height: auto;
-  max-width: 500px; 
+  max-width: 500px;
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: transform var(--transition);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .service-card:hover {
@@ -44,22 +45,8 @@
   height: 180px;
   margin-bottom: 1rem;
   border-radius: 8px;
-  object-fit: cover; 
+  object-fit: cover;
 }
-
-
-/*.service-card {
-  background: var(--color-primary-variant);
-  border-radius: 10px;
-  padding: 2rem;
-  height: auto;
-  min-height: 70%;
-  margin-top: 4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: transform var(--transition);
-}*/
 
 .service-title {
   font-size: 1.2rem;
@@ -68,7 +55,7 @@
 }
 
 .service-brief {
-  color: transparent;
+  color: var(--color-light);
   margin-bottom: 1.5rem;
   flex-grow: 1;
 }
@@ -84,6 +71,7 @@
   cursor: pointer;
   transition: var(--transition);
   margin-bottom: 2rem;
+  border: none;
 }
 
 .service-button:hover {
@@ -97,19 +85,17 @@
   outline-offset: 2px;
 }
 
-
-.service-popup {
-  position: absolute;
+.service-popup-overlay {
+  position: fixed;
   top: 0;
-  left: 100%; 
-  width: 400px; 
-  height: auto;
-  min-height: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: var(--color-bg-popup);
-  border-radius: 10px;
-  z-index: 100;
-  margin-left: 1rem;
-  box-shadow: 0 4px 20px var(--color-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s, visibility 0.3s;
@@ -132,19 +118,23 @@
   border-right: 10px solid var(--color-bg-popup);
 }
 
+.service-popup-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
 .service__popup-content {
   background: var(--color-bg-variant);
   padding: 2rem;
   border-radius: 10px;
-  position: relative;
   max-width: 600px;
   width: 90%;
   box-shadow: 0 4px 20px var(--color-approved);
-  transform: scale(0.95);
-  transition: var(--transition);
+  position: relative;
   max-height: 80vh;
   overflow-y: auto;
 }
+
 
 .service__popup-content h3 {
   text-align: center;
@@ -221,7 +211,7 @@
 }
 
 .error-container {
-  color: var(--color-red);
+  color: var(--color-light);
 }
 
 .swiper {
@@ -251,8 +241,7 @@
 /* =================  MEDIA QUERIES (MEDIUM DEVICES)  ================= */
 @media screen and (max-width: 1024px) {
   .service__container {
-    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .service {
@@ -276,7 +265,6 @@
 
   .service__container {
     grid-template-columns: 1fr;
-    gap: 1rem;
   }
   
   .service-button {
@@ -287,16 +275,14 @@
 
   .service-card {
     padding: 1.5rem;
-    background: var(--color-primary-variant);
+   /* background: var(--color-primary-variant);
     border-radius: 8px;
     height: auto;
-    display: block !important;
+    display: block !important;*/
   }
 
   .service-title {
     font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
     margin-bottom: 0.8rem;
     color: var(--color-light);
   }
@@ -304,10 +290,6 @@
   .service-brief {
     color: var(--color-light);
     font-size: 0.9rem;
-    line-height: 1.6;
-    white-space: pre-line;
-    opacity: 0.9;
-    display: block !important;
   }
 
   .service__card-details {
@@ -329,7 +311,7 @@
     display: flex !important;
   }
 
-  .category {
+  /*.category {
     display: inline-block !important;
     margin-top: 0.8rem;
     padding: 0.2rem 0.6rem;
@@ -337,6 +319,10 @@
     font-size: 0.65rem;
     font-weight: 600;
     text-transform: uppercase;
+  }*/
+  .category {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.6rem;
   }
 
   .category.frontend {
