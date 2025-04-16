@@ -238,7 +238,7 @@ body.popup-active {
   margin-left: 8px;
 }
 
-.btn.btn-primary {
+.btn {
   padding: 15px;
   white-space: nowrap; 
   margin-bottom: 60px;
@@ -413,7 +413,7 @@ body.popup-active {
   .about__buttons .btn {
     width: 100%;
   }
-  
+
   .about__popup-content h1 {
     font-size: 18px;
     color: var(--color-white);

@@ -87,14 +87,14 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--color-bg-popup);
+  background: var(--color-white);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
+  transition: opacity var(--transition-2), visibility var(--transition-2);
 }
 
 .service-popup.active {
@@ -125,9 +125,9 @@
   padding: 2rem;
   max-width: 600px;
   width: 90%;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 30px var(--color-light);
   position: relative;
-  max-height: 80vh;
+  max-height: 40vh;
   overflow-y: auto;
   transform: scale(0.95);
   transition: all 0.3s ease;

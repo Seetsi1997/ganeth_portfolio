@@ -745,7 +745,7 @@ const About = () => {
             of delivering top-notch work and creating intuitive, user-friendly
             interfaces.
           </p>
-          <a href="https://wa.me/27609440410" className="btn btn-primary">
+          <a href="https://wa.me/27609440410" className="btn">
             Let's Talk
           </a>
         </div>
