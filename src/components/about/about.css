@@ -1,4 +1,10 @@
 /* =================  ABOUT ================= */
+.section-emphasis{
+    margin: 0.5rem auto;
+    padding: 0.4rem 0;
+    position: relative;
+}
+
 .about__container {
   display: grid;
   grid-template-columns: 35% 60%;
