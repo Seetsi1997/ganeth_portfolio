@@ -126,7 +126,7 @@ a:hover {
     border-color: transparent;
 }
 
-.btn-primary {
+.btn.btn-primary {
     background: var(--color-primary);
     color: var(--color-bg);
     border-color: transparent;
