@@ -53,9 +53,9 @@ input, textarea {
 
 /* Button alignment */
 .btn.btn-primary {
-  width: 100%; /* Full width button */
-  margin: 0; /* Remove auto margins */
-  padding: 1rem; /* Consistent padding */
+  width: 100%;
+  margin: 0;
+  padding: 1rem;
 }
 
 /* =================  MEDIA QUERIES (MEDIUM DEVICES)  ================= */
@@ -69,20 +69,20 @@ input, textarea {
 /* =================  MEDIA QUERIES (SMALL DEVICES)  ================= */
 @media screen and (max-width: 600px) {
   #contact {
-      padding: 3rem 0.5rem; /* Reduced padding on mobile */
+      padding: 3rem 0.5rem; 
   }
 
   .contact__container {
       grid-template-columns: 1fr;
       gap: 1rem;
-      padding: 0 0.5rem; /* Smaller side padding */
+      padding: 0 0.5rem; 
   }
 
   form, .contact__options {
-      margin-top: 2rem; /* Reduced top margin */
+      margin-top: 2rem; 
   }
 
   .contact__option {
-      padding: 1rem; /* Slightly less padding on mobile */
+      padding: 1rem; 
   }
 }
