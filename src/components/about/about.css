@@ -396,6 +396,12 @@ body.popup-active {
 
 /*            MEDIA QUERIES (SMALL DEVICES)        */
 @media screen and (max-width: 600px) {
+  .section-emphasis{
+    margin: 0.5rem auto;
+    padding: 0.4rem 0;
+    position: relative;
+}
+
   .about__container {
     grid-template-columns: 1fr; 
     text-align: center;
@@ -443,6 +449,12 @@ body.popup-active {
   #about {
     padding: 4rem 2rem;
   }
+
+  .section-emphasis{
+    margin: 0.5rem auto;
+    padding: 0.4rem 0;
+    position: relative;
+}
 }
 
 /* export NODE_OPTIONS=--openssl-legacy-provider && npm install --legacy-peer-deps && npm run build
