@@ -61,3 +61,21 @@ nav a.active{
     }
 }
 
+@media screen and (max-width: 375px) {
+    nav {
+        max-width: 375px; 
+        width: 90%;
+        padding: 0.4rem 0.8rem;
+        gap: 0.3rem;
+        bottom: 0.8rem;
+    }
+
+    nav a {
+        padding: 0.5rem;
+        font-size: 0.8rem; 
+    }
+}
+
+
+
+
