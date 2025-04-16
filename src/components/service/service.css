@@ -126,7 +126,7 @@
   padding: 2rem;
   max-width: 600px;
   width: 90%;
-  box-shadow: 0 4px 30px var(--color-light);
+  box-shadow: 0 4px 30px var(--color-bg-2);
   position: relative;
   max-height: 40vh;
   overflow-y: auto;
