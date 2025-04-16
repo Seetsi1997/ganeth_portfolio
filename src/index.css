@@ -130,8 +130,8 @@ a:hover {
     background: var(--color-primary);
     color: var(--color-bg);
     border-color: transparent;
-    margin-left: 150px;
-    margin-right: 150px;
+    padding: 8px 20px; 
+    width: fit-content;
 }
 
 img {
