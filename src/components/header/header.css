@@ -19,9 +19,9 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0;       /* Removes all spacing between flex items */
-    line-height: 1; /* Reduces text line spacing if needed */
-    padding: 0;    /* Removes internal padding if any */
+    gap: 0;      
+    line-height: 1;
+    padding: 0;    
   }
   
 /* =================  OPTIONAL TIGHTEN MARGIN ON CHILD ELEMENTS  ================= */
