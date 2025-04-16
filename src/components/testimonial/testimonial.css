@@ -90,7 +90,7 @@
   }
   
   .btn.btn-primary {
-    margin: 2.5rem auto;
+    margin: 1.5rem auto;
     color: var(--color-light);
   }
   
@@ -107,7 +107,7 @@
     }
     
     .btn.btn-primary {
-        margin: 3rem auto;
+        margin: 2rem auto;
     }
   }
   

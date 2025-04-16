@@ -1,9 +1,4 @@
 /* =================  SERVICES SECTION  ================= */
-/*#services {
-  padding: 4rem 2rem;
-  margin-top: 2rem;
-}*/
-
 .services {
   text-align: center;
 }
@@ -20,7 +15,7 @@
   border-radius: 10px;
   padding: 1rem;
   height: auto;
-  max-width: 500px;
+  max-width: 450px;
   margin-top: 2rem;
   display: flex;
   flex-direction: column;
@@ -264,11 +259,6 @@
 
 /* =================  MEDIA QUERIES (SMALL DEVICES)  ================= */
 @media screen and (max-width: 600px) {
-  #services {
-    padding: 1.5rem 1rem;
-    margin-top: 0;
-  }
-
   .service__container {
     grid-template-columns: 1fr;
   }
@@ -281,10 +271,10 @@
 
   .service-card {
     padding: 1.5rem;
-   /* background: var(--color-primary-variant);
-    border-radius: 8px;
+    background: var(--color-primary-variant);
+    border-radius: 5px;
     height: auto;
-    display: block !important;*/
+    display: block !important;
   }
 
   .service-title {
