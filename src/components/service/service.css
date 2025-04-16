@@ -1,5 +1,6 @@
 /* =================  SERVICES SECTION  ================= */
-.services {
+#services {
+  padding: 4rem 2rem;
   text-align: center;
 }
 
