@@ -131,6 +131,18 @@
   overflow-y: auto;
   transform: scale(0.95);
   transition: all 0.3s ease;
+  padding-left: 3rem; 
+}
+
+.service__popup-content::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  width: 5px;
+  background: var(--color-primary); /* Use your theme color */
+  border-radius: 3px;
 }
 
 .service-popup-overlay.active .service__popup-content {
