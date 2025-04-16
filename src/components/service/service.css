@@ -1,7 +1,7 @@
 /* =================  SERVICES SECTION  ================= */
 #services {
   padding: 4rem 2rem;
-  margin-top: 12rem;
+  margin-top: 2rem;
 }
 
 .services {
@@ -348,7 +348,10 @@
 }
 
 @media screen and (max-width: 375px){
-  
+  #services {
+    padding: 1.5rem 1rem;
+    margin-bottom: 2rem;
+  }
 }
 
 /*
