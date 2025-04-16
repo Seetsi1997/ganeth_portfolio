@@ -104,9 +104,8 @@
   color: var(--color-light);
   padding-top: 1rem;
 }
-.btn.btn-primary{
+.btn-primary{
   margin-top: 1rem;
-  width: 150px;
 }
 
 /* =================  POPUP (PROJECTS, CERTIFICATES, COMPANIES, EXPERIENCE) ================= */
