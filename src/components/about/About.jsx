@@ -683,7 +683,7 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" className="about">
+    <section id="about" className="section-emphasis">
       {/* ... other existing code ... */}
       <h5>Get To Know</h5>
       <h2>About Me</h2>
