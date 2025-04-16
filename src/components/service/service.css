@@ -86,7 +86,7 @@
   top: 0;
   left: 0;
   right: 0;
-  bottom: 10px;
+  bottom: 0;
   background: var(--color-bg-popup);
   display: flex;
   justify-content: center;
@@ -107,6 +107,7 @@
   position: absolute;
   top: 20px;
   left: -10px;
+  bottom: 20px;
   width: 0;
   height: 0;
   border-top: 10px solid transparent;
