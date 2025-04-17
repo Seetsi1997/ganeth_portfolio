@@ -402,13 +402,12 @@ body.popup-active {
     margin-bottom: 0;
   }*/
 
-  .section-emphasis {
+  #about {
     padding-top: 0.2rem;
     margin-top: -3rem;  
     margin-bottom: 0;
     position: relative; 
-    z-index: 1;
-    padding: 0;         
+    z-index: 1;       
 }
 
   .about__container {
