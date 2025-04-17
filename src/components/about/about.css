@@ -396,19 +396,19 @@ body.popup-active {
 
 /*            MEDIA QUERIES (SMALL DEVICES)        */
 @media screen and (max-width: 600px) {
-  #about {
+  /*#about {
     padding-top: 0.5rem;
     margin-top: -2rem; 
     margin-bottom: 0;
-  }
+  }*/
 
-  /*.section-emphasis {
+  .section-emphasis {
     margin-top: -2.5rem;  
     margin-bottom: 0;
     position: relative; 
     z-index: 1;
     padding: 0;         
-}*/
+}
 
   .about__container {
     grid-template-columns: 1fr; 
