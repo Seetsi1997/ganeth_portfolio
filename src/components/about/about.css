@@ -42,7 +42,7 @@
   border-radius: 2rem;
   border-color: var(--color-white);
   overflow: hidden;
-  transform: rotate(10deg);
+  transform: rotate(-10deg);
   transition:var(--transition);
 }
 
