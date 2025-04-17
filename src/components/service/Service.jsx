@@ -51,11 +51,11 @@ const Service = () => {
       <h2>Services</h2>
 
       {loading ? (
-        <div className="loading-container">
+        <div className="loading-indicator">
           <p>Loading services...</p>
         </div>
       ) : errors ? (
-        <div className="error-container">
+        <div className="error-message">
           <p>{errors}</p>
         </div>
       ) : (

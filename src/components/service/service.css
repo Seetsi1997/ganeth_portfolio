@@ -206,7 +206,7 @@
   color: var(--color-skill-expert);
 }
 
-.loading-container, 
+/*.loading-container, 
 .error-container {
   display: flex;
   justify-content: center;
@@ -227,6 +227,24 @@
 
 .error-container {
   color: var(--color-light);
+} */
+.error-message,
+.error-not-found {
+  text-align: center;
+  display: flex;
+  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-light);
+}
+
+.loading-indicator {
+  text-align: center;
+  display: flex;
+  margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-white);
 }
 
 .swiper {

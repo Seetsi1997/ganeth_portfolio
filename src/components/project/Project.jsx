@@ -105,39 +105,32 @@ const Portfolio = () => {
     return new Date(dateString).toISOString().split("T")[0];
   };
 
- /* if (isLoading)
-    return <div className="loading-indicator">Loading projects...</div>;
-  if (errors.portfolio)
-    return <div className="error-message">{errors.portfolio}</div>;
-  if (portfolioData.length === 0) return <div className="error-not-found">No projects found.</div>;*/
 
-  return (
-    <section id="portfolio" className="section-emphasis">
-      <h5>Browse My Recent Projects</h5>
-      <h2>Portfolio</h2>
-  
-      {isLoading && <div className="loading-indicator">Loading projects...</div>}
-      {errors.portfolio && <div className="error-message">{errors.portfolio}</div>}
-  
-      {portfolioData.length === 0 && !isLoading && !errors.portfolio && (
-        <div className="error-not-found">No projects found.</div>
-      )}
-  
-      {portfolioData.length > 0 && (
-        <Swiper
-          className="container portfolio__container"
-          modules={[Navigation, Pagination]}
-          spaceBetween={40}
-          slidesPerView={1}
-          navigation
-          pagination={{ clickable: true }}
-          breakpoints={{
-            0: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 }
-          }}
-        >
-          {portfolioData.map((project) => (
+  const renderPortfolioContent = () => {
+    if (isLoading) {
+      return <div className="loading-indicator">Loading projects...</div>;
+    }
+    if (errors.portfolio) {
+      return <div className="error-message">{errors.portfolio}</div>;
+    }
+    if (portfolioData.length === 0) {
+      return <div className="error-not-found">No projects found.</div>;
+    }
+    return (
+      <Swiper
+        className="container portfolio__container"
+        modules={[Navigation, Pagination]}
+        spaceBetween={40}
+        slidesPerView={1}
+        navigation
+        pagination={{ clickable: true }}
+        breakpoints={{
+          0: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 }
+        }}
+      >
+        {portfolioData.map((project) => (
             <SwiperSlide
               key={
                 project._id ||
@@ -182,7 +175,15 @@ const Portfolio = () => {
             </SwiperSlide>
           ))}
       </Swiper>
-      )}
+    );
+  };
+
+  return (
+    <section id="portfolio" className="section-emphasis">
+      <h5>Browse My Recent Projects</h5>
+      <h2>Portfolio</h2>
+  
+      {renderPortfolioContent()}
 
       {isModalOpen && selectedProject && (
         <div className="project-popup">
