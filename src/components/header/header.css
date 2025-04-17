@@ -63,9 +63,9 @@ header {
 /* =================  MEDIA QUERIES (SMALL DEVICES)  ================= */
 @media screen and (max-width: 600px) {
 
-    header {
+  /*  header {
         height: 100vh;
-    }
+    }*/
     
     .cta {
         margin-top: 2rem;
