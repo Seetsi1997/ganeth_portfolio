@@ -398,6 +398,7 @@ body.popup-active {
 @media screen and (max-width: 600px) {
   .section-emphasis {
     margin-top: -2.5rem;  
+    margin-bottom: 0;
     position: relative; 
     z-index: 1;
     padding: 0;         
@@ -450,12 +451,6 @@ body.popup-active {
   #about {
     padding: 4rem 2rem;
   }
-
-  .section-emphasis{
-    margin: 0.5rem auto;
-    padding: 0.4rem 0;
-    position: relative;
-}
 }
 
 /* export NODE_OPTIONS=--openssl-legacy-provider && npm install --legacy-peer-deps && npm run build
