@@ -114,7 +114,7 @@ const Portfolio = () => {
       return <div className="error-message">{errors.portfolio}</div>;
     }
     if (portfolioData.length === 0) {
-      return <div className="error-not-found">No projects found.</div>;
+      return <div className="error-not-found">No Projects Found.</div>;
     }
     return (
       <Swiper

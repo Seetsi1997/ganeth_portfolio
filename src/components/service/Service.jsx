@@ -10,7 +10,7 @@ import ServiceCard from './ServiceCard.jsx';
 
 const Service = () => {
   const [servicesData, setServicesData] = useState([]);
-  const [loading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [errors, setErrors] = useState(null);
 
   useEffect(() => {
@@ -45,39 +45,47 @@ const Service = () => {
     fetchServices();
   }, []);
 
+
+  const renderServicesContent = () => {
+    if (isLoading) {
+      return <div className="loading-indicator">Loading projects...</div>;
+    }
+    if (errors) {
+      return <div className="error-message">{errors}</div>;
+    }
+    if (servicesData.length === 0) {
+      return <div className="error-not-found">No Services Found.</div>;
+    }
+    return ( 
+      <Swiper
+      modules={[Navigation, Pagination]}
+      spaceBetween={30}
+      slidesPerView={3}
+      navigation
+      pagination={{ clickable: true }}
+      breakpoints={{
+        0: { slidesPerView: 1 },
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }}
+    >
+      {servicesData.map((service) => (
+        <SwiperSlide key={service._id} style={{ height: 'auto' }}>
+          <ServiceCard service={service} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+    );
+  };
+
+  
   return (
     <section id='services' className='section-emphasis services'>
       <h5>My knowledge</h5>
       <h2>Services</h2>
-
-      {loading ? (
-        <div className="loading-indicator">
-          <p>Loading services...</p>
-        </div>
-      ) : errors ? (
-        <div className="error-message">
-          <p>{errors}</p>
-        </div>
-      ) : (
-        <Swiper
-          modules={[Navigation, Pagination]}
-          spaceBetween={30}
-          slidesPerView={3}
-          navigation
-          pagination={{ clickable: true }}
-          breakpoints={{
-            0: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 }
-          }}
-        >
-          {servicesData.map((service) => (
-            <SwiperSlide key={service._id} style={{ height: 'auto' }}>
-              <ServiceCard service={service} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      )}
+        
+      {renderServicesContent()}
+     
     </section>
   );
 };

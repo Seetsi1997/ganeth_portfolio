@@ -397,7 +397,7 @@ body.popup-active {
 /*            MEDIA QUERIES (SMALL DEVICES)        */
 @media screen and (max-width: 600px) {
   .section-emphasis{
-    margin: 0.5rem auto;
+    margin: -2.5rem auto;
     padding: 0.4rem 0;
     position: relative;
 }
