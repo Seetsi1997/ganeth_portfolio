@@ -248,6 +248,8 @@ body.popup-active {
   padding: 15px;
   white-space: nowrap; 
   margin-bottom: 60px;
+  justify-content: center;
+  justify-items: center;
 }
 
 /* ================= PROJECTS, CERTIFICATES, COMPANIES ================= */
