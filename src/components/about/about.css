@@ -454,14 +454,14 @@ body.popup-active {
 @media screen and (max-width: 375px) {
   #about {
     padding-top: 0.5rem;
-    margin-top: -6rem; 
+    margin-top: -3rem; 
     margin-bottom: 0;
   }
 }
-@media screen and (max-width: 300 ) {
+@media screen and (min-width: 300 ) {
   #about {
     padding-top: 0.5rem;
-    margin-top: -6rem; 
+    margin-top: -2rem; 
     margin-bottom: 0;
   }
 }
