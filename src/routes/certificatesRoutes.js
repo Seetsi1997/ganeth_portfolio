@@ -73,7 +73,7 @@ router.post('/', checkAdminSecret, async (req, res) => {
 
     // Check duplicates
     const existingCertificate = await Certificates.findOne({
-      certificateName: trimmedName  // Fixed field name
+      certificateName:  { $regex: new RegExp(`^${trimmedName}$`)},
     });
 
     if (existingCertificate) {

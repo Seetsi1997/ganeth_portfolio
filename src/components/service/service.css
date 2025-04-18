@@ -239,6 +239,10 @@
   color: var(--color-light);
 }
 
+.error-message.center-error{
+  text-align: center;
+}
+
 .loading-indicator {
   text-align: center;
   display: flex;
