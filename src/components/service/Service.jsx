@@ -48,7 +48,7 @@ const Service = () => {
 
   const renderServicesContent = () => {
     if (isLoading) {
-      return <div className="loading-indicator">Loading projects...</div>;
+      return <div className="loading-indicator">Loading Services...</div>;
     }
     if (errors) {
       return <div className="error-message">{errors}</div>;
