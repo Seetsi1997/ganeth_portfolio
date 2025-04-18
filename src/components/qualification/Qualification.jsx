@@ -85,8 +85,11 @@ const Qualification = () => {
 
 
     const renderQuaExpContent = () => {
-        if (isLoading) {
+       /* if (isLoading) {
             return <div className="loading-indicator">Loading Qualification or Experience Data...</div>;
+        }*/
+        if (isLoading && educationData.length === 0 && workData.length === 0) {
+            return <div className="qualification__loading">Loading data...</div>;
         }
         if (errors) {
             return <div className="error-message">{errors}</div>;
