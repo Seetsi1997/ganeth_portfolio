@@ -28,15 +28,16 @@ router.get("/", async (req, res) => {
 
 // Middleware
 const checkAdminSecret = (req, res, next) => {
-  const receivedSecret = req.query.secret;
+  // Get secret from Authorization header instead of query params (more secure)
+  const authHeader = req.headers.authorization;
+  const receivedSecret = authHeader && authHeader.split(' ')[1]; // Format: "Bearer [secret]"
   const expectedSecret = process.env.ADMIN_SECRET;
-  
-  console.log(`Secret check: ${receivedSecret} vs ${expectedSecret}`);
-  
-  if (receivedSecret !== expectedSecret) {
+
+  if (!receivedSecret || receivedSecret !== expectedSecret) {
+    console.warn(`Admin access denied from IP: ${req.ip}`);
     return res.status(403).json({
       error: "Admin access denied",
-      details: `Invalid secret. Received: ${receivedSecret} | Expected: ${expectedSecret}`
+      details: process.env.NODE_ENV === 'development' ? "Invalid or missing admin secret" : undefined
     });
   }
   next();
@@ -83,18 +84,27 @@ router.post('/', checkAdminSecret, async (req, res) => {
 
     const certificate = new Certificates({
       certificateName: trimmedName,
-      status: req.body.status || "approved",  // Allow status override
-      // Add other fields as needed
+      status: req.body.status || "approved", 
+      addedBy: req.ip,
     });
 
     const savedCertificate = await certificate.save();
+
     console.log('Certificate created:', { id: savedCertificate._id, name: savedCertificate.certificateName });
+    console.log(`New Certificate added by admin: ${trimmedName}`);
     
     res.status(201).json(savedCertificate);
   } catch (error) {
-    console.error('Save error:', error);
-    res.status(500).json({ 
-      error: 'Server error',
+    console.error('Certificate creation / add error:', error);
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({
+        error: "Validation failed",
+        details: error.message
+      });
+    }
+    
+    res.status(500).json({
+      error: "Server error",
       details: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }

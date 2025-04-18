@@ -72,7 +72,7 @@ router.post('/', checkAdminSecret, async (req, res) => {
     const newCompany = new Company({
       companyName: trimmedName,
       status: "approved",
-      addedBy: req.ip // Track who added this
+      addedBy: req.ip,
     });
 
     const savedCompany = await newCompany.save();

@@ -344,6 +344,12 @@ const About = () => {
     e.preventDefault();
     if (!validateCertificateForm()) return;
 
+     // Double check we're in admin mode (client-side protection)
+     if (process.env.REACT_APP_IS_ADMIN !== 'true') {
+      setErrors({ submit: "Admin access required" });
+      return;
+    }
+
     setIsSubmitting(true);
     const tempId = Date.now().toString();
     const trimmedCertificateName = formCertificatesData.certificateName.trim();
@@ -372,6 +378,9 @@ const About = () => {
           params: {
             secret: process.env.REACT_APP_ADMIN_SECRET,
           },
+          headers: {
+            'Content-Type': 'application/json'
+          }
         }
       );
 
@@ -421,20 +430,20 @@ const About = () => {
 
   const handleSubmitCompany = async (e) => {
     e.preventDefault();
-  
+
     // Validate form before submission
     if (!validateCompaniesForm()) return;
-  
+
     // Double check we're in admin mode (client-side protection)
     if (process.env.REACT_APP_IS_ADMIN !== 'true') {
       setErrors({ submit: "Admin access required" });
       return;
     }
-  
+
     setIsSubmitting(true);
     const tempId = Date.now().toString();
     const trimmedCompanyName = formCompaniesData.companyName.trim();
-  
+
     try {
       // Optimistic UI update
       setCompaniesName((prev) => [
@@ -447,7 +456,7 @@ const About = () => {
           isOptimistic: true,
         },
       ]);
-  
+
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/companies`,
         { companyName: trimmedCompanyName },
@@ -460,7 +469,7 @@ const About = () => {
           }
         }
       );
-  
+
       // Replace optimistic update with server data
       setCompaniesName((prev) =>
         prev.map((item) =>
@@ -472,30 +481,30 @@ const About = () => {
           } : item
         )
       );
-  
+
       // Reset form
       setFormCompaniesData({ companyName: "" });
       setErrors({});
-  
+
     } catch (error) {
       console.error("Submission error:", error);
       // Rollback optimistic update
       setCompaniesName((prev) => prev.filter((item) => item._id !== tempId));
-      
+
       // Enhanced error handling
       const errorMessage = error.response?.data?.error ||
-        (error.response?.status === 403 ? "Admin access denied" : 
-         error.response?.status === 409 ? "Company already exists" : 
-         "Failed to add company");
-      
+        (error.response?.status === 403 ? "Admin access denied" :
+          error.response?.status === 409 ? "Company already exists" :
+            "Failed to add company");
+
       setErrors({ submit: errorMessage });
-  
+
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  
+
   // Approvals
   const approveProject = async (projectId) => {
     setApprovingId(projectId);
@@ -960,38 +969,44 @@ const About = () => {
           )}
           {popup === "certificates" && (
             <>
-              <h1>Add New Certificates</h1>
-              <form
-                onSubmit={handleSubmitCertificates}
-                className="form-details"
-              >
-                <div className="form-group">
-                  <input
-                    id="certificateName"
-                    type="text"
-                    name="certificateName"
-                    placeholder="Enter Certificate Name"
-                    value={formCertificatesData.certificateName}
-                    onChange={handleChangeCertificate}
-                    className={errors.certificateName ? "error" : ""}
-                  />
-                  {errors.certificateName && (
-                    <span className="error-message">
-                      {errors.certificateName}
-                    </span>
-                  )}
-                </div>
-                {errors.submit && (
-                  <div className="error-message">{errors.submit}</div>
-                )}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn btn-primary"
-                >
-                  {isSubmitting ? "Submitting..." : "Add"}
-                </button>
-              </form>
+              {/* Only show form in admin mode */}
+              {process.env.REACT_APP_IS_ADMIN === 'true' && (
+                <>
+                  <h1>Add New Certificates</h1>
+                  <form
+                    onSubmit={handleSubmitCertificates}
+                    className="form-details"
+                  >
+                    <div className="form-group">
+                      <input
+                        id="certificateName"
+                        type="text"
+                        name="certificateName"
+                        placeholder="Enter Certificate Name"
+                        value={formCertificatesData.certificateName}
+                        onChange={handleChangeCertificate}
+                        className={errors.certificateName ? "error" : ""}
+                      />
+                      {errors.certificateName && (
+                        <span className="error-message">
+                          {errors.certificateName}
+                        </span>
+                      )}
+                    </div>
+                    {errors.submit && (
+                      <div className="error-message">{errors.submit}</div>
+                    )}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="btn btn-primary"
+                    >
+                      {isSubmitting ? "Submitting..." : "Add"}
+                    </button>
+                  </form>
+                </>
+              )};
+
 
               <h1>My Certificates</h1>
               {/*  List of Certificates I've completed */}
