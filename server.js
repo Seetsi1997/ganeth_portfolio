@@ -94,7 +94,7 @@ const allowedOrigins = [
   'https://seetsi1997.github.io',
   'https://seetsi1997.github.io/ganeth_portfolio',
   'http://localhost:3000',
-  'http://localhost:5173' // Add if using Vite
+  'http://localhost:5173'
 ];
 
 const corsOptions = {
