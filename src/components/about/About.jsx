@@ -191,23 +191,23 @@ const About = () => {
   // Handle Submit Certificate Details |  Handle Submit Companies I worked Details
   const handleSubmitProject = async (e) => {
     e.preventDefault();
-  
+
     // Double-check validation
     const projectName = formProjectData.projectName || "";
     if (!validateProjectsForm()) {
       return;
     }
-  
+
     setIsSubmitting(true);
     const tempId = Date.now().toString();
     const trimmedProjectName = projectName.trim();
-  
+
     try {
       console.log("Submitting:", {
         name: trimmedProjectName,
         length: trimmedProjectName.length
       });
-  
+
       // Optimistic update
       setProjects(prev => [...prev, {
         _id: tempId,
@@ -216,8 +216,8 @@ const About = () => {
         createdAt: new Date().toISOString(),
         isOptimistic: true
       }]);
-  
-      
+
+
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/projects`,
         {
@@ -233,34 +233,34 @@ const About = () => {
           }
         }
       );
-  
+
       // Update with server response
       setProjects(prev =>
         prev.map(project =>
           project._id === tempId
             ? {
-                ...response.data,
-                _id: response.data._id || tempId,
-                createdAt: response.data.createdAt || project.createdAt,
-                isOptimistic: undefined,
-              }
+              ...response.data,
+              _id: response.data._id || tempId,
+              createdAt: response.data.createdAt || project.createdAt,
+              isOptimistic: undefined,
+            }
             : project
         )
       );
-  
+
       setFormProjectData({ projectName: "" });
       setErrors({});
-  
+
     } catch (error) {
       console.error("Full error:", {
         status: error.response?.status,
         data: error.response?.data,
         config: error.config // Shows the exact request sent
       });
-  
+
       // Rollback
       setProjects(prev => prev.filter(item => item._id !== tempId));
-  
+
       setErrors({
         submit: error.response?.data?.error ||
           `Server error (${error.response?.status || 'no response'})`
@@ -294,7 +294,7 @@ const About = () => {
         `${process.env.REACT_APP_API_URL}/workhistories`,
         {
           workHistory: formWorkHistoryData.workHistory.trim(),
-         
+
         },
         {
           params: {
@@ -421,98 +421,81 @@ const About = () => {
 
   const handleSubmitCompany = async (e) => {
     e.preventDefault();
-
+  
     // Validate form before submission
     if (!validateCompaniesForm()) return;
-
+  
+    // Double check we're in admin mode (client-side protection)
+    if (process.env.REACT_APP_IS_ADMIN !== 'true') {
+      setErrors({ submit: "Admin access required" });
+      return;
+    }
+  
     setIsSubmitting(true);
     const tempId = Date.now().toString();
     const trimmedCompanyName = formCompaniesData.companyName.trim();
-
+  
     try {
       // Optimistic UI update
       setCompaniesName((prev) => [
         ...prev,
         {
           _id: tempId,
-          companyName: formCompaniesData.companyName.trim(),
-          // Match server response
+          companyName: trimmedCompanyName,
           status: "approved",
           createdAt: new Date().toISOString(),
           isOptimistic: true,
         },
       ]);
-
-      // Debug logs (remove in production)
-      console.debug("Submitting company:", {
-        name: formCompaniesData.companyName,
-        trimmed: formCompaniesData.companyName.trim(),
-        length: formCompaniesData.companyName.trim().length,
-      });
-
-      // In handleSubmitCompany
+  
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/companies`,
-        {
-          companyName: trimmedCompanyName,
-          status: "approved",
-        },
+        { companyName: trimmedCompanyName },
         {
           params: {
-            secret: process.env.REACT_APP_ADMIN_SECRET,
+            secret: process.env.REACT_APP_ADMIN_SECRET
           },
-          /*  headers: {
-              "Content-Type": "application/json",
-            },*/
+          headers: {
+            'Content-Type': 'application/json'
+          }
         }
       );
-
+  
       // Replace optimistic update with server data
       setCompaniesName((prev) =>
         prev.map((item) =>
-          item._id === tempId
-            ? {
-              ...response.data,
-              // Fallback to tempId
-              _id: response.data._id || tempId,
-              // Ensure createdAt exists in response or keep optimistic date
-              createdAt: response.data.createdAt || item.createdAt,
-              // Remove optimistic flag
-              isOptimistic: undefined,
-            }
-            : item
+          item._id === tempId ? {
+            ...response.data,
+            _id: response.data._id || tempId,
+            createdAt: response.data.createdAt || item.createdAt,
+            isOptimistic: undefined,
+          } : item
         )
       );
-
+  
       // Reset form
       setFormCompaniesData({ companyName: "" });
       setErrors({});
+  
     } catch (error) {
-      console.error("Submission error:", {
-        error: error.response?.data || error.message,
-        status: error.response?.status,
-      });
-
-      console.error("Error:", error.response?.data || error.message);
-
+      console.error("Submission error:", error);
       // Rollback optimistic update
       setCompaniesName((prev) => prev.filter((item) => item._id !== tempId));
-
+      
       // Enhanced error handling
-      const errorMessage =
-        error.response?.data?.error ||
-        (error.response?.status === 409
-          ? "Companies I Worked already exists"
-          : "Failed to add company names");
-
+      const errorMessage = error.response?.data?.error ||
+        (error.response?.status === 403 ? "Admin access denied" : 
+         error.response?.status === 409 ? "Company already exists" : 
+         "Failed to add company");
+      
       setErrors({ submit: errorMessage });
-
-      // Optional: Show error message
-      // toast.error(errorMessage);
+  
     } finally {
       setIsSubmitting(false);
     }
   };
+
+  
   // Approvals
   const approveProject = async (projectId) => {
     setApprovingId(projectId);
@@ -610,7 +593,7 @@ const About = () => {
     const fetchAllData = async () => {
       setIsLoading(true);
       setErrors({});
-      
+
       try {
         // Configure default axios settings
         const apiClient = axios.create({
@@ -622,7 +605,7 @@ const About = () => {
           },
           timeout: 10000 // 10 second timeout
         });
-  
+
         // Parallel API calls with better error isolation
         const requests = {
           projects: apiClient.get('/projects'),
@@ -630,9 +613,9 @@ const About = () => {
           certificates: apiClient.get('/certificates'),
           companies: apiClient.get('/companies')
         };
-  
+
         const responses = await Promise.allSettled(Object.values(requests));
-        
+
         // Process responses
         const result = {
           projects: responses[0].status === 'fulfilled' ? responses[0].value.data : null,
@@ -640,13 +623,13 @@ const About = () => {
           certificates: responses[2].status === 'fulfilled' ? responses[2].value.data : null,
           companies: responses[3].status === 'fulfilled' ? responses[3].value.data : null
         };
-  
+
         // Set states with fallbacks
         setProjects(result.projects?.data || result.projects || []);
         setWorks(result.workHistory?.data || result.workHistory || []);
         setCertificatesName(result.certificates?.data || result.certificates || []);
         setCompaniesName(result.companies?.data || result.companies || []);
-  
+
         // Update counts
         setCounts({
           projects: result.projects?.length || 0,
@@ -654,23 +637,23 @@ const About = () => {
           companies: result.companies?.length || 0,
           experiences: result.workHistory?.length || 0,
         });
-  
+
         // Set individual errors if any requests failed
         const errorState = {};
         Object.keys(requests).forEach((key, index) => {
           if (responses[index].status === 'rejected') {
             const error = responses[index].reason;
-            errorState[key] = error.response?.status === 404 
-              ? `${key} not found` 
+            errorState[key] = error.response?.status === 404
+              ? `${key} not found`
               : `Failed to load ${key}`;
             console.error(`API Error (${key}):`, error);
           }
         });
-        
+
         if (Object.keys(errorState).length > 0) {
           setErrors(errorState);
         }
-  
+
       } catch (error) {
         console.error("Unexpected Error:", error);
         setErrors({ general: "An unexpected error occurred" });
@@ -678,7 +661,7 @@ const About = () => {
         setIsLoading(false);
       }
     };
-  
+
     fetchAllData();
   }, []);
 
@@ -894,33 +877,38 @@ const About = () => {
           )}
           {popup === "companies" && (
             <>
-              <h1>Add New Company You Worked</h1>
-              <form onSubmit={handleSubmitCompany} className="form-details">
-                <div className="form-group">
-                  <input
-                    id="companyName"
-                    type="text"
-                    name="companyName"
-                    placeholder="Enter Company Name"
-                    value={formCompaniesData.companyName}
-                    onChange={handleChangeCompanies}
-                    className={errors.companyName ? "error" : ""}
-                  />
-                  {errors.companyName && (
-                    <span className="error-message">{errors.companyName}</span>
-                  )}
-                </div>
-                {errors.submit && (
-                  <div className="error-message">{errors.submit}</div>
-                )}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn btn-primary"
-                >
-                  {isSubmitting ? "Submitting..." : "Add"}
-                </button>
-              </form>
+              {/* Only show form in admin mode */}
+              {process.env.REACT_APP_IS_ADMIN === 'true' && (
+                <>
+                  <h1>Add New Company You Worked</h1>
+                  <form onSubmit={handleSubmitCompany} className="form-details">
+                    <div className="form-group">
+                      <input
+                        id="companyName"
+                        type="text"
+                        name="companyName"
+                        placeholder="Enter Company Name"
+                        value={formCompaniesData.companyName}
+                        onChange={handleChangeCompanies}
+                        className={errors.companyName ? "error" : ""}
+                      />
+                      {errors.companyName && (
+                        <span className="error-message">{errors.companyName}</span>
+                      )}
+                    </div>
+                    {errors.submit && (
+                      <div className="error-message">{errors.submit}</div>
+                    )}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="btn btn-primary"
+                    >
+                      {isSubmitting ? "Submitting..." : "Add"}
+                    </button>
+                  </form>
+                </>
+              )}
 
               <h1>Companies I've Worked With</h1>
               {/* Certificates list */}
