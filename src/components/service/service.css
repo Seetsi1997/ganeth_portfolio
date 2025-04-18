@@ -239,19 +239,6 @@
   color: var(--color-light);
 }
 
-.center-error {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ff4d4f;
-  background-color: #fff0f0;
-  border: 1px solid #ffa39e;
-  padding: 12px 20px;
-  border-radius: 8px;
-  margin-top: 20px;
-  font-weight: 500;
-}
-
 .loading-indicator {
   text-align: center;
   display: flex;
