@@ -228,7 +228,7 @@
 .error-container {
   color: var(--color-light);
 } */
-
+.error-message,
 .error-not-found {
   text-align: center;
   display: flex;
@@ -238,13 +238,17 @@
   color: var(--color-light);
 }
 
-.error-message {
+.center-error {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
-  color: var(--color-light);
-  font-size: 1.2rem;
+  color: #ff4d4f;
+  background-color: #fff0f0;
+  border: 1px solid #ffa39e;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  font-weight: 500;
 }
 
 .loading-indicator {

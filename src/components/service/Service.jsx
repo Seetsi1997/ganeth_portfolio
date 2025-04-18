@@ -51,7 +51,7 @@ const Service = () => {
       return <div className="loading-indicator">Loading Services...</div>;
     }
     if (errors) {
-      return <div className="error-message">{errors}</div>;
+      return <div className="error-message center-error">{errors}</div>;
     }
     if (servicesData.length === 0) {
       return <div className="error-not-found">No Services Found.</div>;
