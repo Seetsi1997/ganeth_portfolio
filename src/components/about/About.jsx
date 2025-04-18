@@ -1005,7 +1005,7 @@ const About = () => {
                     </button>
                   </form>
                 </>
-              )};
+              )}
 
 
               <h1>My Certificates</h1>
