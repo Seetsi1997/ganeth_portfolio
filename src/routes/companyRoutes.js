@@ -3,14 +3,11 @@ import Company from '../models/CompanyWorked.js';
 
 const router = Router();
 
-// GET all companies
+// GET all companies - PUBLIC ACCESS
 router.get("/", async (req, res) => {
   try {
     const companies = await Company.find({ status: "approved" }).sort({ createdAt: -1 });
-
-    console.log(`Fetched ${companies.length} companies names`, companies);
-    res.status(200).json(companies); 
-
+    res.status(200).json(companies);
   } catch (error) {
     console.error("Error fetching companies:", error);
     res.status(500).json({
@@ -20,40 +17,35 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Middleware
+// Middleware - ADMIN SECRET CHECK
 const checkAdminSecret = (req, res, next) => {
-  const receivedSecret = req.query.secret;
+  // Get secret from Authorization header instead of query params (more secure)
+  const authHeader = req.headers.authorization;
+  const receivedSecret = authHeader && authHeader.split(' ')[1]; // Format: "Bearer [secret]"
   const expectedSecret = process.env.ADMIN_SECRET;
-  
-  console.log(`Secret check: ${receivedSecret} vs ${expectedSecret}`);
-  
-  if (receivedSecret !== expectedSecret) {
+
+  if (!receivedSecret || receivedSecret !== expectedSecret) {
+    console.warn(`Admin access denied from IP: ${req.ip}`);
     return res.status(403).json({
       error: "Admin access denied",
-      details: `Invalid secret. Received: ${receivedSecret} | Expected: ${expectedSecret}`
+      details: process.env.NODE_ENV === 'development' ? "Invalid or missing admin secret" : undefined
     });
   }
   next();
 };
 
-// POST /company (admin-only)
+// POST /company - ADMIN ONLY
 router.post('/', checkAdminSecret, async (req, res) => {
-  console.log("Request body received:", req.body);
   try {
     const { companyName } = req.body;
-    console.log("Received secret:", req.query.secret);
-    console.log("Expected secret:", process.env.ADMIN_SECRET);
 
-
-    // Validation
-
+    // Validate input
     if (!companyName || !companyName.trim()) {
       return res.status(400).json({
         error: "Company name is required",
         details: "Field cannot be empty or just whitespace"
       });
     }
-    // ... rest of your logic
 
     if (companyName.length > 100) {
       return res.status(400).json({
@@ -62,33 +54,42 @@ router.post('/', checkAdminSecret, async (req, res) => {
       });
     }
 
-    // Check duplicates
+    const trimmedName = companyName.trim();
+
+    // Check duplicates (case-insensitive)
     const existingCompany = await Company.findOne({
-      companyName: companyName.trim()
+      companyName: { $regex: new RegExp(`^${trimmedName}$`, 'i') }
     });
 
     if (existingCompany) {
       return res.status(409).json({
-        error: "Company already exists"
+        error: "Company already exists",
+        existingId: existingCompany._id
       });
     }
 
     // Save to DB
     const newCompany = new Company({
-      companyName: companyName.trim(),
-      status: "approved" // Auto-approve admin-added entries
+      companyName: trimmedName,
+      status: "approved",
+      addedBy: req.ip // Track who added this
     });
 
     const savedCompany = await newCompany.save();
+    
+    console.log(`New company added by admin: ${trimmedName}`);
     res.status(201).json(savedCompany);
 
   } catch (error) {
+    console.error("Company creation error:", error);
+    
     if (error.name === 'ValidationError') {
       return res.status(400).json({
         error: "Validation failed",
         details: error.message
       });
     }
+    
     res.status(500).json({
       error: "Server error",
       details: process.env.NODE_ENV === 'development' ? error.message : undefined
@@ -96,24 +97,27 @@ router.post('/', checkAdminSecret, async (req, res) => {
   }
 });
 
-// PATCH UPDATE EXISTING Company I Worked
-// In your backend routes file (e.g., CompanyWorked.js)
+// PATCH /:id/approve - ADMIN ONLY
 router.patch('/:id/approve', checkAdminSecret, async (req, res) => {
   try {
-    const companies = await Company.findByIdAndUpdate(
+    const company = await Company.findByIdAndUpdate(
       req.params.id,
       { $set: { status: 'approved' } },
       { new: true }
     );
 
-    if (!companies) {
-      return res.status(404).json({ error: 'Project not found' }); 
+    if (!company) {
+      return res.status(404).json({ error: 'Company not found' });
     }
 
-    res.json(companies);
+    console.log(`Company approved by admin: ${company.companyName}`);
+    res.json(company);
   } catch (error) {
     console.error('Approval error:', error);
-    res.status(500).json({ error: 'Failed to approve project' });
+    res.status(500).json({ 
+      error: 'Failed to approve company',
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
 });
 
