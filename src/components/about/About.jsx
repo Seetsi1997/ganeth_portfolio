@@ -198,6 +198,12 @@ const About = () => {
       return;
     }
 
+     // Double check we're in admin mode (client-side protection)
+     if (process.env.REACT_APP_IS_ADMIN !== 'true') {
+      setErrors({ submit: "Admin access required" });
+      return;
+    }
+
     setIsSubmitting(true);
     const tempId = Date.now().toString();
     const trimmedProjectName = projectName.trim();
@@ -274,6 +280,12 @@ const About = () => {
     e.preventDefault();
     if (!validateWorkHistoryForm()) return;
 
+     // Double check we're in admin mode (client-side protection)
+     if (process.env.REACT_APP_IS_ADMIN !== 'true') {
+      setErrors({ submit: "Admin access required" });
+      return;
+    }
+
     setIsSubmitting(true);
     const tempId = Date.now().toString();
 
@@ -344,8 +356,8 @@ const About = () => {
     e.preventDefault();
     if (!validateCertificateForm()) return;
 
-     // Double check we're in admin mode (client-side protection)
-     if (process.env.REACT_APP_IS_ADMIN !== 'true') {
+    // Double check we're in admin mode (client-side protection)
+    if (process.env.REACT_APP_IS_ADMIN !== 'true') {
       setErrors({ submit: "Admin access required" });
       return;
     }
@@ -751,33 +763,37 @@ const About = () => {
           </span>
           {popup === "experience" && (
             <>
-              <h1>Add a New Work Experience</h1>
-              <form onSubmit={handleSubmitWorkHistory} className="form-details">
-                <div className="form-group">
-                  <input
-                    id="workHistory"
-                    type="text"
-                    name="workHistory"
-                    placeholder="Enter work history"
-                    value={formWorkHistoryData.workHistory}
-                    onChange={handleChangeWorkHistory}
-                    className={errors.workHistory ? "error" : ""}
-                  />
-                  {errors.workHistory && (
-                    <span className="error-message">{errors.workHistory}</span>
-                  )}
-                </div>
-                {errors.submit && (
-                  <div className="error-message">{errors.submit}</div>
-                )}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn btn-primary"
-                >
-                  {isSubmitting ? "Submitting..." : "Add"}
-                </button>
-              </form>
+              {process.env.REACT_APP_IS_ADMIN === 'true' && (
+                <>
+                  <h1>Add a New Work Experience</h1>
+                  <form onSubmit={handleSubmitWorkHistory} className="form-details">
+                    <div className="form-group">
+                      <input
+                        id="workHistory"
+                        type="text"
+                        name="workHistory"
+                        placeholder="Enter work history"
+                        value={formWorkHistoryData.workHistory}
+                        onChange={handleChangeWorkHistory}
+                        className={errors.workHistory ? "error" : ""}
+                      />
+                      {errors.workHistory && (
+                        <span className="error-message">{errors.workHistory}</span>
+                      )}
+                    </div>
+                    {errors.submit && (
+                      <div className="error-message">{errors.submit}</div>
+                    )}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="btn btn-primary"
+                    >
+                      {isSubmitting ? "Submitting..." : "Add"}
+                    </button>
+                  </form>
+                </>
+              )}
 
               <h1>My Experience</h1>
               {/* My Experience list */}
@@ -810,33 +826,38 @@ const About = () => {
           )}
           {popup === "projects" && (
             <>
-              <h1>Add New Project</h1>
-              <form onSubmit={handleSubmitProject} className="form-details">
-                <div className="form-group">
-                  <input
-                    id="projectName"
-                    type="text"
-                    name="projectName"
-                    placeholder="Project Name"
-                    value={formProjectData.projectName}
-                    onChange={handleChangeProjects}
-                    className={errors.projectName ? "error" : ""}
-                  />
-                  {errors.projectName && (
-                    <span className="error-message">{errors.projectName}</span>
-                  )}
-                </div>
-                {errors.submit && (
-                  <div className="error-message">{errors.submit}</div>
-                )}
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn btn-primary"
-                >
-                  {isSubmitting ? "Adding..." : "Add"}
-                </button>
-              </form>
+              {process.env.REACT_APP_IS_ADMIN === 'true' && (
+
+                <>
+                  <h1>Add New Project</h1>
+                  <form onSubmit={handleSubmitProject} className="form-details">
+                    <div className="form-group">
+                      <input
+                        id="projectName"
+                        type="text"
+                        name="projectName"
+                        placeholder="Project Name"
+                        value={formProjectData.projectName}
+                        onChange={handleChangeProjects}
+                        className={errors.projectName ? "error" : ""}
+                      />
+                      {errors.projectName && (
+                        <span className="error-message">{errors.projectName}</span>
+                      )}
+                    </div>
+                    {errors.submit && (
+                      <div className="error-message">{errors.submit}</div>
+                    )}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="btn btn-primary"
+                    >
+                      {isSubmitting ? "Adding..." : "Add"}
+                    </button>
+                  </form>
+                </>
+              )}
 
               <h1>Projects I Completed</h1>
               {/*  List of Project I've completed */}

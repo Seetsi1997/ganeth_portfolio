@@ -25,16 +25,17 @@ router.get("/", async (req, res) => {
 
 // It checks admin secrete 
 const checkAdminSecret = (req, res, next) => {
-  const receivedSecret = req.query.secret;
+  // Get secret from Authorization header instead of query params (more secure)
+  const authHeader = req.headers.authorization;
+  const receivedSecret = authHeader && authHeader.split(' ')[1]; // Format: "Bearer [secret]"
   const expectedSecret = process.env.ADMIN_SECRET;
 
-  console.log(`Secret check: ${receivedSecret} vs ${expectedSecret}`);
-
-  if (receivedSecret !== expectedSecret) {
-      return res.status(403).json({
-          error: "Admin access denied",
-          details: `Invalid secret. Received: ${receivedSecret} | Expected: ${expectedSecret}`
-      });
+  if (!receivedSecret || receivedSecret !== expectedSecret) {
+    console.warn(`Admin access denied from IP: ${req.ip}`);
+    return res.status(403).json({
+      error: "Admin access denied",
+      details: process.env.NODE_ENV === 'development' ? "Invalid or missing admin secret" : undefined
+    });
   }
   next();
 };

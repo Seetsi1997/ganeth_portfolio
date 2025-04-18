@@ -95,7 +95,7 @@ router.post('/', checkAdminSecret, async (req, res) => {
     
     res.status(201).json(savedCertificate);
   } catch (error) {
-    console.error('Certificate creation / add error:', error);
+    console.error('Certificate creation / added error:', error);
     if (error.name === 'ValidationError') {
       return res.status(400).json({
         error: "Validation failed",
