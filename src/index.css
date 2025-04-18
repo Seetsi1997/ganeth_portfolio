@@ -172,13 +172,3 @@ img {
         margin-bottom: 1rem;
     }
 }
-
-/*.section-emphasis::after {
-    content: "";
-    display: block;
-    height: 1px;
-    background: var(--color-primary-variant);
-    margin: 0 auto;
-    width: 80%;
-    opacity: 0.3;
-}*/

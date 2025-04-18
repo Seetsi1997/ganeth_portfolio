@@ -16,7 +16,7 @@ const App = () =>{
    return (
    <>
    <Header/>
-   < Nav/>
+   <Nav/>
    <About/>
    <Qualification/>
    <Skills/>

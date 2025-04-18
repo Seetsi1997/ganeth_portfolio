@@ -206,28 +206,6 @@
   color: var(--color-skill-expert);
 }
 
-/*.loading-container, 
-.error-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 200px;
-  padding: 2rem 0;
-  margin-top: 1.5rem;
-}
-
-.loading-container p,
-.error-container p {
-  font-size: 0.5rem;
-}
-
-.loading-container {
-  color: var(--color-light);
-}
-
-.error-container {
-  color: var(--color-light);
-} */
 .error-message,
 .error-not-found {
   text-align: center;
