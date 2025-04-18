@@ -75,90 +75,86 @@ const Qualification = () => {
         setPopupData(null);
     };
 
-   /* if (isLoading && educationData.length === 0 && workData.length === 0) {
-        return <div className="qualification__loading">Loading data...</div>;
-    }*/
-        const renderQuaExpContent = () => {
-            // Safely get the data for current tab
-            const displayedData = activeTab === 'education' ? educationData : workData;
-            const hasData = displayedData && displayedData.length > 0;
-            const tabError = errors[activeTab];
-        
-            // Handle loading state (only when no data exists yet)
-            if (isLoading && !educationData.length && !workData.length) {
-                return <div className="qualification__loading">Loading data...</div>;
-            }
-        
-            // Handle errors - check for specific tab error first
-            if (tabError) {
-                return <div className="qualification__error">{tabError}</div>;
-            }
-        
-            // Handle case where both datasets are empty
-            if (!educationData.length && !workData.length) {
-                return <div className="error-not-found">No records found.</div>;
-            }
-        
-            // Handle case where current tab has no data
-            if (!hasData) {
-                return (
-                    <div className="no-records-message">
-                        {activeTab === 'education' ? 'No education records found' : 'No work records found'}
-                    </div>
-                );
-            }
-        
-            // Render the timeline (simplified with shared logic)
+    const renderQuaExpContent = () => {
+        // Safely get the data for current tab
+        const displayedData = activeTab === 'education' ? educationData : workData;
+        const hasData = displayedData && displayedData.length > 0;
+        const tabError = errors[activeTab];
+
+        // Handle loading state (only when no data exists yet)
+        if (isLoading && !educationData.length && !workData.length) {
+            return <div className="qualification__loading">Loading data...</div>;
+        }
+
+        // Handle errors - check for specific tab error first
+        if (tabError) {
+            return <div className="qualification__error">{tabError}</div>;
+        }
+
+        // Handle case where both datasets are empty
+        if (!educationData.length && !workData.length) {
+            return <div className="error-not-found">No records found.</div>;
+        }
+
+        // Handle case where current tab has no data
+        if (!hasData) {
             return (
-                <div className="qualification__timeline">
-                    {displayedData.map((item, index) => (
-                        <div
-                            key={item._id || index}
-                            className="qualification__item"
-                            onClick={() => handleItemClick(item)}
-                        >
-                            <div className="qualification__dot"></div>
-                            <div className={`qualification__content ${index % 2 === 0 ? 'left' : 'right'}`}>
-                                <div className="qualification__connector"></div>
-                                <h3>
-                                    {activeTab === 'education'
-                                        ? item.schoolName || item.title || 'No title'
-                                        : item.companyName || 'No company name'
-                                    }
-                                </h3>
-                                <p>
-                                    {activeTab === 'education'
-                                        ? item.qualification || item.subtitle || ''
-                                        : item.position || ''
-                                    }
-                                </p>
-                                <span className="qualification__meta">
-                                    <span className="qualification__calendar">
-                                        <FaCalendarAlt />
-                                        {item.startDate
-                                            ? `${new Date(item.startDate).getFullYear()} - ${
-                                                activeTab === 'work' && item.currentlyWorking
-                                                    ? 'Present'
-                                                    : new Date(item.endDate).getFullYear()
-                                              }`
-                                            : 'N/A'
-                                        }
-                                    </span>
-                                    <span className="qualification__separator">•</span>
-                                    <span className="work-type-tag">
-                                        {activeTab === 'education'
-                                            ? item.institutionType
-                                            : item.employmentType
-                                        }
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-                    ))}
+                <div className="no-records-message">
+                    {activeTab === 'education' ? 'No education records found' : 'No work records found'}
                 </div>
             );
-        };
-        
+        }
+
+        // Render the timeline (simplified with shared logic)
+        return (
+            <div className="qualification__timeline">
+                {displayedData.map((item, index) => (
+                    <div
+                        key={item._id || index}
+                        className="qualification__item"
+                        onClick={() => handleItemClick(item)}
+                    >
+                        <div className="qualification__dot"></div>
+                        <div className={`qualification__content ${index % 2 === 0 ? 'left' : 'right'}`}>
+                            <div className="qualification__connector"></div>
+                            <h3>
+                                {activeTab === 'education'
+                                    ? item.schoolName || item.title || 'No title'
+                                    : item.companyName || 'No company name'
+                                }
+                            </h3>
+                            <p>
+                                {activeTab === 'education'
+                                    ? item.qualification || item.subtitle || ''
+                                    : item.position || ''
+                                }
+                            </p>
+                            <span className="qualification__meta">
+                                <span className="qualification__calendar">
+                                    <FaCalendarAlt />
+                                    {item.startDate
+                                        ? `${new Date(item.startDate).getFullYear()} - ${activeTab === 'work' && item.currentlyWorking
+                                            ? 'Present'
+                                            : new Date(item.endDate).getFullYear()
+                                        }`
+                                        : 'N/A'
+                                    }
+                                </span>
+                                <span className="qualification__separator">•</span>
+                                <span className="work-type-tag">
+                                    {activeTab === 'education'
+                                        ? item.institutionType
+                                        : item.employmentType
+                                    }
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        );
+    };
+
     return (
         <section id="qualification" className="qualification">
             <h5>My personal journey</h5>
@@ -178,74 +174,8 @@ const Qualification = () => {
                     <FaBriefcase /> Work
                 </button>
             </div>
+            
             {renderQuaExpContent()}
-          {/* {tabError ? (
-                <div className="qualification__error">{tabError}</div>
-            ) : hasData ? (
-                activeTab === 'education' ? (
-                    <div className="qualification__timeline">
-                        {displayedData.map((item, index) => (
-                            <div
-                                key={item._id || index}
-                                className="qualification__item"
-                                onClick={() => handleItemClick(item)}
-                            >
-                                <div className="qualification__dot"></div>
-                                <div className={`qualification__content ${index % 2 === 0 ? 'left' : 'right'}`}>
-                                    <div className="qualification__connector"></div>
-                                    <h3>{item.schoolName || item.title || 'No title'}</h3>
-                                    <p>{item.qualification || item.subtitle || ''}</p>
-
-                                    <span className="qualification__meta">
-                                        <span className="qualification__calendar">
-                                            <FaCalendarAlt /> {item.startDate ?
-                                                `${new Date(item.startDate).getFullYear()} - ${new Date(item.endDate).getFullYear()}`
-                                                : 'N/A'}
-                                        </span>
-                                        <span className="qualification__separator">•</span>
-                                        <span className="work-type-tag">
-                                            {item.institutionType}
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                ) : (
-                    <div className="qualification__timeline">
-                        {displayedData.map((job, index) => (
-                            <div
-                                key={job._id || index}
-                                className="qualification__item"
-                                onClick={() => handleItemClick(job)}
-                            >
-                                <div className="qualification__dot"></div>
-                                <div className={`qualification__content ${index % 2 === 0 ? 'left' : 'right'}`}>
-                                    <div className="qualification__connector"></div>
-                                    <h3>{job.companyName || 'No company name'}</h3>
-                                    <p>{job.position || ''}</p>
-                                    <span className="qualification__meta">
-                                        <span className="qualification__calendar">
-                                            <FaCalendarAlt /> {job.startDate ?
-                                                `${new Date(job.startDate).getFullYear()} - ${job.currentlyWorking ?
-                                                    'Present' : new Date(job.endDate).getFullYear()}`
-                                                : 'N/A'}
-                                        </span>
-                                        <span className="qualification__separator">•</span>
-                                        <span className="work-type-tag">
-                                            {job.employmentType}
-                                        </span>
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )
-            ) : (
-                <div className="no-records-message">
-                    {activeTab === 'education' ? 'No education records found' : 'No work records found'}
-                </div>
-            )} */}
 
             {popupData && (
                 <div className="qualification__popup active">

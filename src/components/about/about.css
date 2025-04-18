@@ -465,5 +465,4 @@ body.popup-active {
     margin-bottom: 0;
   }
 }
-/* export NODE_OPTIONS=--openssl-legacy-provider && npm install --legacy-peer-deps && npm run build
-*/
+
