@@ -371,11 +371,16 @@
 
 @media screen and (max-width: 375px){
   #services {
-    padding: 1.5rem 1rem;
-    margin-bottom: 2rem;
+    padding: 0.5rem 0.2rem;
+    margin-top: -2rem; 
+    margin-bottom: 0;
   }
 }
 
-/*
-export NODE_OPTIONS=--openssl-legacy-provider &&  rm -rf node_modules &&  npm cache clean --force &&  npm install --legacy-peer-deps &&  npm run build
-*/
+@media screen and (min-width: 300 ) {
+  #services {
+    padding-top: 0.5rem;
+    margin-top: -2rem; 
+    margin-bottom: 0;
+  }
+}
