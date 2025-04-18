@@ -8,6 +8,7 @@ const workHistorySchema = new Schema({
     minlength: [10, "Experience must be at least 10 characters long"],
     maxlength: [500, "Experience cannot be more than 500 characters"],
   },
+  addedBy: String,
   createdAt: { 
     type: Date, 
     default: Date.now 

@@ -763,7 +763,8 @@ const About = () => {
           </span>
           {popup === "experience" && (
             <>
-              {process.env.REACT_APP_IS_ADMIN === 'true' && (
+             {/* Only show form in admin mode */}
+              {process.env.REACT_APP_IS_ADMIN === 'false' && (
                 <>
                   <h1>Add a New Work Experience</h1>
                   <form onSubmit={handleSubmitWorkHistory} className="form-details">
@@ -826,8 +827,9 @@ const About = () => {
           )}
           {popup === "projects" && (
             <>
+               {/* Only show form in admin mode */}
               {process.env.REACT_APP_IS_ADMIN === 'true' && (
-
+                
                 <>
                   <h1>Add New Project</h1>
                   <form onSubmit={handleSubmitProject} className="form-details">

@@ -12,6 +12,7 @@ const  certificatesSchema = new Schema({
     enum: ["pending", "approved", "rejected"], 
     default: "pending" 
   },
+  addedBy: String,
   createdAt: { 
     type: Date, 
     default: Date.now 

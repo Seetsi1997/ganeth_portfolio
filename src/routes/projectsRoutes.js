@@ -37,73 +37,81 @@ const checkAdminSecret = (req, res, next) => {
 
 // POST a new projects you did
 router.post('/', checkAdminSecret, async (req, res) => {
-    console.log("Request body received:", req.body);
+    // Security: Remove detailed logging of secrets in production
+    if (process.env.NODE_ENV === 'development') {
+        console.log("Request body received:", req.body);
+    }
+
     try {
-        const { projectName } = req.body;
-        console.log("Received secret:", req.query.secret);
-        console.log("Expected secret:", process.env.ADMIN_SECRET);
+        const { projectName, createdAt } = req.body;
 
-
-        // Validation
-        if (!projectName || !projectName.trim()) {
+        // Enhanced validation
+        if (!projectName?.trim()) {
             return res.status(400).json({
                 error: "Project name is required",
-                details: "Field cannot be empty or just whitespace"
+                details: "Field cannot be empty"
             });
         }
-     
-        if (projectName.length > 150) {
+
+        const trimmedName = projectName.trim();
+        
+        if (trimmedName.length > 150) {
             return res.status(400).json({
                 error: "Project name too long",
                 details: "Max 150 characters allowed"
             });
         }
 
-         
-             const trimmedName = projectName.trim();
-         
-             // Check duplicates (case-insensitive)
-             const existingProject = await Project.findOne({
-                projectName: { $regex: new RegExp(`^${trimmedName}$`, 'i') }
-             });
-         
-             if (existingProject) {
-               return res.status(409).json({
-                 error: "Project already exists",
-                 existingId: existingProject._id
-               });
-             }
-         
-        // Save to DB
+        // Case-insensitive duplicate check with better regex
+        const existingProject = await Project.findOne({
+            projectName: { 
+                $regex: new RegExp(`^${trimmedName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') 
+            }
+        });
+
+        if (existingProject) {
+            return res.status(409).json({
+                error: "Project already exists",
+                existingId: existingProject._id
+            });
+        }
+
+        // Secure defaults - don't trust client input
         const newProject = new Project({
-            projectName: req.body.projectName,
-            status: req.body.status || "approved",
-            createdAt: req.body.createdAt || Date.now(),
+            projectName: trimmedName,
+            status: "approved", 
+            createdAt: new Date(createdAt || Date.now()),
             addedBy: req.ip,
         });
 
-        const savedProjects = await newProject.save();
-        console.log('Project created:',
-            {
-                id: savedProjects._id,
-                name: savedProjects.projectName,
-                createdAt: savedProjects.createdAt,
-            });
+        const savedProject = await newProject.save();
 
-            console.log(`New Projects added by admin: ${trimmedName}`);
-        res.status(201).json(savedProjects);
-    } catch (error) {
-        console.error('Projects creation / added error:', error);
-        if (error.name === 'ValidationError') {
-            return res.status(400).json({
-                error: "Validation failed",
-                details: error.message
-            });
-        }
-        res.status(500).json({
-            error: "Server error",
-            details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        // Security: Don't log full project details
+        console.log(`New project added by ${req.ip.substring(0, 7)}...`);
+
+        res.status(201).json({
+            id: savedProject._id,
+            projectName: savedProject.projectName,
+            status: savedProject.status,
+            createdAt: savedProject.createdAt
         });
+
+    } catch (error) {
+        console.error('Project creation error:', error.message); // Limited error logging
+        
+        const response = {
+            error: "Server error"
+        };
+
+        if (process.env.NODE_ENV === 'development') {
+            response.details = error.message;
+            if (error.name === 'ValidationError') {
+                response.validation = error.errors;
+            }
+        }
+
+        const statusCode = error.name === 'ValidationError' ? 400 : 500;
+        res.status(statusCode).json(response);
     }
 });
 

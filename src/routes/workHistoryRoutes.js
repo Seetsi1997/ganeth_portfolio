@@ -55,13 +55,19 @@ router.post('/',checkAdminSecret ,async (req, res) => {
       }
   
       const workHistories = new WorkHistories({
-        workHistory: req.body.workHistory.trim()
+        workHistory: req.body.workHistory.trim(),
+        createdAt: new Date(Date.now()),
+        addedBy: req.ip,
       });
   
       const savedWork = await workHistories.save();
       console.log('Saved work history:', savedWork);
       
-      res.status(201).json(savedWork);
+      res.status(201).json({
+        id: savedWork._id,
+        workHistory: savedWork.workHistory,
+        createdAt: savedWork.createdAt
+      });
     } catch (error) {
       console.error('Save error:', error);
       res.status(500).json({ 
