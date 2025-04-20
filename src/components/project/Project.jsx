@@ -37,20 +37,37 @@ const Portfolio = () => {
 
   useEffect(() => {
     let isMounted = true;
-  
-    const fetchWithTimeout = async () => {
-      if (isMounted) {
-        await fetchPortfolioData();
-        setTimeout(fetchWithTimeout, 10000); // Repeat after 10 seconds
+    
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}/portfolios`);
+        
+        if (isMounted) {
+          if (response.data.success) {
+            setPortfolioData(response.data.data || []);
+          } else {
+            setErrors("Failed to load portfolio data");
+          }
+        }
+      } catch (error) {
+        if (isMounted) {
+          console.error("Portfolio fetch error:", error);
+          setErrors("Failed to load portfolio data");
+        }
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
     };
   
-    fetchWithTimeout(); // Initial fetch
+    fetchData();
   
     return () => {
-      isMounted = false; // Cleanup on unmount
+      isMounted = false;
     };
-  }, []);
+  }, []); // Empty dependency array to run only once
 
   const fetchPortfolioData = async () => {
     setIsLoading(true);
