@@ -36,13 +36,21 @@ const Portfolio = () => {
   }, []);*/
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      fetchPortfolioData();
-    }, 10000); 
+    let isMounted = true;
   
-    return () => clearInterval(interval); // cleanup
+    const fetchWithTimeout = async () => {
+      if (isMounted) {
+        await fetchPortfolioData();
+        setTimeout(fetchWithTimeout, 10000); // Repeat after 10 seconds
+      }
+    };
+  
+    fetchWithTimeout(); // Initial fetch
+  
+    return () => {
+      isMounted = false; // Cleanup on unmount
+    };
   }, []);
-  
 
   const fetchPortfolioData = async () => {
     setIsLoading(true);
