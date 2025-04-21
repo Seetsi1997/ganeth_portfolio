@@ -510,7 +510,7 @@
     justify-content: center;
 }
 
-.reference-position {
+.reference-detail .reference-position {
     font-weight: 600;
     color: var(--color-white);
     text-align: center;
