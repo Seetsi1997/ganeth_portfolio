@@ -303,10 +303,10 @@ const Qualification = () => {
                                                 </span>
                                             </div>
                                             <div className="reference-contact">
-                                                <span className="reference-email">
+                                                <span className="reference-email"> Email
                                                     {popupData.referenceContact?.email || "Email not provided"}
                                                 </span>
-                                                <span className="reference-phone">
+                                                <span className="reference-phone">Contacts -
                                                     {popupData.referenceContact?.phone || "Phone not provided"}
                                                 </span>
                                             </div>
