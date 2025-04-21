@@ -72,9 +72,9 @@
 
   .quote-two {
     position: relative;
-    bottom: -0.6em;
+    bottom: -0.4em;
     line-height: 0; 
-    color: var( --color-white);
+    color: var(--color-white);
     font-size: 2em;
     vertical-align: text-bottom; 
     opacity: 0.8;
