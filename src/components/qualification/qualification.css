@@ -560,6 +560,7 @@
     text-align: center;
     white-space: nowrap;
   }
+
 .skill-item.beginner {
     background: var(--color-bg-skill-item-beginner);
     color: var(--color-skill-beginner);
@@ -724,13 +725,21 @@
         flex-direction: column;
         gap: 0.5rem;
     }
-    .reference-contact:not(:last-child):after {
-        content: none;
-    }
-
+    .reference-contact:not(:last-child):after,
+    .contact-label:after, 
     .contact-item:not(:last-child):after {
         content: none;
+    }
+    
+    .reference-contact {
+        flex-direction: column;
+        gap: 10px;
       }
+      .contact-item {
+        flex-direction: column;
+        gap: 2px;
+      }
+
 }
 
 @media screen and (min-width: 300 ) {
