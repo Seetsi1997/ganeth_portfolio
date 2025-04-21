@@ -446,6 +446,11 @@
     color: var(--color-white);
 }
 
+.work-description p {
+   
+    color: var(--color-light);
+}
+
 .skills-section {
     padding: 1rem;
     margin-top: 1.5rem;
