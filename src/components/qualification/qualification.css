@@ -626,6 +626,16 @@
     .modules-list {
         columns: 1;
     }
+
+    .reference-contact {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+      .contact-item {
+        flex-direction: column;
+        gap: 2px;
+      }
 }
 
 @media screen and (max-width: 480px) {
