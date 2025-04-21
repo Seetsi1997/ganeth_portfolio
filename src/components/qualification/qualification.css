@@ -476,22 +476,31 @@
 }
 
 .reference-detail {
-    font-weight: bold;
-    margin-bottom: 0.25rem;
-}
-
-.reference-contact {
+    margin-bottom: 0.5rem;
+  }
+  
+  .reference-position {
+    font-weight: 600;
+    color: var(--color-light);
+  }
+  
+  .reference-contact {
     display: flex;
     gap: 1rem;
     font-size: 0.9em;
     color: var(--color-light);
-}
-
-.reference-contact span:not(:last-child)::after {
+  }
+  
+  .reference-contact span {
+    display: flex;
+    align-items: center;
+  }
+  
+  .reference-contact span:not(:last-child):after {
     content: "|";
     margin-left: 1rem;
     color: var(--color-light);
-}
+  }
 
 .skill-item.beginner {
     background: var(--color-bg-skill-item-beginner);

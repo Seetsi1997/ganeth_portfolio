@@ -292,22 +292,25 @@ const Qualification = () => {
                                 </div>
 
                                 <div className="skills-section">
-                                    <h3>Details of Employee ({popupData.referenceContactName || "N/A"})</h3>
+                                    <h3>Details of Employee ({popupData.referenceContact?.name || "N/A"})</h3>
                                     <p className="proficiency-summary">Reference Contact Details</p>
 
                                     <ul className="skills-list">
-                                        {popupData.referenceContact?.map((reference, index) => (
-                                            <li key={index} className="skill-item">
-                                                <div className="reference-detail">
-                                                    <span className="reference-name">{reference.name}</span>
-                                                    <span className="reference-position">{reference.position}</span>
-                                                </div>
-                                                <div className="reference-contact">
-                                                    <span className="reference-email">{reference.email || "Email not provided"}</span>
-                                                    <span className="reference-phone">{reference.phone || "Phone not provided"}</span>
-                                                </div>
-                                            </li>
-                                        ))}
+                                        <li className="skill-item">
+                                            <div className="reference-detail">
+                                                <span className="reference-position">
+                                                    {popupData.referenceContact?.position || "Position not provided"}
+                                                </span>
+                                            </div>
+                                            <div className="reference-contact">
+                                                <span className="reference-email">
+                                                    {popupData.referenceContact?.email || "Email not provided"}
+                                                </span>
+                                                <span className="reference-phone">
+                                                    {popupData.referenceContact?.phone || "Phone not provided"}
+                                                </span>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
                             </>
