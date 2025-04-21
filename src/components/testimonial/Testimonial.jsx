@@ -45,11 +45,15 @@ const Testimonial = () => {
               <img src={IMG} alt={testimonial.userName} />
             </div>
             <h5 className='client__name'>{testimonial.userName}</h5>
-            <small className='client__review'>{testimonial.review}</small>
-            <h4 className='client__career'>
-              <span className='quote-red'>&ldquo;</span>
-              {testimonial.career}
+            <small className='client__review'>
+            <span className='quote-red'>&ldquo;</span>
+              {testimonial.review}
               <span className='quote-yellow'>&rdquo;</span>
+              </small>
+            <h4 className='client__career'>
+             
+              {testimonial.career}
+             
             </h4>
 
 

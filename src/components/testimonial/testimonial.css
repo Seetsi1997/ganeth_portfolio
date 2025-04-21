@@ -61,6 +61,7 @@
   }
   
   .quote-red, .quote-yellow {
+    line-height: 0; 
     font-size: 2em;
     vertical-align: text-top; 
     opacity: 0.8;
@@ -74,7 +75,7 @@
     position: relative;
     top: 0.1em;
   }
-  
+
   .client__likes {
     display: flex;
     justify-content: space-between;
