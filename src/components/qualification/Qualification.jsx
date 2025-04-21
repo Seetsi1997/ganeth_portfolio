@@ -279,7 +279,7 @@ const Qualification = () => {
                                 )}
 
                                 <div className="skills-section">
-                                    <h3>Skills Gained ({popupData.skillCount})</h3>
+                                    <h3>Skills Gained <span>({popupData.skillCount})</span> </h3>
                                     <p className="proficiency-summary">{popupData.proficiencySummary}</p>
                                     <ul className="skills-list">
                                         {popupData.skills?.map((skill, index) => (
@@ -293,7 +293,7 @@ const Qualification = () => {
 
 
                                 <div className="skills-section">
-                                    <h3>Details of Employee ({popupData.referenceContact?.name || "N/A"})</h3>
+                                    <h3>Details of Employee <span> ({popupData.referenceContact?.name || "N/A"}) </span></h3>
                                     <p className="proficiency-summary">Reference Contact Details</p>
 
                                     <ul className="skills-list reference-contacts">
@@ -305,13 +305,13 @@ const Qualification = () => {
                                             </div>
                                             <div className="reference-contact">
                                                 <div className="contact-item">
-                                                    <div className="contact-label">Email:</div>
+                                                    <div className="contact-label">Email</div>
                                                     <div className="contact-value">
                                                         {popupData.referenceContact?.email || "Not provided"}
                                                     </div>
                                                 </div>
                                                 <div className="contact-item">
-                                                    <div className="contact-label">Phone:</div>
+                                                    <div className="contact-label">Phone</div>
                                                     <div className="contact-value">
                                                         {popupData.referenceContact?.phone || "Not provided"}
                                                     </div>

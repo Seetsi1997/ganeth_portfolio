@@ -449,9 +449,14 @@
 .skills-section {
     padding: 1rem;
     margin-top: 1.5rem;
-    border: 1px solid var(--color-bg-2);
+    border: 0.5px solid var(--color-bg-2);
+    background: var(--color-module-list);
     border-radius: 8px;
     text-align: center;
+  }
+
+  .skills-section span{
+    color: var(--color-light);
   }
 
 .proficiency-summary {
@@ -530,14 +535,15 @@
     content: "|";
     position: absolute;
     right: -0.75rem;
-    color: var(--color-light);
+    color: var(--color-white);
   }
   
   .contact-label {
     font-weight: 600;
-    color: var(--color-light);
+    color: var(--color-white);
     margin-bottom: 0.25rem;
     white-space: nowrap;
+    font-size: 0.6rem;
   }
   
   .contact-label:after {
