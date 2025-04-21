@@ -279,7 +279,7 @@ const Qualification = () => {
                                 )}
 
                                 <div className="skills-section">
-                                    <h3>Skills Gained <span>({popupData.skillCount})</span> </h3>
+                                    <h3>Skills Gained (<span>{popupData.skillCount}</span>)</h3>
                                     <p className="proficiency-summary">{popupData.proficiencySummary}</p>
                                     <ul className="skills-list">
                                         {popupData.skills?.map((skill, index) => (
@@ -293,7 +293,7 @@ const Qualification = () => {
 
 
                                 <div className="skills-section">
-                                    <h3>Details of Employee <span> ({popupData.referenceContact?.name || "N/A"}) </span></h3>
+                                    <h3>Details of Employee (<span>{popupData.referenceContact?.name || "N/A"}</span>)</h3>
                                     <p className="proficiency-summary">Reference Contact Details</p>
 
                                     <ul className="skills-list reference-contacts">
