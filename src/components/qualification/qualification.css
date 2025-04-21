@@ -739,7 +739,7 @@
     
    .reference-contact {
         flex-direction: row;
-        gap: 0.5rem;
+        gap: 10px;
     }
 
       .contact-item {
