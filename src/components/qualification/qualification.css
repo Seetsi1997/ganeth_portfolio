@@ -724,9 +724,13 @@
         flex-direction: column;
         gap: 0.5rem;
     }
-    .reference-contact span:not(:last-child):after {
+    .reference-contact:not(:last-child):after {
         content: none;
     }
+
+    .contact-item:not(:last-child):after {
+        content: none;
+      }
 }
 
 @media screen and (min-width: 300 ) {
