@@ -437,9 +437,7 @@
 .work-description {
     margin: 1.5rem 0;
     padding: 1rem;
-    background: var(--color-module-list)
-        /* rgba(255, 255, 255, 0.05)*/
-    ;
+    background: var(--color-module-list);
     border-radius: 8px;
 }
 
@@ -449,8 +447,12 @@
 }
 
 .skills-section {
+    padding: 1rem;
     margin-top: 1.5rem;
-}
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+  }
 
 .proficiency-summary {
     font-size: 0.9rem;
@@ -469,38 +471,62 @@
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.85rem;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 0.5px solid var(--color-approved);
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
+.skills-list.reference-contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 0;
+}
+
+.skill-item.reference-contact-item {
+    padding: 0.75rem 0;
+    border: none;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+}
+
+
 .reference-detail {
     margin-bottom: 0.5rem;
-  }
-  
-  .reference-position {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.reference-position {
     font-weight: 600;
     color: var(--color-light);
-  }
-  
-  .reference-contact {
+    text-align: center;
+}
+
+
+.reference-contact {
     display: flex;
+    justify-content: center;
     gap: 1rem;
     font-size: 0.9em;
     color: var(--color-light);
-  }
-  
-  .reference-contact span {
-    display: flex;
+    flex-wrap: wrap;
+}
+
+.reference-contact span {
+    display: inline-flex;
     align-items: center;
-  }
-  
-  .reference-contact span:not(:last-child):after {
+}
+
+.reference-contact span:not(:last-child):after {
     content: "|";
     margin-left: 1rem;
     color: var(--color-light);
-  }
+}
 
 .skill-item.beginner {
     background: var(--color-bg-skill-item-beginner);
@@ -660,6 +686,14 @@
 
     .status-badge {
         font-size: 0.7rem;
+    }
+
+    .reference-contact {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .reference-contact span:not(:last-child):after {
+        content: none;
     }
 }
 

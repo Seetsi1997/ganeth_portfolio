@@ -295,8 +295,8 @@ const Qualification = () => {
                                     <h3>Details of Employee ({popupData.referenceContact?.name || "N/A"})</h3>
                                     <p className="proficiency-summary">Reference Contact Details</p>
 
-                                    <ul className="skills-list">
-                                        <li className="skill-item">
+                                    <ul className="skills-list reference-contacts">
+                                        <li className="skill-item reference-contact-item">
                                             <div className="reference-detail">
                                                 <span className="reference-position">
                                                     {popupData.referenceContact?.position || "Position not provided"}
