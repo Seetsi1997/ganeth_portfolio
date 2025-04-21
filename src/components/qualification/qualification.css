@@ -721,22 +721,19 @@
         font-size: 0.7rem;
     }
 
-    .reference-contact {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
     .reference-contact:not(:last-child):after,
     .contact-label:after, 
     .contact-item:not(:last-child):after {
         content: none;
     }
     
-    .reference-contact {
-        flex-direction: column;
-        gap: 10px;
-      }
+   .reference-contact {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+
       .contact-item {
-        flex-direction: column;
+        flex-direction: row;
         gap: 2px;
       }
 
