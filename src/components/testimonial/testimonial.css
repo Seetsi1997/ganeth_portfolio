@@ -60,20 +60,31 @@
     letter-spacing: 1px;
   }
   
-  .quote-red, .quote-yellow {
+  .quote-one {
+    position: relative;
+    top: -0.1em;
     line-height: 0; 
+    color: var(--color-white);
     font-size: 2em;
     vertical-align: text-top; 
     opacity: 0.8;
   }
 
-  .quote-red {
+  .quote-two {
     position: relative;
-    top: -0.1em;
+    top: 1.1em;
+    line-height: 0; 
+    color: var(--color-skill-expert);
+    font-size: 2em;
+    vertical-align: text-bottom; 
+    opacity: 0.8;
   }
-  .quote-yellow {
-    position: relative;
-    top: 0.1em;
+
+  .quote-one {
+  
+  }
+  .quote-two {
+   
   }
 
   .client__likes {
