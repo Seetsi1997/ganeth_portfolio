@@ -503,10 +503,10 @@
 
 .reference-position {
     font-weight: 600;
-    color: var(--color-light);
+    color: var(--color-white);
     text-align: center;
+    font-size: 0.5rem;
 }
-
 
 .reference-contact {
     display: flex;
