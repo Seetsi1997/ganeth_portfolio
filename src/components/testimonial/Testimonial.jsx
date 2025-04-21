@@ -46,14 +46,14 @@ const Testimonial = () => {
             </div>
             <h5 className='client__name'>{testimonial.userName}</h5>
             <small className='client__review'>
-            <span className='quote-red'>&ldquo;</span>
+              <span className='quote-red'>&ldquo;</span>
               {testimonial.review}
               <span className='quote-yellow'>&rdquo;</span>
-              </small>
+            </small>
             <h4 className='client__career'>
-             
+
               {testimonial.career}
-             
+
             </h4>
 
 
