@@ -28,13 +28,6 @@ const Portfolio = () => {
     document.body.style.overflow = "auto";
   };
 
-
- /* useEffect(() => {
-    
-    // Fetch all projects (both approved and pending)
-    fetchPortfolioData();
-  }, []);*/
-
   useEffect(() => {
     let isMounted = true;
     
@@ -67,9 +60,9 @@ const Portfolio = () => {
     return () => {
       isMounted = false;
     };
-  }, []); // Empty dependency array to run only once
+  }, []); 
 
-  const fetchPortfolioData = async () => {
+ /* const fetchPortfolioData = async () => {
     setIsLoading(true);
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/portfolios`);
@@ -97,7 +90,7 @@ const Portfolio = () => {
     } finally {
       setIsLoading(false);
     }
-  };
+  };*/
 
   const handleApproveProject = async (projectId) => {
     setIsUpdating(true);

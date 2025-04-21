@@ -25,11 +25,11 @@ const Testimonial = () => {
     <section id='testimonials' className="section-emphasis">
       <h5>What people are saying</h5>
       <h2>Testimonials</h2>
-          
-     
-      <AddTestimonialForm 
-        isActive={showPopup} 
-        onClose={() => setShowPopup(false)} 
+
+
+      <AddTestimonialForm
+        isActive={showPopup}
+        onClose={() => setShowPopup(false)}
       />
 
       <Swiper
@@ -46,22 +46,27 @@ const Testimonial = () => {
             </div>
             <h5 className='client__name'>{testimonial.userName}</h5>
             <small className='client__review'>{testimonial.review}</small>
-            <h4 className='client__career'>{testimonial.career}</h4>
- 
-           <div className="client__likes">
-           <p className='client__rating'>
-  <FaStar />
-  <span>{testimonial.rating}/5</span>
-</p>
-             <p className='client__date'>{new Date(testimonial.createdAt).toLocaleString()}</p>
-           </div>
-           
+            <h4 className='client__career'>
+              <span className='quote-red'>&ldquo;</span>
+              {testimonial.career}
+              <span className='quote-yellow'>&rdquo;</span>
+            </h4>
+
+
+            <div className="client__likes">
+              <p className='client__rating'>
+                <FaStar />
+                <span>{testimonial.rating}/5</span>
+              </p>
+              <p className='client__date'>{new Date(testimonial.createdAt).toLocaleString()}</p>
+            </div>
+
           </SwiperSlide>
         ))}
       </Swiper>
 
-       
-     <button className="btn btn-primary" onClick={() => setShowPopup(true)}>Post a Testimonial</button>
+
+      <button className="btn btn-primary" onClick={() => setShowPopup(true)}>Post a Testimonial</button>
     </section>
   );
 };
