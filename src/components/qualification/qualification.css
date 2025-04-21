@@ -449,7 +449,7 @@
 .skills-section {
     padding: 1rem;
     margin-top: 1.5rem;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--color-bg-2);
     border-radius: 8px;
     text-align: center;
   }
@@ -505,29 +505,51 @@
     font-weight: 600;
     color: var(--color-white);
     text-align: center;
-    font-size: 0.5rem;
+    font-size: 0.9rem;
 }
 
 .reference-contact {
     display: flex;
     justify-content: center;
-    gap: 1rem;
+    gap: 1.5rem;
     font-size: 0.9em;
     color: var(--color-light);
     flex-wrap: wrap;
-}
-
-.reference-contact span {
+    width: 100%;
+  }
+  
+  .contact-item {
     display: inline-flex;
+    flex-direction: column;
     align-items: center;
-}
-
-.reference-contact span:not(:last-child):after {
+    position: relative;
+    padding: 0 1rem;
+  }
+  
+  .contact-item:not(:last-child):after {
     content: "|";
-    margin-left: 1rem;
+    position: absolute;
+    right: -0.75rem;
     color: var(--color-light);
-}
-
+  }
+  
+  .contact-label {
+    font-weight: 600;
+    color: var(--color-light);
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+  }
+  
+  .contact-label:after {
+    content: ":";
+    margin-left: 2px;
+  }
+  
+  .contact-value {
+    font-size: 0.9em;
+    text-align: center;
+    white-space: nowrap;
+  }
 .skill-item.beginner {
     background: var(--color-bg-skill-item-beginner);
     color: var(--color-skill-beginner);
