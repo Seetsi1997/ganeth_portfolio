@@ -174,7 +174,7 @@ const Qualification = () => {
                     <FaBriefcase /> Work
                 </button>
             </div>
-            
+
             {renderQuaExpContent()}
 
             {popupData && (
@@ -286,6 +286,26 @@ const Qualification = () => {
                                             <li key={index} className={`skill-item ${skill.proficiency}`}>
                                                 <span className="skill-name">{skill.name} -</span>
                                                 <span className="skill-level">({skill.proficiency})</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                <div className="skills-section">
+                                    <h3>Details of Employee ({popupData.referenceContactName || "N/A"})</h3>
+                                    <p className="proficiency-summary">Reference Contact Details</p>
+
+                                    <ul className="skills-list">
+                                        {popupData.referenceContact?.map((reference, index) => (
+                                            <li key={index} className="skill-item">
+                                                <div className="reference-detail">
+                                                    <span className="reference-name">{reference.name}</span>
+                                                    <span className="reference-position">{reference.position}</span>
+                                                </div>
+                                                <div className="reference-contact">
+                                                    <span className="reference-email">{reference.email || "Email not provided"}</span>
+                                                    <span className="reference-phone">{reference.phone || "Phone not provided"}</span>
+                                                </div>
                                             </li>
                                         ))}
                                     </ul>
