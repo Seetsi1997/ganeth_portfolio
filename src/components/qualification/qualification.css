@@ -510,7 +510,7 @@
     justify-content: center;
 }
 
-.skills-list.reference-contacts.reference-contact-item.reference-detail.reference-position {
+.reference-position {
     font-weight: 600;
     color: var(--color-white);
     text-align: center;
