@@ -737,13 +737,14 @@
         content: none;
     }
     
+
    .reference-contact {
-        flex-direction: row;
+        flex-direction: column;
         gap: 10px;
     }
 
       .contact-item {
-        flex-direction: row;
+        flex-direction: column;
         gap: 2px;
       }
 
