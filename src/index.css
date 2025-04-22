@@ -80,6 +80,17 @@ section {
     padding: 1.5rem 0;
     scroll-margin-top: 4rem;
 }
+/* =================  SECTION STYLES ================= */
+section {
+    margin: 0.5rem auto;
+    padding: 1.5rem 0;
+    scroll-margin-top: 4rem;
+    min-height: calc(100vh - env(safe-area-inset-bottom));
+}
+
+section:last-child {
+    padding-bottom: calc(6rem + env(safe-area-inset-bottom, 2rem));
+}
 
 section > h2, section > h5 {
     text-align: center;
