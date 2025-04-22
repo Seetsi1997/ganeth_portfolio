@@ -12,7 +12,9 @@ const Header = () => {
         <h1>Ganeth Seetsi</h1>
      
          <h5 className="text-light">Frontend Developer</h5>
-         <CTA/>
+         <div className="cta-wrapper"> 
+            <CTA/>
+          </div>
          <HeaderSocial/>
         </div>
       </header>
@@ -21,4 +23,4 @@ const Header = () => {
   );
 }
 
-export default Header
+export default Header;

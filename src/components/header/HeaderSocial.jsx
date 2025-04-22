@@ -11,4 +11,4 @@ const HeaderSocial = () => {
   )
 }
 
-export default HeaderSocial
+export default HeaderSocial;
