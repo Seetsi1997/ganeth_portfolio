@@ -30,7 +30,7 @@ header {
 
 /* =================  CTA  ================= */
 .cta {
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -40,13 +40,16 @@ header {
 }
 
 .cta a {
-    display: inline-block;
+    display: inline-flex; /* Changed to flex for better alignment */
+    justify-content: center;
+    align-items: center;
     padding: 0.8rem 1.8rem;
     border-radius: 0.4rem;
     font-weight: 500;
     transition: var(--transition);
     min-width: 140px;
-    text-align: center;
+    height: 44px; /* Fixed height for perfect alignment */
+    box-sizing: border-box; /* Ensures padding is included in height */
 }
 
 .cta a:first-child {
@@ -61,8 +64,9 @@ header {
     border: 1px solid transparent;
 }
 
+
 .cta a:first-child:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: none;
     border-color: var(--color-white);
     color: var(--color-white);
 }
