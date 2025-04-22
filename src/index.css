@@ -119,16 +119,6 @@ a:hover {
     color: var(--color-white);
 }
 
-footer {
-    position: fixed;
-    bottom: env(safe-area-inset-bottom, 1rem);
-    left: 0;
-    right: 0;
-    padding: 1rem 0;
-    background: var(--color-bg);
-    z-index: 10;
-}
-
 .btn {
     width: 150px; 
     display: inline-block;
