@@ -4,9 +4,14 @@ import CV from '../../assets/me.jpg';
 const CTA = () => {
   return (
     <div className="cta">
-      <a href={CV} download className="btn">Download CV</a>
-      <a href="#contact" className="btn btn-primary">Let's Talk</a>
+      <div className="btn-wrapper">
+        <a href={CV} download className="btn">Download CV</a>
+      </div>
+      <div className="btn-wrapper">
+        <a href="#contact" className="btn btn-primary">Let's Talk</a>
+      </div>
     </div>
+
   );
 };
 

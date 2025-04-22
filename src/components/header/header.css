@@ -29,12 +29,19 @@ header {
 }
 
 /* =================  CTA WRAPPER ================= */
-.cta-wrapper {
+/*.cta-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
     margin: 1.5rem 0;
-}
+}*/
+
+.btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
 
 /* =================  CTA  ================= */
 .cta {
