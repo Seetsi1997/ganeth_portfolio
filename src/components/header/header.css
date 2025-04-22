@@ -34,13 +34,13 @@ header {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: center; /* Ensures vertical alignment */
     gap: 1.5rem;
-    padding: 0;
+    flex-wrap: wrap; /* Optional: lets buttons wrap on smaller screens */
 }
 
 .cta a {
-    display: inline-flex; 
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     padding: 0.8rem 1.8rem;
@@ -50,6 +50,7 @@ header {
     min-width: 140px;
     height: 44px;
     box-sizing: border-box;
+    text-align: center;
 }
 
 .cta a:first-child {
@@ -119,13 +120,8 @@ header {
     .cta a {
         padding: 0.7rem 1.2rem;
         min-width: 120px;
-        height: 40px;
     }
-   /* .cta a {
-        padding: 0.7rem 1.2rem;
-        min-width: 120px;
-    }*/
-
+ 
     .header__socials {
         flex-direction: row;
         justify-content: center;
