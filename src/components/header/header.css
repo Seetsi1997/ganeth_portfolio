@@ -40,7 +40,7 @@ header {
 }
 
 .cta a {
-    display: inline-flex; /* Changed to flex for better alignment */
+    display: inline-flex; 
     justify-content: center;
     align-items: center;
     padding: 0.8rem 1.8rem;
@@ -48,8 +48,8 @@ header {
     font-weight: 500;
     transition: var(--transition);
     min-width: 140px;
-    height: 44px; /* Fixed height for perfect alignment */
-    box-sizing: border-box; /* Ensures padding is included in height */
+    height: 44px;
+    box-sizing: border-box;
 }
 
 .cta a:first-child {
