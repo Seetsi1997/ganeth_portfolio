@@ -7,19 +7,19 @@ const Header = () => {
   return (
     <section id='home' className='section-emphasis'>
       <header>
-       <div className='container header__container'>
-        <h5>Hey I'm</h5>
-        <h1>Ganeth Seetsi</h1>
-     
-         <h5 className="text-light">Frontend Developer</h5>
-         <div className="cta-wrapper"> 
-            <CTA/>
-          </div>
-         <HeaderSocial/>
+        <div className='container header__container'>
+          <h5>Hey I'm</h5>
+          <h1>Ganeth Seetsi</h1>
+
+          <h5 className="text-light">Frontend Developer</h5>
+
+          <CTA />
+
+          <HeaderSocial />
         </div>
       </header>
     </section>
-   
+
   );
 }
 
