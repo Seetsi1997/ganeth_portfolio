@@ -119,7 +119,12 @@ header {
     .cta a {
         padding: 0.7rem 1.2rem;
         min-width: 120px;
+        height: 40px;
     }
+   /* .cta a {
+        padding: 0.7rem 1.2rem;
+        min-width: 120px;
+    }*/
 
     .header__socials {
         flex-direction: row;
