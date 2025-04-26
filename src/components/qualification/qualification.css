@@ -440,6 +440,7 @@
     color: var(--color-light);
     opacity: 0.8;
     margin-bottom: 0.3rem;
+    justify-content: center;
 }
 
 .detail-value {
