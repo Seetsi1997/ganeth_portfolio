@@ -636,6 +636,7 @@
   
   .skills-list {
     display: inline-flex; 
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding-top: 15px;
