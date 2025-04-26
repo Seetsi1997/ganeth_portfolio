@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/ganeth_portfolio/static/css/main.bd2d8293.css",
-    "main.js": "/ganeth_portfolio/static/js/main.479ded7c.js",
+    "main.css": "/ganeth_portfolio/static/css/main.d57e5d48.css",
+    "main.js": "/ganeth_portfolio/static/js/main.a8a4e613.js",
     "static/media/me.jpg": "/ganeth_portfolio/static/media/me.fb045fa93fcf3665f76d.jpg",
     "static/media/about_me.jpg": "/ganeth_portfolio/static/media/about_me.c227e791145bdc26bda7.jpg",
     "static/media/GanethCV.pdf": "/ganeth_portfolio/static/media/GanethCV.588ef727514ba1602f64.pdf",
     "index.html": "/ganeth_portfolio/index.html",
-    "main.bd2d8293.css.map": "/ganeth_portfolio/static/css/main.bd2d8293.css.map",
-    "main.479ded7c.js.map": "/ganeth_portfolio/static/js/main.479ded7c.js.map"
+    "main.d57e5d48.css.map": "/ganeth_portfolio/static/css/main.d57e5d48.css.map",
+    "main.a8a4e613.js.map": "/ganeth_portfolio/static/js/main.a8a4e613.js.map"
   },
   "entrypoints": [
-    "static/css/main.bd2d8293.css",
-    "static/js/main.479ded7c.js"
+    "static/css/main.d57e5d48.css",
+    "static/js/main.a8a4e613.js"
   ]
 }
