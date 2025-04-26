@@ -641,7 +641,7 @@
     padding-top: 15px;
     flex-wrap: wrap;
     gap: 0.5rem;
-    padding: 0;
+    padding: 3rem;
     margin: 0.5rem auto 0;
     list-style: none;
     max-width: 600px;
@@ -679,32 +679,33 @@
     background: var(--color-bg-skill-item-beginner);
     color: var(--color-skill-beginner);
     border: none;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
 }
 
 .skill-item.intermediate {
     background: var(--color-bg-skill-item-intermediate);
     color: var(--color-skill-intermediate);
     border: none;
-    border-bottom-left-radius: 28px;
-    border-bottom-right-radius: 28px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
 }
 
 .skill-item.advanced {
     background: var(--color-bg-skill-item-advanced);
     color: var(--color-skill-advanced);
     border: none;
-    border-bottom-left-radius: 28px;
-    border-bottom-right-radius: 28px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
 }
 
 .skill-item.expert {
     background: var(--color-bg-skill-item-expert);
     color: var(--color-skill-expert);
     border: none;
-    border-bottom-left-radius: 28px;
-    border-bottom-right-radius:28px;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius:24px;
+    
 }
 
 .no-records-message {
