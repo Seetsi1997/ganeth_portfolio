@@ -679,24 +679,32 @@
     background: var(--color-bg-skill-item-beginner);
     color: var(--color-skill-beginner);
     border: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .skill-item.intermediate {
     background: var(--color-bg-skill-item-intermediate);
     color: var(--color-skill-intermediate);
     border: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .skill-item.advanced {
     background: var(--color-bg-skill-item-advanced);
     color: var(--color-skill-advanced);
     border: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .skill-item.expert {
     background: var(--color-bg-skill-item-expert);
     color: var(--color-skill-expert);
     border: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .no-records-message {
