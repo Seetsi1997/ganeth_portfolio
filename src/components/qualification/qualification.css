@@ -439,13 +439,14 @@
     margin-top: 0.5rem;
 }
 
-.detail-item {
+/*.detail-item {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-width: 100px;
 }
-
+*/
 .detail-label {
     font-size: 0.8rem;
     color: var(--color-light);
@@ -817,11 +818,8 @@
     }
 
     .detail-item {
-        min-width: 70px;
-    }
-
-    .detail-item {
         flex-direction: column;
+        min-width: 70px
     }
     
     .reference-contact:not(:last-child):after,
