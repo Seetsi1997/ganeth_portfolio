@@ -412,9 +412,27 @@
     gap: 1rem;
 }
 
+.work-details-list {
+    grid-column: 1 / -1; /* Span full width */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem; 
+}
+
+
+.detail-item.highlight {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    margin-top: 0.5rem;
+}
+
 .detail-item {
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 .detail-label {
@@ -432,22 +450,7 @@
 
 .detail-item.highlight .detail-value {
     color: var(--color-primary);
-}
-
-.work-description-section {
-    margin: 1.5rem 0;
-    padding: 1rem;
-    background: var(--color-module-list);
-    border-radius: 8px;
-}
-
-.work-description-section h3 {
-    margin-bottom: 0.5rem;
-    color: var(--color-white);
-}
-
-.work-description-section .work-description-list li {
-    color: var(--color-light);
+    font-size: 1rem; 
 }
 
 .skills-section,
