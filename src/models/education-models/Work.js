@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 const workSchema = new Schema({
-  companyName: { 
+  companyName: {
     type: String,
     required: [true, 'Company name is required'],
     trim: true,
@@ -17,7 +17,7 @@ const workSchema = new Schema({
     type: Date,
     required: [true, 'Start date is required'],
     validate: {
-      validator: function(value) {
+      validator: function (value) {
         return value <= this.endDate;
       },
       message: 'Start date must be before end date'
@@ -25,11 +25,11 @@ const workSchema = new Schema({
   },
   endDate: {
     type: Date,
-    required: function() {
-      return !this.currentlyWorking; 
+    required: function () {
+      return !this.currentlyWorking;
     },
     validate: {
-      validator: function(value) {
+      validator: function (value) {
         return value >= this.startDate;
       },
       message: 'End date must be after start date'
@@ -66,8 +66,14 @@ const workSchema = new Schema({
     maxlength: [1000, 'Description cannot exceed 1000 characters']
   },
   achievements: [{
-    type: String,
-    trim: true
+    name: {
+      type: String,
+      trim: true
+    },
+    proficiency: {
+      type: String,
+      trim: true
+    }
   }],
   referenceContact: {
     name: String,
@@ -75,14 +81,14 @@ const workSchema = new Schema({
     email: String,
     phone: String
   }
-}, { 
+}, {
   timestamps: true,
   toJSON: { virtuals: true },
   toObject: { virtuals: true }
 });
 
 // Virtual for duration calculation
-workSchema.virtual('duration').get(function() {
+workSchema.virtual('duration').get(function () {
   const end = this.currentlyWorking ? new Date() : this.endDate;
   const diff = end.getTime() - this.startDate.getTime();
   return Math.floor(diff / (1000 * 60 * 60 * 24 * 30)); // Return months

@@ -19,10 +19,12 @@ const Qualification = () => {
                 if (response.data.success) {
                     setEducationData(response.data.data || []);
                 }
+                // Clear any previous errors
+                setErrors(prev => ({ ...prev, education: null }));
             } catch (error) {
                 if (error.response?.status === 404) {
                     // 404 means endpoint exists but no data - not a true error
-                    setWorkData([]);
+                    setEducationData([]);
                 } else {
                     // Real network/server errors
                     console.error("Education fetch error:", error);
@@ -39,9 +41,11 @@ const Qualification = () => {
                 const response = await axios.get(`${process.env.REACT_APP_API_URL}/works`);
 
                 // Successful request
-                const data = response.data.data || [];
-                setWorkData(data);
-
+                // const data = response.data.data || [];
+                // setWorkData(data);
+                if (response.data.success) {
+                    setWorkData(response.data.data || []);
+                }
                 // Clear any previous errors
                 setErrors(prev => ({ ...prev, work: null }));
 
@@ -159,7 +163,7 @@ const Qualification = () => {
         <section id="qualification" className="qualification">
             <h5>My personal journey</h5>
             <h2>My Qualifications</h2>
-
+            {/*Tabbar Different Buttons */}
             <div className="qualification__tabs">
                 <button
                     className={activeTab === 'education' ? 'active' : ''}
@@ -176,7 +180,7 @@ const Qualification = () => {
             </div>
 
             {renderQuaExpContent()}
-
+            {/*Popup */}
             {popupData && (
                 <div className="qualification__popup active">
                     <div className="qualification__popup__content">
@@ -186,13 +190,14 @@ const Qualification = () => {
 
                         {activeTab === 'education' ? (
                             <>
+                                {/*Performance */}
                                 <div className="popup-header">
                                     <h1>Performance</h1>
                                     <p className="qualification-type">
                                         {popupData.schoolName}
                                     </p>
                                 </div>
-
+                                {/*Performance I Managed through My Educations */}
                                 <div className="performance-summary">
                                     <div className="performance-grid">
                                         <div className="performance-item">
@@ -215,7 +220,7 @@ const Qualification = () => {
                                         </div>
                                     </div>
                                 </div>
-
+                                {/*Modules I Did */}
                                 <div className="modules-section">
                                     <h3>All Subjects</h3>
                                     <ul className="modules-list">
@@ -249,7 +254,7 @@ const Qualification = () => {
                                     <h1>{popupData.companyName}</h1>
                                     <p className="work-position">{popupData.position}</p>
                                 </div>
-
+                                {/*Work Details */}
                                 <div className="work-details-summary">
                                     <div className="detail-grid">
                                         <div className="detail-item">
@@ -277,7 +282,22 @@ const Qualification = () => {
                                         <p>{popupData.description}</p>
                                     </div>
                                 )}
-
+                                {/*Achievements coming */}
+                                <div className="skills-section">
+                                    <h3>Achievements</h3>
+                                    <p className="proficiency-summary">Achievements</p>
+                                    <ul className="skills-list">
+                                        {popupData.achievements?.map((achievement, index) => (
+                                            <li key={index} className={`skill-item ${achievement.proficiency}`}>
+                                                <span className="skill-name">{achievement.name}</span>
+                                                {achievement.proficiency && (
+                                                    <span className="skill-level"> - ({achievement.proficiency})</span>
+                                                )}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                {/*Skills */}
                                 <div className="skills-section">
                                     <h3>Skills Gained (<span>{popupData.skillCount}</span>)</h3>
                                     <p className="proficiency-summary">{popupData.proficiencySummary}</p>
@@ -291,8 +311,8 @@ const Qualification = () => {
                                     </ul>
                                 </div>
 
-
-                                <div className="skills-section">
+                                {/*Employer Details */}
+                                <div className="employee-section">
                                     <h3>Details of Employee (<span>{popupData.referenceContact?.name || "N/A"}</span>)</h3>
                                     <p className="proficiency-summary">Reference Contact Details</p>
 

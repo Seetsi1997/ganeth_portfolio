@@ -451,7 +451,7 @@
     color: var(--color-light);
 }
 
-.skills-section {
+.skills-section, .employee-section {
     padding: 1rem;
     margin-top: 1.5rem;
     background: var(--color-module-list);
@@ -593,6 +593,16 @@
     color: var(--color-light);
     font-style: italic;
     background: var(--color-primary-variant);
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 600px;
+}
+
+.qualification__error{
+    padding: 2rem;
+    text-align: center;
+    color: var(--color-light);
+    font-style: normal;
     border-radius: 8px;
     margin: 2rem auto;
     max-width: 600px;
