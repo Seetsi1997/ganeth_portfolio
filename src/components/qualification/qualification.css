@@ -896,8 +896,10 @@
     .skill-item.intermediate,
     .skill-item.advanced 
     .skill-item.expert  {
-        border-bottom-left-radius: none;
-        border-bottom-right-radius: none;
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
     }
     
     
