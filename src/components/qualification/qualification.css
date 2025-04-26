@@ -894,7 +894,7 @@
 
     .skill-item.beginner,
     .skill-item.intermediate,
-    .skill-item.advanced 
+    .skill-item.advanced,
     .skill-item.expert  {
         border-bottom-left-radius: 12px;
         border-bottom-right-radius: 12px;
