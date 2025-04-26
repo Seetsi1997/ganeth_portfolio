@@ -645,8 +645,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    min-width: 100px;
-    border-radius: 12px;
+    border-radius: 5px;
     padding: 0.1rem 0.4rem;
     margin: 0;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -672,25 +671,25 @@
 .skill-item.beginner {
     background: var(--color-bg-skill-item-beginner);
     color: var(--color-skill-beginner);
-    border: 1px solid var(--color-skill-beginner);
+    border: none;
 }
 
 .skill-item.intermediate {
     background: var(--color-bg-skill-item-intermediate);
     color: var(--color-skill-intermediate);
-    border: 1px solid var(--color-skill-intermediate);
+    border: none;
 }
 
 .skill-item.advanced {
     background: var(--color-bg-skill-item-advanced);
     color: var(--color-skill-advanced);
-    border: 1px solid var(--color-skill-advanced);
+    border: none;
 }
 
 .skill-item.expert {
     background: var(--color-bg-skill-item-expert);
     color: var(--color-skill-expert);
-    border: 1px solid var(--color-skill-expert);
+    border: none;
 }
 
 .no-records-message {
