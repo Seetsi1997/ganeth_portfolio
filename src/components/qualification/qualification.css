@@ -533,7 +533,8 @@
 .work-details-list,
 .work-description-list, 
 .skills-list,
-.achievement-list {
+.achievement-list,
+.reference-contacts {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
@@ -629,16 +630,7 @@
     white-space: nowrap;
 }
 
-.skill-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    min-width: 100px; 
-    border-radius: 12px;
-    padding: 1px 0.2rem;
-    margin: 0.1rem 0;
-}
+
 
 .skill-name {
     font-size: 0.8rem;
