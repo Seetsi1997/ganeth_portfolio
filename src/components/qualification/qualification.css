@@ -641,7 +641,7 @@
     padding-top: 15px;
     flex-wrap: wrap;
     gap: 0.5rem;
-    padding: 3rem;
+    padding-top: 1rem;
     margin: 0.5rem auto 0;
     list-style: none;
     max-width: 600px;
@@ -891,6 +891,16 @@
         flex-direction: column;
         gap: 2px;
     }
+
+    .skill-item.beginner,
+    .skill-item.intermediate,
+    .skill-item.advanced 
+    .skill-item.expert  {
+        border-bottom-left-radius: none;
+        border-bottom-right-radius: none;
+    }
+    
+    
 
 }
 
