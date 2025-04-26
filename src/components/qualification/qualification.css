@@ -439,9 +439,6 @@
     padding: 1rem;
     background: var(--color-module-list);
     border-radius: 8px;
-    border-radius: 20px;
-    border-bottom: 0.30px solid var(--color-primary-variant);
-    align-items: center;
 }
 
 .work-description h3 {
@@ -498,6 +495,7 @@
     margin-bottom: 1rem;
 }
 
+.work-description-list, 
 .skills-list,
 .achievement-list {
     display: flex;

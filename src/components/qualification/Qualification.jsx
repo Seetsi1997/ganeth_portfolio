@@ -279,7 +279,9 @@ const Qualification = () => {
                                 {popupData.description && (
                                     <div className="work-description">
                                         <h3>Role Description</h3>
-                                        <p>{popupData.description}</p>
+                                        <ul className='work-description-list'>
+                                           <li>{popupData.description}</li>
+                                        </ul>
                                     </div>
                                 )}
                                 {/*Achievements coming */}
