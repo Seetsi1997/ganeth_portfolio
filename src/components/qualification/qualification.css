@@ -447,39 +447,46 @@
 }
 
 .work-description p {
-   
+
     color: var(--color-light);
 }
 
-.skills-section, .employee-section {
+.skills-section,
+.employee-section {
     padding: 1rem;
     margin-top: 1.5rem;
     background: var(--color-module-list);
     border-radius: 8px;
     text-align: center;
-  }
+}
 
-  .achievement-section {
+.achievement-section {
     padding: 1rem;
     margin-top: 1.5rem;
     background: var(--color-skill-beginner);
     border-radius: 8px;
     text-align: center;
-  }
+}
 
 
-  .skills-section span, .employee-section span {
+.skills-section span,
+.employee-section span {
     font-size: 0.9rem;
     color: var(--color-light);
-  }
+}
 
-  .achievement-list .achievement-item .achievement-name,
-  .achievement-list .achievement-item .achievement-level {
+.achievement-list .achievement-item .achievement-level {
+    display: block
+}
+
+.achievement-list .achievement-item .achievement-name,
+.achievement-list .achievement-item .achievement-level {
     font-size: 0.9rem;
     color: var(--color-light);
     margin-bottom: 0.5rem;
     text-align: center;
-  }
+}
+
 
 .proficiency-summary {
     font-size: 0.9rem;
@@ -487,14 +494,16 @@
     margin-bottom: 1rem;
 }
 
-.skills-list, .achievement-list {
+.skills-list,
+.achievement-list {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     gap: 0.5rem;
 }
 
-.skill-item, .achievement-list {
+.skill-item,
+.achievement-list {
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.85rem;
@@ -543,41 +552,41 @@
     color: var(--color-light);
     flex-wrap: wrap;
     width: 100%;
-  }
-  
-  .contact-item {
+}
+
+.contact-item {
     display: inline-flex;
     flex-direction: column;
     align-items: center;
     position: relative;
     padding: 0 1rem;
-  }
-  
-  .contact-item:not(:last-child):after {
+}
+
+.contact-item:not(:last-child):after {
     content: "|";
     position: absolute;
     right: -0.75rem;
     color: var(--color-white);
-  }
-  
-  .contact-label {
+}
+
+.contact-label {
     font-weight: 600;
     color: var(--color-white);
     margin-bottom: 0.25rem;
     white-space: nowrap;
     font-size: 0.7rem;
-  }
-  
-  .contact-label:after {
+}
+
+.contact-label:after {
     content: ":";
     margin-left: 2px;
-  }
-  
-  .contact-value {
+}
+
+.contact-value {
     font-size: 0.9em;
     text-align: center;
     white-space: nowrap;
-  }
+}
 
 .skill-item.beginner {
     background: var(--color-bg-skill-item-beginner);
@@ -616,7 +625,7 @@
     max-width: 600px;
 }
 
-.qualification__error{
+.qualification__error {
     padding: 2rem;
     text-align: center;
     color: var(--color-light);
@@ -660,10 +669,10 @@
         gap: 0.5rem;
     }
 
-      .contact-item {
+    .contact-item {
         flex-direction: column;
         gap: 2px;
-      }
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -760,28 +769,28 @@
     }
 
     .reference-contact:not(:last-child):after,
-    .contact-label:after, 
+    .contact-label:after,
     .contact-item:not(:last-child):after {
         content: none;
     }
-    
 
-   .reference-contact {
+
+    .reference-contact {
         flex-direction: column;
         gap: 10px;
     }
 
-      .contact-item {
+    .contact-item {
         flex-direction: column;
         gap: 2px;
-      }
+    }
 
 }
 
-@media screen and (min-width: 300 ) {
+@media screen and (min-width: 300) {
     #qualification {
-      padding-top: 0.5rem;
-      margin-top: -2rem; 
-      margin-bottom: 0;
+        padding-top: 0.5rem;
+        margin-top: -2rem;
+        margin-bottom: 0;
     }
-  }
+}
