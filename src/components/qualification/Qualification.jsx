@@ -388,8 +388,8 @@ const Qualification = () => {
                     Reference Contact Details
                   </p>
 
-                  <ul className="skills-list reference-contacts">
-                    <li className="skill-item reference-contact-item">
+                  <ul className="reference-contacts">
+                    <li className="reference-contact-item">
                       <div className="reference-detail">
                         <span className="reference-position">
                           {popupData.referenceContact?.position ||

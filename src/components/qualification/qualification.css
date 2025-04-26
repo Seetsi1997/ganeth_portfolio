@@ -429,6 +429,7 @@
     padding-top: 1rem;
     border-top: 1px solid var(--color-bg-skill-item-beginner); 
     margin-top: 0.5rem;
+    align-items: center;
 }
 
 .detail-item {
@@ -455,6 +456,7 @@
 .detail-item.highlight .detail-value {
     color: var(--color-primary);
     font-size: 1rem; 
+    align-items: center;
 }
 
 .work-description-section {
@@ -550,7 +552,7 @@
     gap: 0.5rem;
 }
 
-.skills-list.reference-contacts {
+.reference-contacts {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -558,7 +560,7 @@
     padding: 0;
 }
 
-.skill-item.reference-contact-item {
+.reference-contact-item {
     padding: 0.75rem 0;
     border: none;
     flex-direction: column;
