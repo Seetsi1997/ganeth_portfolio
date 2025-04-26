@@ -423,14 +423,6 @@
     align-items:  center;
 }
 
-.work-details-list .detail-item .detail-value{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 100px;
-}
-
 .detail-item.highlight {
     grid-column: 1 / -1;
     text-align: center;
@@ -439,14 +431,21 @@
     margin-top: 0.5rem;
 }
 
-/*.detail-item {
+
+
+.detail-item {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     min-width: 100px;
 }
-*/
+
+.work-details-list .detail-item .detail-value{
+    flex-direction: column;
+   
+}
+
 .detail-label {
     font-size: 0.8rem;
     color: var(--color-light);
