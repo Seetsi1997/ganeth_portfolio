@@ -423,7 +423,7 @@
     align-items:  center;
 }
 
-.work-details-list.detail-item.highlight {
+.detail-item.highlight {
     grid-column: 1 / -1;
     text-align: center;
     padding-top: 1rem;
