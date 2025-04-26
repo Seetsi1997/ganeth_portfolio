@@ -502,6 +502,15 @@
     list-style: none;
     gap: 0.5rem;
 }
+.skill-item{
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition-2);
+}
 
 .skills-list,
 .achievement-list {
