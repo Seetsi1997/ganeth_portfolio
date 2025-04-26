@@ -417,10 +417,10 @@
     display: flex;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 0.5rem;
-    margin-bottom: 1rem; 
+    margin-bottom: 1rem;
     flex-direction: row;
     justify-content: space-between;
-    align-items:  center;
+    align-items: center;
 }
 
 .detail-item.highlight {
@@ -434,8 +434,8 @@
     border-top: 1px solid var(--color-bg-skill-item-beginner);
     border-top-left-radius: 8px;
     border-bottom-right-radius: 0;
-    border-top-right-radius: 8px; 
-    border-bottom-left-radius: 0; 
+    border-top-right-radius: 8px;
+    border-bottom-left-radius: 0;
     margin-top: 0.5rem;
     width: 100%;
     box-sizing: border-box;
@@ -455,7 +455,7 @@
     font-size: 0.8rem;
     color: var(--color-light);
     opacity: 0.8;
-    margin-bottom: 0.3rem; 
+    margin-bottom: 0.3rem;
 }
 
 .detail-value {
@@ -466,7 +466,7 @@
 
 .detail-item.highlight .detail-value {
     color: var(--color-primary);
-    font-size: 1rem; 
+    font-size: 1rem;
     align-items: center;
 }
 
@@ -531,7 +531,7 @@
 }
 
 .work-details-list,
-.work-description-list, 
+.work-description-list,
 .skills-list,
 .achievement-list,
 .reference-contacts {
@@ -539,7 +539,7 @@
     flex-wrap: wrap;
     list-style: none;
     padding: 0.5rem 1rem;
-    margin: 0; 
+    margin: 0;
     border-radius: 20px;
     border-bottom: 0.30px solid var(--color-primary-variant);
     align-items: center;
@@ -629,15 +629,15 @@
     text-align: center;
     white-space: nowrap;
 }
-  
+
 .skills-list {
     display: flex;
-    flex-wrap: nowrap; 
+    flex-wrap: nowrap;
     gap: 0.5rem;
     padding: 0;
     margin: 0.5rem 0 0;
     list-style: none;
-    overflow-x: auto; 
+    overflow-x: auto;
 }
 
 .skill-item {
@@ -647,56 +647,56 @@
     justify-content: center;
     min-width: 100px;
     border-radius: 12px;
-    padding: 0.3rem 0.8rem;
+    padding: 0.1rem 0.4rem;
     margin: 0;
     transition: transform 0.2s, box-shadow 0.2s;
     white-space: nowrap;
     flex-shrink: 0;
-}  
+}
 
-  .skill-item:hover {
+.skill-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px var(--color-bg-skill-item-intermediate);
-  }
-  
-  .skill-name {
+}
+
+.skill-name {
     font-size: 0.8rem;
     color: inherit;
     opacity: 0.9;
     margin-right: 0.3rem;
     white-space: nowrap;
-  }
-  
-  .skill-level {
+}
+
+.skill-level {
     font-weight: 600;
     font-size: 0.7rem;
     text-transform: capitalize;
     opacity: 0.9;
-  }
-  
-  .skill-item.beginner {
+}
+
+.skill-item.beginner {
     background: var(--color-bg-skill-item-beginner);
     color: var(--color-skill-beginner);
     border: 1px solid var(--color-skill-beginner);
-  }
-  
-  .skill-item.intermediate {
+}
+
+.skill-item.intermediate {
     background: var(--color-bg-skill-item-intermediate);
     color: var(--color-skill-intermediate);
     border: 1px solid var(--color-skill-intermediate);
-  }
-  
-  .skill-item.advanced {
+}
+
+.skill-item.advanced {
     background: var(--color-bg-skill-item-advanced);
     color: var(--color-skill-advanced);
     border: 1px solid var(--color-skill-advanced);
-  }
-  
-  .skill-item.expert {
+}
+
+.skill-item.expert {
     background: var(--color-bg-skill-item-expert);
     color: var(--color-skill-expert);
     border: 1px solid var(--color-skill-expert);
-  }
+}
 
 .no-records-message {
     padding: 2rem;
@@ -851,7 +851,7 @@
     .status-badge {
         font-size: 0.7rem;
     }
-    
+
     .work-details-list {
         gap: 0.3rem;
     }
@@ -860,7 +860,11 @@
         flex-direction: column;
         min-width: 70px
     }
-    
+
+    .skills-list {
+        flex-wrap: wrap;
+    }
+
     .reference-contact:not(:last-child):after,
     .contact-label:after,
     .contact-item:not(:last-child):after {
