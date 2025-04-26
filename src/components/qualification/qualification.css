@@ -634,7 +634,7 @@
     display: flex;
     flex-wrap: nowrap;
     gap: 0.5rem;
-    padding: 0;
+    padding: 0.2rem;
     margin: 0.5rem 0 0;
     list-style: none;
     overflow-x: auto;
@@ -652,11 +652,6 @@
     transition: transform 0.2s, box-shadow 0.2s;
     white-space: nowrap;
     flex-shrink: 0;
-}
-
-.skill-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px var(--color-bg-skill-item-intermediate);
 }
 
 .skill-name {
