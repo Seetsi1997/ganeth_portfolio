@@ -258,22 +258,22 @@ const Qualification = () => {
                                 <div className="work-details-summary">
                                     <div className="detail-grid">
                                         <ul className='work-details-list'>
-                                            <div className="detail-item">
+                                            <li className="detail-item">
                                                 <span className="detail-label">Period</span>
                                                 <span className="detail-value">{popupData.employmentPeriod}</span>
-                                            </div>
-                                            <div className="detail-item">
+                                            </li>
+                                            <li className="detail-item">
                                                 <span className="detail-label">Duration</span>
                                                 <span className="detail-value">{popupData.duration}</span>
-                                            </div>
-                                            <div className="detail-item">
+                                            </li>
+                                            <li className="detail-item">
                                                 <span className="detail-label">Type</span>
                                                 <span className="detail-value">{popupData.employmentType}</span>
-                                            </div>
-                                            <div className="detail-item highlight">
+                                            </li>
+                                            <li className="detail-item highlight">
                                                 <span className="detail-label">Primary Skill</span>
                                                 <span className="detail-value">{popupData.primarySkill}</span>
-                                            </div>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
