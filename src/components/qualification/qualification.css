@@ -420,9 +420,16 @@
     margin-bottom: 1rem; 
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items:  center;
 }
 
+.work-details-list .detail-item .detail-value{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+}
 
 .detail-item.highlight {
     grid-column: 1 / -1;
