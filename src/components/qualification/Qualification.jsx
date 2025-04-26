@@ -277,7 +277,7 @@ const Qualification = () => {
                                 </div>
 
                                 {popupData.description && (
-                                    <div className="work-description">
+                                    <div className="work-description-section">
                                         <h3>Role Description</h3>
                                         <ul className='work-description-list'>
                                            <li>{popupData.description}</li>
