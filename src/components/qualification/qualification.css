@@ -467,8 +467,18 @@
     text-align: center;
   }
 
-  .skills-section span{
+
+  .skills-section span, .employee-section span {
+    font-size: 0.9rem;
     color: var(--color-light);
+  }
+
+  .achievement-list .achievement-item .achievement-name,
+  .achievement-list .achievement-item .achievement-level {
+    font-size: 0.9rem;
+    color: var(--color-light);
+    margin-bottom: 0.5rem;
+    text-align: center;
   }
 
 .proficiency-summary {
