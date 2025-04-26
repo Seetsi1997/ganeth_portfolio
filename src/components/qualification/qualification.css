@@ -630,28 +630,33 @@
     white-space: nowrap;
 }
 
-/*.skills-list {
+.skills-section {
+    text-align: center; /* Center all text content */
+  }
+  
+  .skills-list {
     display: flex;
-    flex-wrap: nowrap;
+    justify-content: center; 
+    flex-wrap: wrap;
     gap: 0.5rem;
-    padding: 0.2rem;
-    margin: 0.5rem 0 0;
+    padding: 0;
+    margin: 0.5rem auto 0; 
     list-style: none;
-    overflow-x: auto;
-} */
-
-.skill-item {
+    max-width: 600px; 
+  }
+  
+  .skill-item {
     display: inline-flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     border-radius: 5px;
-    padding: 0.1rem 0.4rem;
-    margin: 1rem 0.5rem;
+    padding: 0.3rem 0.8rem; 
+    margin: 0;
     transition: transform 0.2s, box-shadow 0.2s;
     white-space: nowrap;
     flex-shrink: 0;
-}
+  }
 
 .skill-name {
     font-size: 0.8rem;
