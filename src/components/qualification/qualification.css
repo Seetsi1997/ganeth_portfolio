@@ -634,8 +634,10 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    min-width: 100px;
+    min-width: 100px; 
     border-radius: 12px;
+    padding: 2px 0.5rem;
+    margin: 0.5rem 0;
 }
 
 .skill-name {
