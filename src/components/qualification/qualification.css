@@ -463,11 +463,10 @@
 .achievement-section {
     padding: 1rem;
     margin-top: 1.5rem;
-    background: var(--color-skill-beginner);
+    background: var(--color-approved);
     border-radius: 8px;
     text-align: center;
 }
-
 
 .skills-section span,
 .employee-section span {
@@ -475,18 +474,20 @@
     color: var(--color-light);
 }
 
-.achievement-level {
-    display: block
-}
-
-.achievement-name,
-.achievement-level {
+.achievement-name {
     font-size: 0.9rem;
     color: var(--color-light);
     margin-bottom: 0.5rem;
     text-align: center;
 }
 
+.achievement-level {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-light);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
 
 .proficiency-summary {
     font-size: 0.9rem;
