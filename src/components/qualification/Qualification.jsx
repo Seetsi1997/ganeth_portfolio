@@ -254,25 +254,27 @@ const Qualification = () => {
                                     <h1>{popupData.companyName}</h1>
                                     <p className="work-position">{popupData.position}</p>
                                 </div>
-                                {/*Work Details */}
+                                {/* Work Details */}
                                 <div className="work-details-summary">
                                     <div className="detail-grid">
-                                        <div className="detail-item">
-                                            <span className="detail-label">Period</span>
-                                            <span className="detail-value">{popupData.employmentPeriod}</span>
-                                        </div>
-                                        <div className="detail-item">
-                                            <span className="detail-label">Duration</span>
-                                            <span className="detail-value">{popupData.duration}</span>
-                                        </div>
-                                        <div className="detail-item">
-                                            <span className="detail-label">Type</span>
-                                            <span className="detail-value">{popupData.employmentType}</span>
-                                        </div>
-                                        <div className="detail-item highlight">
-                                            <span className="detail-label">Primary Skill</span>
-                                            <span className="detail-value">{popupData.primarySkill}</span>
-                                        </div>
+                                        <ul className='work-details-list'>
+                                            <div className="detail-item">
+                                                <span className="detail-label">Period</span>
+                                                <span className="detail-value">{popupData.employmentPeriod}</span>
+                                            </div>
+                                            <div className="detail-item">
+                                                <span className="detail-label">Duration</span>
+                                                <span className="detail-value">{popupData.duration}</span>
+                                            </div>
+                                            <div className="detail-item">
+                                                <span className="detail-label">Type</span>
+                                                <span className="detail-value">{popupData.employmentType}</span>
+                                            </div>
+                                            <div className="detail-item highlight">
+                                                <span className="detail-label">Primary Skill</span>
+                                                <span className="detail-value">{popupData.primarySkill}</span>
+                                            </div>
+                                        </ul>
                                     </div>
                                 </div>
 
@@ -280,14 +282,14 @@ const Qualification = () => {
                                     <div className="work-description-section">
                                         <h3>Role Description</h3>
                                         <ul className='work-description-list'>
-                                           <li>{popupData.description}</li>
+                                            <li>{popupData.description}</li>
                                         </ul>
                                     </div>
                                 )}
                                 {/*Achievements coming */}
                                 <div className="achievement-section">
                                     <h3>Achievements</h3>
-                                   {/*<p className="proficiency-summary">Achievements</p>*/}
+                                    {/*<p className="proficiency-summary">Achievements</p>*/}
                                     <ul className="achievement-list">
                                         {popupData.achievements?.map((achievement, index) => (
                                             <li key={index} className={`achievement-item ${achievement.proficiency}`}>
