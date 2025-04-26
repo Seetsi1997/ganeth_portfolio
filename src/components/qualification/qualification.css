@@ -430,10 +430,14 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 1rem 0; 
+    padding: 1rem 0;
     border-top: 1px solid var(--color-bg-skill-item-beginner);
+    border-left: 1px solid var(--color-bg-skill-item-beginner); 
+    border-right: 1px solid var(--color-bg-skill-item-beginner); 
     margin-top: 0.5rem;
-    width: 100%; 
+    width: 100%;
+    border-radius: 0 0 8px 8px;
+    box-sizing: border-box; 
 }
 
 .detail-item {
