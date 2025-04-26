@@ -433,8 +433,8 @@
     padding: 1rem 0;
     border-top: 1px solid var(--color-bg-skill-item-beginner);
     border-top-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    border-top-right-radius: 0; 
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 8px; 
     border-bottom-left-radius: 0; 
     margin-top: 0.5rem;
     width: 100%;
@@ -554,15 +554,6 @@
     
 }
 */
-.skill-item{
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
 .reference-contacts {
     display: flex;
     flex-direction: column;
@@ -638,6 +629,27 @@
     white-space: nowrap;
 }
 
+.skill-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+}
+
+.skill-name {
+    font-size: 0.8rem;
+    color: var(--color-light);
+    opacity: 0.8;
+    margin-right: 0.5rem;
+}
+
+.skill-level {
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: capitalize;
+}
+
 .skill-item.beginner {
     background: var(--color-bg-skill-item-beginner);
     color: var(--color-skill-beginner);
@@ -656,12 +668,6 @@
 .skill-item.expert {
     background: var(--color-bg-skill-item-expert);
     color: var(--color-skill-expert);
-}
-
-.skill-level {
-    font-weight: 600;
-    font-size: 0.75rem;
-    text-transform: capitalize;
 }
 
 .no-records-message {
