@@ -500,24 +500,28 @@
     display: flex;
     flex-wrap: wrap;
     list-style: none;
-    gap: 0.5rem;
-}
-.skill-item{
     padding: 0.5rem 1rem;
     border-radius: 20px;
-    font-size: 0.85rem;
-    display: flex;
+    border-bottom: 0.30px solid var(--color-primary-variant);
     align-items: center;
     gap: 0.5rem;
-    transition: var(--transition-2);
 }
 
-.skills-list,
+/*.skills-list,
 .achievement-list {
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.85rem;
-    border-bottom: 0.30px solid var(--color-approved);
+    border-bottom: 0.30px solid var(--color-primary-variant);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}*/
+
+.skill-item{
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
     display: flex;
     align-items: center;
     gap: 0.5rem;
