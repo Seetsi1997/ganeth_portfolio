@@ -370,7 +370,7 @@ const Qualification = () => {
                         key={index}
                         className={`skill-item ${skill.proficiency}`}
                       >
-                        <span className="skill-name">{skill.name} -</span>
+                        <span className="skill-name">{skill.name}</span>
                         <span className="skill-level">
                           ({skill.proficiency})
                         </span>
