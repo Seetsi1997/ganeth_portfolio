@@ -475,12 +475,12 @@
     color: var(--color-light);
 }
 
-.achievement-list .achievement-item .achievement-level {
+.achievement-level {
     display: block
 }
 
-.achievement-list .achievement-item .achievement-name,
-.achievement-list .achievement-item .achievement-level {
+.achievement-name,
+.achievement-level {
     font-size: 0.9rem;
     color: var(--color-light);
     margin-bottom: 0.5rem;

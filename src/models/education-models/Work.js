@@ -72,6 +72,8 @@ const workSchema = new Schema({
     },
     proficiency: {
       type: String,
+      enum: ['beginner', 'intermediate', 'advanced', 'expert'],
+      default: 'intermediate',
       trim: true
     }
   }],
