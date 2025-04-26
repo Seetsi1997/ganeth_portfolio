@@ -508,7 +508,7 @@
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.85rem;
-    border-bottom: 0.5px solid var(--color-approved);
+    border-bottom: 0.15px solid var(--color-approved);
     display: flex;
     align-items: center;
     gap: 0.5rem;
