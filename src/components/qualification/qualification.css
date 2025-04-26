@@ -503,12 +503,12 @@
     gap: 0.5rem;
 }
 
-.skill-item,
+.skills-list,
 .achievement-list {
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.85rem;
-    border-bottom: 1px solid var(/*--color-approved*/ --color-white);
+    border-bottom: 0.30px solid var(--color-approved);
     display: flex;
     align-items: center;
     gap: 0.5rem;
