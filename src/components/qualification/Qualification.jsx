@@ -315,14 +315,13 @@ const Qualification = () => {
                           {popupData.employmentType}
                         </span>
                       </li>
-                    </ul>
-
-                    <div className="detail-item highlight">
+                      <div className="detail-item highlight">
                       <span className="detail-label">Primary Skill</span>
                       <span className="detail-value">
                         {popupData.primarySkill}
                       </span>
                     </div>
+                    </ul>
                   </div>
                 </div>
 
