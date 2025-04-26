@@ -317,7 +317,6 @@ const Qualification = () => {
                       </li>
                     </ul>
 
-                    {/* Primary Skill - now centered with space */}
                     <div className="detail-item highlight">
                       <span className="detail-label">Primary Skill</span>
                       <span className="detail-value">

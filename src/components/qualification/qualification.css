@@ -413,7 +413,7 @@
 }
 
 .work-details-list {
-    grid-column: 1 / -1; /* Span full width */
+    grid-column: 1 / -1;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 1rem;
@@ -451,6 +451,22 @@
 .detail-item.highlight .detail-value {
     color: var(--color-primary);
     font-size: 1rem; 
+}
+
+.work-description-section {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--color-module-list);
+    border-radius: 8px;
+}
+
+.work-description-section h3 {
+    margin-bottom: 0.5rem;
+    color: var(--color-white);
+}
+
+.work-description-section .work-description-list li {
+    color: var(--color-light);
 }
 
 .skills-section,
@@ -513,14 +529,14 @@
 }
 
 
-.work-details-list > li,
+/*.work-details-list > li,
 .work-description-list > li,
 .skills-list > li,
 .achievement-list > li {
     display: flex; 
     
 }
-
+*/
 .skill-item{
     padding: 0.5rem 1rem;
     border-radius: 20px;
