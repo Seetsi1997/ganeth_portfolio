@@ -409,14 +409,14 @@
 .detail-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 .work-details-list {
     grid-column: 1 / -1;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
+    gap: 0.5rem;
     margin-bottom: 1rem; 
 }
 
@@ -425,26 +425,26 @@
     grid-column: 1 / -1;
     text-align: center;
     padding-top: 1rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    border-top: 1px solid var(--color-bg-skill-item-beginner); 
     margin-top: 0.5rem;
 }
 
 .detail-item {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: center;
 }
 
 .detail-label {
     font-size: 0.8rem;
     color: var(--color-light);
     opacity: 0.8;
-    margin-bottom: 0.3rem;
-    justify-content: center;
+    margin-bottom: 0.3rem; 
 }
 
 .detail-value {
-    font-size: 0.95rem;
+    font-size: 0.5rem;
     color: var(--color-white);
     font-weight: 500;
 }
@@ -801,7 +801,10 @@
     .status-badge {
         font-size: 0.7rem;
     }
-
+    
+    .detail-item {
+        flex-direction: column;
+    }
     .reference-contact:not(:last-child):after,
     .contact-label:after,
     .contact-item:not(:last-child):after {
