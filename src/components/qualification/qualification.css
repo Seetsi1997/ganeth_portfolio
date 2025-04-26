@@ -630,54 +630,74 @@
     white-space: nowrap;
 }
 
-.skill-item {
+.skills-section {
+    margin: 1.5rem 0;
+  }
+  
+  .skills-list {
     display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0.5rem 0 0;
+    list-style: none;
+  }
+  
+  .skill-item {
+    display: inline-flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     min-width: 100px;
-    border-radius: 50%;
-    padding: 1px 0.2rem;
-    margin: 0.1rem 0;
-    
-    /* Debug styles */
-    background: var(--color-primary);
-    border: 1px solid white;
-    box-shadow: 0 0 0 1px red inset; /* Inner border for precision */
-}
-
-.skill-name {
+    border-radius: 12px;
+    padding: 0.3rem 0.8rem; 
+    margin: 0;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .skill-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  
+  .skill-name {
     font-size: 0.8rem;
-    color: var(--color-light);
-    opacity: 0.8;
-    margin-right: 0.5rem;
-}
-
-.skill-level {
+    color: inherit;
+    opacity: 0.9;
+    margin-right: 0.3rem;
+    white-space: nowrap;
+  }
+  
+  .skill-level {
     font-weight: 600;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: capitalize;
-}
-
-.skill-item.beginner {
+    opacity: 0.9;
+  }
+  
+  .skill-item.beginner {
     background: var(--color-bg-skill-item-beginner);
     color: var(--color-skill-beginner);
-}
-
-.skill-item.intermediate {
+    border: 1px solid var(--color-skill-beginner);
+  }
+  
+  .skill-item.intermediate {
     background: var(--color-bg-skill-item-intermediate);
     color: var(--color-skill-intermediate);
-}
-
-.skill-item.advanced {
+    border: 1px solid var(--color-skill-intermediate);
+  }
+  
+  .skill-item.advanced {
     background: var(--color-bg-skill-item-advanced);
     color: var(--color-skill-advanced);
-}
-
-.skill-item.expert {
+    border: 1px solid var(--color-skill-advanced);
+  }
+  
+  .skill-item.expert {
     background: var(--color-bg-skill-item-expert);
     color: var(--color-skill-expert);
-}
+    border: 1px solid var(--color-skill-expert);
+  }
 
 .no-records-message {
     padding: 2rem;
