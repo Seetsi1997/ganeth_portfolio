@@ -283,15 +283,15 @@ const Qualification = () => {
                                     </div>
                                 )}
                                 {/*Achievements coming */}
-                                <div className="skills-section">
+                                <div className="achievement-section">
                                     <h3>Achievements</h3>
-                                    <p className="proficiency-summary">Achievements</p>
-                                    <ul className="skills-list">
+                                   {/*<p className="proficiency-summary">Achievements</p>*/}
+                                    <ul className="achievement-list">
                                         {popupData.achievements?.map((achievement, index) => (
-                                            <li key={index} className={`skill-item ${achievement.proficiency}`}>
-                                                <span className="skill-name">{achievement.name}</span>
+                                            <li key={index} className={`achievement-item ${achievement.proficiency}`}>
+                                                <span className="achievement-name">{achievement.name}</span>
                                                 {achievement.proficiency && (
-                                                    <span className="skill-level"> - ({achievement.proficiency})</span>
+                                                    <span className="achievement-level">({achievement.proficiency})</span>
                                                 )}
                                             </li>
                                         ))}

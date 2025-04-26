@@ -459,6 +459,14 @@
     text-align: center;
   }
 
+  .achievement-section {
+    padding: 1rem;
+    margin-top: 1.5rem;
+    background: var(--color-skill-beginner);
+    border-radius: 8px;
+    text-align: center;
+  }
+
   .skills-section span{
     color: var(--color-light);
   }
@@ -469,14 +477,14 @@
     margin-bottom: 1rem;
 }
 
-.skills-list {
+.skills-list, .achievement-list {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     gap: 0.5rem;
 }
 
-.skill-item {
+.skill-item, .achievement-list {
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-size: 0.85rem;
