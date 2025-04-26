@@ -629,12 +629,13 @@
     white-space: nowrap;
 }
 
-.skill-item{
+.skill-item {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     min-width: 100px;
+    border-radius: 12px;
 }
 
 .skill-name {
