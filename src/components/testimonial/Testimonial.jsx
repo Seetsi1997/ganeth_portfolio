@@ -39,9 +39,10 @@ const Testimonial = () => {
         slidesPerView={1}
         pagination={{ clickable: true }}
       >
-        {testimonials.map((testimonial) => (
+         <div className="testimonial list">
+         {testimonials.map((testimonial) => (
           <SwiperSlide key={testimonial._id} className="testimonial">
-             <div className="testimonial list">
+         
             <div className="client__avatar">
               <img src={IMG} alt={testimonial.userName} />
             </div>
@@ -51,7 +52,7 @@ const Testimonial = () => {
               {testimonial.review}
               <span className='quote-two'>&rdquo;</span>
             </small>
-            
+
             <h4 className='client__career'>{testimonial.career}</h4>
            
             <div className="client__likes">
@@ -63,10 +64,12 @@ const Testimonial = () => {
             </div>
            
 
-            </div>
+          
 
           </SwiperSlide>
         ))}
+         </div>
+    
       </Swiper>
 
 
