@@ -209,25 +209,26 @@ const Qualification = () => {
                                 {/*Performance I Managed through My Educations */}
                                 <div className="performance-summary">
                                     <div className="performance-grid">
-                                        <div className="performance-item">
+                                        <ul className="performance-list">
+                                        <li className="performance-item">
                                             <span className="performance-label">Period</span>
                                             <span className="performance-value">
                                                 {popupData.calendar || "N/A"}
                                             </span>
-                                        </div>
-                                        <div className="performance-item highlight">
+                                        </li>
+                                        <li className="performance-item highlight">
                                             <span className="performance-label">Highest</span>
                                             <span className="performance-value">
                                                 {popupData.highest || "N/A"}
                                             </span>
-                                        </div>
-                                        <div className="performance-item">
+                                        </li>
+                                        <li className="performance-item">
                                             <span className="performance-label">Lowest</span>
                                             <span className="performance-value">
                                                 {popupData.lowest || "N/A"}
                                             </span>
-                                        </div>
-                                        <div
+                                        </li>
+                                        <li
                                             className={`performance-item ${!popupData.failMessage?.includes("Failed")
                                                     ? "success"
                                                     : "warning"
@@ -237,7 +238,8 @@ const Qualification = () => {
                                             <span className="performance-value">
                                                 {popupData.failMessage || "No data"}
                                             </span>
-                                        </div>
+                                        </li>
+                                        </ul>
                                     </div>
                                 </div>
                                 {/*Modules I Did */}

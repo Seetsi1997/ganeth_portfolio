@@ -245,10 +245,8 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
-
-.performance-item {
+.performance-list{
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     list-style: none;
     padding: 0.5rem 1rem;
@@ -259,7 +257,10 @@
     gap: 0.5rem;
 }
 
-
+.performance-item {
+    display: flex;
+    flex-direction: column;
+}
 
 .performance-label {
     font-size: 0.8rem;
