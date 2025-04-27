@@ -51,11 +51,8 @@ const Testimonial = () => {
               {testimonial.review}
               <span className='quote-two'>&rdquo;</span>
             </small>
-            <h4 className='client__career'>
-
-              {testimonial.career}
-
-            </h4>
+            
+            <h4 className='client__career'>{testimonial.career}</h4>
            
             <div className="client__likes">
               <p className='client__rating'>
