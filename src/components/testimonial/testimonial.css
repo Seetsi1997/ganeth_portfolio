@@ -82,6 +82,7 @@
 
   .client__likes {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
     list-style: none;
     padding: 0.5rem 1rem;
@@ -92,25 +93,21 @@
     gap: 0.5rem;
   }
   
-  .client__rating{
+  .client__rating {
     color: var(--color-skill-expert);
-    text-align: center;
-    align-items: center;
+    display: flex;
+    align-items: center; 
+    gap: 0.3rem;
   }
   
   .client__rating span {
-    display: inline-block;
-    vertical-align: middle;
     font-size: 0.8rem;
     color: var(--color-light);
   }
   
-  .client__date{
+  .client__date {
     color: var(--color-light);
     font-size: 0.7rem;
-    justify-self: center;
-    justify-items: center;
-    text-align: center;
   }
   
   .btn.btn-primary {
