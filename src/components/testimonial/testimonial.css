@@ -1,179 +1,155 @@
- /* =================  TESTIMONIALS SECTION  ================= */
+/* =================  TESTIMONIALS SECTION  ================= */
 #testimonials {
-    padding: 4rem 2rem;
-    text-align: center;
-  }
-
-  .testimonials__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 4rem;
+  padding: 4rem 2rem;
+  text-align: center;
 }
-.testimonial-list{
+
+.testimonials__container {
   display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  padding: 0.5rem 1rem;
-  margin: 0;
-  border-radius: 20px;
-  border-bottom: 0.30px solid var(--color-primary-variant);
+  justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  flex-direction: column;
+  margin-top: 4rem;
+  width: 100%;
+  max-width: 800px;
 }
 
+.testimonial {
+  background: var(--color-primary-variant);
+  text-align: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  -webkit-user-select: none;
+  user-select: none;
+  margin: 0 auto;
+  position: relative;
+}
+
+.testimonial::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.client__name {
+  color: var(--color-white);
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.client__avatar {
+  width: 4rem;
+  aspect-ratio: 1/1;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  border: 0.3rem solid var(--color-primary);
+}
+
+.client__review {
+  color: var(--color-light);
+  font-weight: 300;
+  display: block;
+  width: 90%;
+  margin: 1rem auto 0;
+  line-height: 1.6;
+  font-style: italic;
+  text-align: center;
+}
+
+.client__career {
+  color: var(--color-passed);
+  text-align: center;
+  margin-top: 1.5rem;
+  font-weight: 400;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.quote-one {
+  position: relative;
+  top: -0.1em;
+  line-height: 0;
+  color: var(--color-white);
+  font-size: 2em;
+  vertical-align: text-top;
+  opacity: 0.8;
+}
+
+.quote-two {
+  position: relative;
+  bottom: -0.4em;
+  line-height: 0;
+  color: var(--color-white);
+  font-size: 2em;
+  vertical-align: text-bottom;
+  opacity: 0.8;
+}
+
+.client__likes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.client__rating {
+  color: var(--color-skill-expert);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.client__rating span {
+  font-size: 0.8rem;
+  color: var(--color-light);
+}
+
+.client__date {
+  color: var(--color-light);
+  font-size: 0.7rem;
+}
+
+.btn.btn-primary {
+  margin: 1.5rem auto;
+  color: var(--color-light);
+}
+
+/* =================  MEDIA QUERIES ================= */
+@media screen and (max-width: 1024px) {
   .testimonial {
-    background: var(--color-primary-variant);
-    text-align: center;
-    padding: 2rem;
-    border-radius: 1rem;
-    -webkit-user-select: none;
-    user-select: none;
-    margin: 2rem auto 0;
+    padding: 1.5rem;
   }
-  
-  .client__name {
-    color: var(--color-white);
-    font-size: 1.5rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .testimonial {
+    padding: 1.2rem;
   }
-  
+
   .client__avatar {
-    width: 4rem;
-    aspect-ratio: 1/1;
-    overflow: hidden;
-    border-radius: 50%;
-    margin: 0 auto 1rem;
-    border: 0.3rem solid var(--color-primary);
+    width: 3rem;
+    border-width: 0.2rem;
   }
-  
+
+  .client__name {
+    font-size: 1.3rem;
+  }
+
   .client__review {
-    color: var(--color-light);
-    font-weight: 300;
-    display: block;
-    width: 90%;
-    margin: 1rem auto 0;
-    line-height: 1.6;
-    font-style: italic;
-    text-align: center;
-  }
-  
-  .client__career {
-    color: var(--color-passed);
-    text-align: center;
-    margin-top: 1.5rem;
-    font-weight: 400;
     font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
-  .quote-one {
-    position: relative;
-    top: -0.1em;
-    line-height: 0; 
-    color: var(--color-white);
-    font-size: 2em;
-    vertical-align: text-top; 
-    opacity: 0.8;
   }
 
-  .quote-two {
-    position: relative;
-    bottom: -0.4em;
-    line-height: 0; 
-    color: var(--color-white);
-    font-size: 2em;
-    vertical-align: text-bottom; 
-    opacity: 0.8;
-  }
-
-  .client__likes {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--color-white);
-  }
-  
-  .client__rating{
-    color: var(--color-skill-expert);
-    text-align: center;
-  }
-  
-  .client__rating span {
-    display: inline-block;
-    vertical-align: middle;
+  .client__career {
     font-size: 0.8rem;
-    color: var(--color-light);
   }
-  
-  .client__date{
-    color: var(--color-light);
-    font-size: 0.7rem;
-    justify-self: center;
-    justify-items: center;
-    text-align: center;
-  }
-  
-  .btn.btn-primary {
-    margin: 1.5rem auto;
-    color: var(--color-light);
-  }
-  
-  /* =================  MEDIA QUERIES (MEDIUM DEVICES)  ================= */
-  @media screen and (max-width: 1024px) {
-    .testimonials__container {
-        width: 100%;
-        max-width: 90%;
-        padding-bottom: 3rem;
-    }
-    
-    .testimonial {
-        padding: 1.5rem;
-    }
-    
-    .btn.btn-primary {
-        margin: 2rem auto;
-    }
-  }
-  
-  /* =================  MEDIA QUERIES (SMALL DEVICES)  ================= */
-  @media screen and (max-width: 600px) {
-    .testimonials__container {
-        width: 100%;
-        max-width: 95%;
-        padding-bottom: 2rem;
-    }
-    
-    .testimonial {
-        padding: 1.2rem;
-        margin-top: 2rem;
-    }
-    
-    .client__avatar {
-        width: 3rem;
-        border-width: 0.2rem;
-    }
-    
-    .client__name {
-        font-size: 1.3rem;
-    }
-    
-    .client__review {
-        font-size: 0.9rem;
-        width: 95%;
-    }
-    
-    .client__career {
-        font-size: 0.8rem;
-    }
-    
-    .btn.btn-primary {
-        margin: 2rem auto;
-    }
-  }
-  
+}
