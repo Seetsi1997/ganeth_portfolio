@@ -764,9 +764,13 @@
         width: 95%;
     }
 
-    .performance-grid {
+   /* .performance-grid {
         grid-template-columns: 1fr;
-    }
+    }*/
+
+    .performance-list {
+        grid-template-columns: 1fr;
+      }
 
     .modules-list {
         columns: 1;
@@ -855,6 +859,10 @@
     .qualification-type {
         font-size: 0.8rem;
     }
+
+    .performance-list {
+        grid-template-columns: 1fr;
+      }
 
     .performance-label {
         font-size: 0.75rem;
