@@ -39,6 +39,7 @@ const Testimonial = () => {
         slidesPerView={1}
         pagination={{ clickable: true }}
       >
+        <div className="testimonial-list">
         {testimonials.map((testimonial) => (
           <SwiperSlide key={testimonial._id} className="testimonial">
             <div className="client__avatar">
@@ -67,6 +68,8 @@ const Testimonial = () => {
 
           </SwiperSlide>
         ))}
+        </div>
+        
       </Swiper>
 
 
