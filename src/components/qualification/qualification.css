@@ -248,13 +248,13 @@
   
   .performance-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
     gap: 1rem;
     list-style: none;
     padding: 0;
     margin: 0;
     align-items: center;
-    justify-content: center;
+    justify-items: center; /* Center content inside grid cells */
   }
   
   .performance-item {
@@ -273,25 +273,27 @@
   }
   
   .performance-value {
-    font-size: 0.7rem;
+    font-size: 0.95rem;
     color: var(--color-white);
     font-weight: 500;
     text-align: center;
     word-break: break-word;
-    width: 100%; 
+    width: 100%;
   }
   
   /* Highlight colors */
   .performance-item.highlight .performance-value {
     color: var(--color-white);
   }
+  
   .performance-item.success .performance-value {
     color: var(--color-passed);
   }
+  
   .performance-item.warning .performance-value {
     color: var(--color-red);
   }
-
+  
 .modules-section {
     margin-top: 1.5rem;
 }
