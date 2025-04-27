@@ -231,8 +231,6 @@ const Qualification = () => {
                           {popupData.lowest || "N/A"}
                         </span>
                       </li>
-                    </ul>
-                    <ul className="performance-list">
                       <li
                         className={`performance-item ${
                           !popupData.failMessage?.includes("Failed")
@@ -245,7 +243,7 @@ const Qualification = () => {
                           {popupData.failMessage || "No data"}
                         </span>
                       </li>
-                    </ul>
+                   </ul>
                   </div>
                 </div>
 
