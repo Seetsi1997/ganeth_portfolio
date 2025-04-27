@@ -41,8 +41,7 @@ const Testimonial = () => {
       >
         {testimonials.map((testimonial) => (
           <SwiperSlide key={testimonial._id} className="testimonial">
-            
-             <div className="client__avatar">
+            <div className="client__avatar">
               <img src={IMG} alt={testimonial.userName} />
             </div>
             <h5 className='client__name'>{testimonial.userName}</h5>
@@ -56,8 +55,11 @@ const Testimonial = () => {
               {testimonial.career}
 
             </h4>
-
-            <div className="testimonial-list">
+           
+             <div className="testimonial list">
+              
+             </div>
+           
             <div className="client__likes">
               <p className='client__rating'>
                 <FaStar />
@@ -65,8 +67,6 @@ const Testimonial = () => {
               </p>
               <p className='client__date'>{new Date(testimonial.createdAt).toLocaleString()}</p>
             </div>
-             </div>
-            
 
           </SwiperSlide>
         ))}
