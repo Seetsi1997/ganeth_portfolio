@@ -245,7 +245,8 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
-.performance-list{
+
+.performance-list {
     display: inline-flex;
     flex-wrap: wrap;
     list-style: none;
@@ -285,6 +286,13 @@
 
 .performance-item.warning .performance-value {
     color: var(--color-red);
+}
+
+/* New: for the bottom Performance */
+.performance-bottom {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
 }
 
 .modules-section {
