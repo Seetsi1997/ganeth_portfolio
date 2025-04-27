@@ -12,7 +12,7 @@
   margin-top: 2rem;
 }
 
-.testimonial-list {
+/*.testimonial-list {
   background: var(--color-primary-variant);
   display: flex;
   flex-direction: column;
@@ -24,14 +24,14 @@
   max-width: 800px;
   text-align: center;
   position: relative;
-}
+}*/
 
-.testimonial-list::after {
+.testimonial-list {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     padding: 0.5rem 1rem;
-    margin-bottom: 7px;
+    margin-bottom: 7p;
     border-radius: 20px;
     border-bottom: 0.30px solid var(--color-primary-variant);
     align-items: center;
