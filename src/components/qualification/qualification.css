@@ -764,12 +764,13 @@
         width: 95%;
     }
 
-   /* .performance-grid {
+   .performance-grid {
         grid-template-columns: 1fr;
-    }*/
+    }
 
     .performance-list {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        min-width: 70px
       }
 
     .modules-list {
@@ -862,6 +863,8 @@
 
     .performance-list {
         grid-template-columns: 1fr;
+        flex-direction: column;
+        min-width: 70px
       }
 
     .performance-label {
