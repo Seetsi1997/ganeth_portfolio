@@ -19,11 +19,22 @@
   gap: 1rem;
   padding: 2rem;
   border-radius: 20px;
-  border-bottom: 0.30px solid var(--color-primary-variant);
   margin: 0.5rem auto 0;
   width: 100%;
   max-width: 800px;
   text-align: center;
+  position: relative;
+}
+
+.testimonial-list::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 0.5px;
+  background: var(--color-primary-variant);
 }
 
 .testimonial {
