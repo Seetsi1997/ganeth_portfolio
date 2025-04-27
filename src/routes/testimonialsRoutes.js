@@ -1,8 +1,9 @@
 import { Router } from "express";
 import Testimonial from "../models/Testimonials.js";
+
 const router = Router();
 
-// Fetch testimonials sorted by rating (5/5 first, 1/5 last)
+// Fetch testimonials sorted by rating
 router.get("/", async (req, res) => {
   try {
     const testimonials = await Testimonial.find().sort({ 
@@ -27,7 +28,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// POST a new testimonial (unchanged)
+// POST a new testimonial
 router.post("/", async (req, res) => {
   try {
     const newTestimonial = new Testimonial({
@@ -38,11 +39,34 @@ router.post("/", async (req, res) => {
       createdAt: req.body.createdAt,
     });
 
-    const savedTestimonials = await newTestimonial.save();
-    res.status(201).json(savedTestimonials);
+    const savedTestimonial = await newTestimonial.save();
+    res.status(201).json(savedTestimonial);
   } catch (error) {
     res.status(500).json({
       error: "Failed to add testimonial",
+      details: error.message,
+    });
+  }
+});
+
+// POST a like to a testimonial
+router.post("/like/:id", async (req, res) => {
+  try {
+    const testimonial = await Testimonial.findByIdAndUpdate(
+      req.params.id,
+      { $inc: { likes: 1 } },
+      { new: true }
+    );
+
+    if (!testimonial) {
+      return res.status(404).json({ message: "Testimonial not found" });
+    }
+
+    res.json({ message: "Like added", likes: testimonial.likes });
+  } catch (error) {
+    console.error("Error liking testimonial:", error);
+    res.status(500).json({
+      error: "Failed to like testimonial",
       details: error.message,
     });
   }
