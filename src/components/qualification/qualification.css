@@ -241,20 +241,11 @@
 }
 
 .performance-grid {
-    display: grid;
+   /* display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-}
-
-.performance-list {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0.5rem 1rem;
-    margin: 0;
-    border-radius: 20px;
-    border-bottom: 0.30px solid var(--color-primary-variant);
-    align-items: center;
+    gap: 1rem;*/
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 0.5rem;
 }
 
@@ -431,7 +422,7 @@
     gap: 0.5rem;
 }
 
-.work-details-list {
+.work-details-list, .performance-list {
     grid-column: 1 / -1;
     display: flex;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -549,6 +540,7 @@
     margin-bottom: 1rem;
 }
 
+.performance-list,
 .work-details-list,
 .work-description-list,
 .skills-list,
