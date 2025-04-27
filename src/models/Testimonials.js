@@ -28,17 +28,20 @@ const testimonialSchema = new Schema({
             message: 'Rating must be an integer'
         }
     },
+    likes: {
+        type: Number,
+        default: 0,
+        min: 0
+    },
     createdAt: {
         type: Date,
         default: Date.now,
         immutable: true
     }
-},  {
+}, {
     timestamps: false,
     versionKey: false,
 });
 
 const Testimonial = model("Testimonial", testimonialSchema);
 export default Testimonial;
-
- 
