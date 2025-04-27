@@ -41,7 +41,7 @@ const Testimonial = () => {
       >
         {testimonials.map((testimonial) => (
           <SwiperSlide key={testimonial._id} className="testimonial">
-             <div className="testimonial-list">
+            
              <div className="client__avatar">
               <img src={IMG} alt={testimonial.userName} />
             </div>
@@ -57,7 +57,7 @@ const Testimonial = () => {
 
             </h4>
 
-
+            <div className="testimonial-list">
             <div className="client__likes">
               <p className='client__rating'>
                 <FaStar />
