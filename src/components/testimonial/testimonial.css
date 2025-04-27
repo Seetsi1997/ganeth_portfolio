@@ -13,28 +13,15 @@
 }
 
 
-.testimonial {
-  background: var(--color-primary-variant);
-  text-align: center;
-  padding: 2rem;
-  border-radius: 1rem;
-  -webkit-user-select: none;
-  user-select: none;
-  margin: 0 auto;
-  position: relative;
-  padding-bottom: 1.5rem; 
-}
-
-.testimonial::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 5%;
-  transform: translateX(-50%);
-  width: 90%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.3);
-}
+  .testimonial {
+    background: var(--color-primary-variant);
+    text-align: center;
+    padding: 2rem;
+    border-radius: 1rem;
+    -webkit-user-select: none;
+    user-select: none;
+    margin: 2rem auto 0;
+  }
   
   .client__name {
     color: var(--color-white);
