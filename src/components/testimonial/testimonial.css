@@ -11,8 +11,7 @@
     flex-direction: column;
     margin-top: 4rem;
 }
-
-.testimonial-list {
+.testimonial-list{
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -22,7 +21,7 @@
   border-bottom: 0.30px solid var(--color-primary-variant);
   align-items: center;
   gap: 0.5rem;
-  }
+}
 
   .testimonial {
     background: var(--color-primary-variant);
@@ -137,7 +136,7 @@
         padding: 1.5rem;
     }
     
-    .btn {
+    .btn.btn-primary {
         margin: 2rem auto;
     }
   }
