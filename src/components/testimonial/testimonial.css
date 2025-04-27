@@ -95,7 +95,7 @@
   .client__rating{
     color: var(--color-skill-expert);
     text-align: center;
-    align-items: stretch;
+    align-items: center;
   }
   
   .client__rating span {
