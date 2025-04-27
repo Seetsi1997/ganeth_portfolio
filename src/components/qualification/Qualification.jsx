@@ -247,10 +247,6 @@ const Qualification = () => {
                       </li>
                     </ul>
                   </div>
-
-                  <div className="performance-bottom">
-                   
-                  </div>
                 </div>
 
                 {/*Modules I Did */}
