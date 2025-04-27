@@ -39,10 +39,10 @@ const Testimonial = () => {
         slidesPerView={1}
         pagination={{ clickable: true }}
       >
-        <div className="testimonial-list">
         {testimonials.map((testimonial) => (
           <SwiperSlide key={testimonial._id} className="testimonial">
-            <div className="client__avatar">
+             <div className="testimonial-list">
+             <div className="client__avatar">
               <img src={IMG} alt={testimonial.userName} />
             </div>
             <h5 className='client__name'>{testimonial.userName}</h5>
@@ -65,11 +65,11 @@ const Testimonial = () => {
               </p>
               <p className='client__date'>{new Date(testimonial.createdAt).toLocaleString()}</p>
             </div>
+             </div>
+            
 
           </SwiperSlide>
         ))}
-        </div>
-        
       </Swiper>
 
 
