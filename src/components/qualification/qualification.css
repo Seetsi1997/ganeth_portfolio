@@ -254,14 +254,14 @@
 }
 
 .performance-label {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     color: var(--color-light);
     opacity: 0.8;
     margin-bottom: 0.3rem;
 }
 
 .performance-value {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     color: var(--color-white);
     font-weight: 500;
 }
@@ -276,13 +276,6 @@
 
 .performance-item.warning .performance-value {
     color: var(--color-red);
-}
-
-/* New: for the bottom Performance */
-.performance-bottom {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: center;
 }
 
 .modules-section {
