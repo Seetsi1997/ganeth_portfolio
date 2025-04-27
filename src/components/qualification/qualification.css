@@ -275,6 +275,8 @@
     color: var(--color-white);
     font-weight: 500;
     word-break: break-word;
+    display: inline-block;
+    writing-mode: horizontal-tb; 
   }
   
   /* Highlight colors */
@@ -424,7 +426,7 @@
     gap: 0.5rem;
 }
 
-.work-details-list, .performance-list {
+.work-details-list /*.performance-list */{
     grid-column: 1 / -1;
     display: flex;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -862,7 +864,6 @@
     }
 
     .performance-list {
-        grid-template-columns: 1fr;
         flex-direction: column;
         min-width: 70px
       }
