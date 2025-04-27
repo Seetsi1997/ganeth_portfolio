@@ -268,6 +268,8 @@
     opacity: 0.8;
     margin-bottom: 0.3rem;
     white-space: nowrap;
+    justify-content: center;
+    text-align: center;
   }
   
   .performance-value {
@@ -275,8 +277,11 @@
     color: var(--color-white);
     font-weight: 500;
     word-break: break-word;
-    display: inline-block;
-    writing-mode: horizontal-tb; 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
   }
   
   /* Highlight colors */
