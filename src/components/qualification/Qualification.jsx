@@ -232,9 +232,6 @@ const Qualification = () => {
                         </span>
                       </li>
                     </ul>
-                  </div>
-
-                  <div className="performance-bottom">
                     <ul className="performance-list">
                       <li
                         className={`performance-item ${
@@ -249,6 +246,10 @@ const Qualification = () => {
                         </span>
                       </li>
                     </ul>
+                  </div>
+
+                  <div className="performance-bottom">
+                   
                   </div>
                 </div>
 
