@@ -97,6 +97,40 @@
   transition: opacity var(--transition-2), visibility var(--transition-2);
 }
 
+.service-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: auto;
+  background: var(--color-bg-popup);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-2), visibility var(--transition-2);
+  padding-top: 20px;
+}
+
+.service__popup-content {
+  border-radius: 10px;
+  background: var(--color-bg-variant);
+  padding: 2rem;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 4px 30px var(--color-bg-2);
+  position: relative;
+  max-height: 70vh; 
+  overflow-y: auto;
+  transform: scale(0.95);
+  transition: all 0.3s ease;
+  padding-left: 3rem;
+  margin-top: 20px; 
+}
+
 .service-popup.active {
   opacity: 1;
   visibility: visible;
@@ -118,21 +152,6 @@
 .service-popup-overlay.active {
   opacity: 1;
   visibility: visible;
-}
-
-.service__popup-content {
-  border-radius: 10px;
-  background: var(--color-bg-variant);
-  padding: 2rem;
-  max-width: 600px;
-  width: 90%;
-  box-shadow: 0 4px 30px var(--color-bg-2);
-  position: relative;
-  max-height: 40vh;
-  overflow-y: auto;
-  transform: scale(0.95);
-  transition: all 0.3s ease;
-  padding-left: 3rem; 
 }
 
 .service__popup-content::before {
