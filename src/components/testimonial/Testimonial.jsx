@@ -39,37 +39,37 @@ const Testimonial = () => {
         slidesPerView={1}
         pagination={{ clickable: true }}
       >
-        {testimonials.map((testimonial) => (
-          <SwiperSlide key={testimonial._id} className="testimonial">
-            <div className="client__avatar">
-              <img src={IMG} alt={testimonial.userName} />
-            </div>
-            <h5 className='client__name'>{testimonial.userName}</h5>
-            <small className='client__review'>
-              <span className='quote-one'>&ldquo;</span>
-              {testimonial.review}
-              <span className='quote-two'>&rdquo;</span>
-            </small>
-            <h4 className='client__career'>
+        <div className="testimonial list">
+          {testimonials.map((testimonial) => (
+            <SwiperSlide key={testimonial._id} className="testimonial">
+              <div className="client__avatar">
+                <img src={IMG} alt={testimonial.userName} />
+              </div>
+              <h5 className='client__name'>{testimonial.userName}</h5>
+              <small className='client__review'>
+                <span className='quote-one'>&ldquo;</span>
+                {testimonial.review}
+                <span className='quote-two'>&rdquo;</span>
+              </small>
+              <h4 className='client__career'>
 
-              {testimonial.career}
+                {testimonial.career}
 
-            </h4>
-           
-             <div className="testimonial list">
-              
-             </div>
-           
-            <div className="client__likes">
-              <p className='client__rating'>
-                <FaStar />
-                <span>{testimonial.rating}/5</span>
-              </p>
-              <p className='client__date'>{new Date(testimonial.createdAt).toLocaleString()}</p>
-            </div>
+              </h4>
 
-          </SwiperSlide>
-        ))}
+              <div className="client__likes">
+                <p className='client__rating'>
+                  <FaStar />
+                  <span>{testimonial.rating}/5</span>
+                </p>
+                <p className='client__date'>{new Date(testimonial.createdAt).toLocaleString()}</p>
+              </div>
+
+
+            </SwiperSlide>
+          ))}
+        </div>
+
       </Swiper>
 
 
