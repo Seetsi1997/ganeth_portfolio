@@ -696,16 +696,16 @@
     background: var(--color-bg-skill-item-advanced);
     color: var(--color-skill-advanced);
     border: none;
-    border-bottom-left-radius: 24px;
-    border-bottom-right-radius: 24px;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
 }
 
 .skill-item.expert {
     background: var(--color-bg-skill-item-expert);
     color: var(--color-skill-expert);
     border: none;
-    border-bottom-left-radius: 24px;
-    border-bottom-right-radius:24px;
+    border-top-left-radius: 24px;
+    border-top-right-radius:24px;
     
 }
 
