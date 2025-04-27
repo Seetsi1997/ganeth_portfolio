@@ -87,7 +87,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--color-bg-popup);
+ /* background: var(--color-bg-popup);*/
   display: flex;
   justify-content: center;
   align-items: center;
@@ -142,7 +142,7 @@
   top: 1.5rem;
   bottom: 1.5rem;
   width: 5px;
-  background: var(--color-primary); /* Use your theme color */
+  background: var(--color-primary); 
   border-radius: 3px;
 }
 
