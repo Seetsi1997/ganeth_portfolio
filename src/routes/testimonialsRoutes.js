@@ -50,7 +50,7 @@ router.post("/", async (req, res) => {
 });
 
 // POST a like to a testimonial
-router.post("/testimonials/:id/likes", async (req, res) => {
+router.post("/:id/likes", async (req, res) => {
   try {
     const testimonial = await Testimonial.findByIdAndUpdate(
       req.params.id,
