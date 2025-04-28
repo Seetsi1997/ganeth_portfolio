@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { FaStar, FaHeart } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
@@ -12,68 +12,47 @@ import './testimonial.css';
 const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
-  // Fetch testimonials with proper error handling
+  // Fetch testimonials when the component mounts
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_URL}/testimonials`,
-          { timeout: 5000 } // Add timeout
-        );
-        setTestimonials(response.data);
-      } catch (err) {
-        console.error("Error fetching testimonials:", err);
-        setError(err.response?.data?.message || "Failed to load testimonials");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTestimonials();
+    axios.get(`${process.env.REACT_APP_API_URL}/testimonials`)
+      .then(response => setTestimonials(response.data))
+      .catch(error => console.error("Error fetching testimonials:", error));
   }, []);
 
-  // Optimized like functionality with loading states
-  const likeTestimonial = async (id) => {
+  async function likeTestimonial(id) {
     try {
-      setTestimonials(prev => prev.map(t => 
-        t._id === id ? { ...t, likes: t.likes + 1, isLiking: true } : t
-      ));
-
       const response = await axios.post(
         `${process.env.REACT_APP_API_URL}/testimonials/${id}/likes`,
         {},
         {
           headers: {
             'Content-Type': 'application/json',
-            // Add auth header if needed:
+            // Add if using authentication:
             // 'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         }
       );
-
+  
+      // Update UI immediately (optimistic update)
       setTestimonials(prev => prev.map(t => 
-        t._id === id ? { ...t, likes: response.data.likes, isLiking: false } : t
+        t._id === id ? { ...t, likes: response.data.likes } : t
       ));
+      
     } catch (error) {
       console.error("Error liking testimonial:", error);
-      // Revert optimistic update on error
-      setTestimonials(prev => prev.map(t => 
-        t._id === id ? { ...t, isLiking: false } : t
-      ));
+      if (error.response) {
+        // Backend responded with error status
+        console.error("Backend error:", error.response.data);
+      } else if (error.request) {
+        // Request was made but no response
+        console.error("No response received");
+      } else {
+        // Other errors
+        console.error("Request setup error:", error.message);
+      }
     }
-  };
-
-  // Handle new testimonial addition
-  const handleNewTestimonial = (newTestimonial) => {
-    setTestimonials(prev => [newTestimonial, ...prev]);
-    setShowPopup(false);
-  };
-
-  if (loading) return <div className="loading-spinner">Loading testimonials...</div>;
-  if (error) return <div className="error-message">{error}</div>;
+  }
 
   return (
     <section id='testimonials' className="section-emphasis">
@@ -83,7 +62,6 @@ const Testimonial = () => {
       <AddTestimonialForm
         isActive={showPopup}
         onClose={() => setShowPopup(false)}
-        onTestimonialAdded={handleNewTestimonial}
       />
 
       <Swiper
@@ -94,64 +72,36 @@ const Testimonial = () => {
         pagination={{ clickable: true }}
       >
         {testimonials.map((testimonial) => (
-          <TestimonialSlide 
-            key={testimonial._id}
-            testimonial={testimonial}
-            onLike={likeTestimonial}
-          />
+          <SwiperSlide key={testimonial._id} className="testimonial">
+            <div className="client__avatar">
+              <img src={IMG} alt={testimonial.userName} />
+            </div>
+            <h5 className='client__name'>{testimonial.userName}</h5>
+            <small className='client__review'>
+              <span className='quote-one'>&ldquo;</span>
+              {testimonial.review}
+              <span className='quote-two'>&rdquo;</span>
+            </small>
+            <h4 className='client__career'>{testimonial.career}</h4>
+
+            <div className="client__likes">
+              <p className='client__rating'>
+                <FaStar />
+                <span>{testimonial.rating}/5</span>
+              </p>
+              <p className='client__date'>{new Date(testimonial.createdAt).toLocaleString()}</p>
+            </div>
+
+            {/* Like button */}
+            <button onClick={() => likeTestimonial(testimonial._id)}>
+              ❤️ ({testimonial.likes || 0}) {/* Display likes count */}
+            </button>
+          </SwiperSlide>
         ))}
       </Swiper>
 
-      <button 
-        className="btn btn-primary" 
-        onClick={() => setShowPopup(true)}
-        aria-label="Add your testimonial"
-      >
-        Post a Testimonial
-      </button>
+      <button className="btn btn-primary" onClick={() => setShowPopup(true)}>Post a Testimonial</button>
     </section>
-  );
-};
-
-// Separate component for individual testimonial slide
-const TestimonialSlide = ({ testimonial, onLike }) => {
-  const formattedDate = new Date(testimonial.createdAt).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric'
-  });
-
-  return (
-    <SwiperSlide className="testimonial">
-      <div className="client__avatar">
-        <img src={IMG} alt={testimonial.userName} loading="lazy" />
-      </div>
-      <h5 className='client__name'>{testimonial.userName}</h5>
-      <small className='client__review'>
-        <span className='quote-one'>&ldquo;</span>
-        {testimonial.review}
-        <span className='quote-two'>&rdquo;</span>
-      </small>
-      <h4 className='client__career'>{testimonial.career}</h4>
-
-      <div className="client__likes">
-        <p className='client__rating'>
-          <FaStar color="#FFD700" />
-          <span>{testimonial.rating}/5</span>
-        </p>
-        <p className='client__date'>{formattedDate}</p>
-      </div>
-
-      <button 
-        onClick={() => onLike(testimonial._id)}
-        className="like-button"
-        disabled={testimonial.isLiking}
-        aria-label={`Like ${testimonial.userName}'s testimonial`}
-      >
-        <FaHeart color={testimonial.isLiking ? "#ccc" : "#ff6b6b"} />
-        {testimonial.likes || 0}
-      </button>
-    </SwiperSlide>
   );
 };
 
