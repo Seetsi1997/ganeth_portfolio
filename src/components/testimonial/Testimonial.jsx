@@ -9,23 +9,35 @@ import IMG from '../../assets/me.jpg';
 import AddTestimonialForm from "./AddTestimonialsForm";
 import './testimonial.css';
 
-
-
 const Testimonial = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
 
+  // Fetch testimonials when the component mounts
   useEffect(() => {
     axios.get(`${process.env.REACT_APP_API_URL}/testimonials`)
       .then(response => setTestimonials(response.data))
       .catch(error => console.error("Error fetching testimonials:", error));
   }, []);
 
+  // Function to handle liking a testimonial
+  async function likeTestimonial(id) {
+    try {
+      // Send a like request to the API
+      await fetch(`${process.env.REACT_APP_API_URL}/api/testimonials/like/${id}`, { method: "POST" });
+
+      // Reload testimonials after liking to get updated data (or you could just update the likes count locally)
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/testimonials`);
+      setTestimonials(response.data); // Update state with the latest testimonials
+    } catch (error) {
+      console.error("Error liking testimonial:", error);
+    }
+  }
+
   return (
     <section id='testimonials' className="section-emphasis">
       <h5>What people are saying</h5>
       <h2>Testimonials</h2>
-
 
       <AddTestimonialForm
         isActive={showPopup}
@@ -60,10 +72,14 @@ const Testimonial = () => {
               <p className='client__date'>{new Date(testimonial.createdAt).toLocaleString()}</p>
             </div>
 
+            {/* Like button */}
+            <button onClick={() => likeTestimonial(testimonial._id)}>
+              ❤️ Like ({testimonial.likes || 0}) {/* Display likes count */}
+            </button>
           </SwiperSlide>
         ))}
       </Swiper>
-      
+
       <button className="btn btn-primary" onClick={() => setShowPopup(true)}>Post a Testimonial</button>
     </section>
   );
