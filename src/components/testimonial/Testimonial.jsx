@@ -23,34 +23,16 @@ const Testimonial = () => {
   async function likeTestimonial(id) {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/testimonials/${id}/likes`,
-        {},
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            // Add if using authentication:
-            // 'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        }
+        `${process.env.REACT_APP_API_URL}/testimonials/${id}/likes`
       );
-  
-      // Update UI immediately (optimistic update)
+      
+      // Update state - ensure you're using numbers, not strings
       setTestimonials(prev => prev.map(t => 
-        t._id === id ? { ...t, likes: response.data.likes } : t
+        t._id === id ? { ...t, likes: Number(response.data.likes) } : t
       ));
       
     } catch (error) {
-      console.error("Error liking testimonial:", error);
-      if (error.response) {
-        // Backend responded with error status
-        console.error("Backend error:", error.response.data);
-      } else if (error.request) {
-        // Request was made but no response
-        console.error("No response received");
-      } else {
-        // Other errors
-        console.error("Request setup error:", error.message);
-      }
+      console.error("Error:", error.response?.data || error.message);
     }
   }
 

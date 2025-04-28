@@ -50,25 +50,22 @@ router.post("/", async (req, res) => {
 });
 
 // POST a like to a testimonial
-router.post("/:id/likes", async (req, res) => {
+router.post('/:id/likes', async (req, res) => {
   try {
     const testimonial = await Testimonial.findByIdAndUpdate(
       req.params.id,
       { $inc: { likes: 1 } },
       { new: true }
     );
-
-    if (!testimonial) {
-      return res.status(404).json({ message: "Testimonial not found" });
-    }
-
-    res.json({ message: "Like added", likes: testimonial.likes });
-  } catch (error) {
-    console.error("Error liking testimonial:", error);
-    res.status(500).json({
-      error: "Failed to like testimonial",
-      details: error.message,
+    
+    if (!testimonial) return res.status(404).json({ error: "Testimonial not found" });
+    
+    res.json({ 
+      message: "Like added successfully",
+      likes: testimonial.likes 
     });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
   }
 });
 
