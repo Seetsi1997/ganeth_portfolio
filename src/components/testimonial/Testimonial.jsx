@@ -20,17 +20,37 @@ const Testimonial = () => {
       .catch(error => console.error("Error fetching testimonials:", error));
   }, []);
 
-  // Function to handle liking a testimonial
   async function likeTestimonial(id) {
     try {
-      // Send a like request to the API
-      await fetch(`${process.env.REACT_APP_API_URL}/testimonials/likes/${id}`, { method: "POST" });
-
-      // Reload testimonials after liking to get updated data (or you could just update the likes count locally)
-      const response = await axios.get(`${process.env.REACT_APP_API_URL}/testimonials`);
-      setTestimonials(response.data); // Update state with the latest testimonials
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/testimonials/${id}/like`,
+        {},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            // Add if using authentication:
+            // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        }
+      );
+  
+      // Update UI immediately (optimistic update)
+      setTestimonials(prev => prev.map(t => 
+        t._id === id ? { ...t, likes: response.data.likes } : t
+      ));
+      
     } catch (error) {
       console.error("Error liking testimonial:", error);
+      if (error.response) {
+        // Backend responded with error status
+        console.error("Backend error:", error.response.data);
+      } else if (error.request) {
+        // Request was made but no response
+        console.error("No response received");
+      } else {
+        // Other errors
+        console.error("Request setup error:", error.message);
+      }
     }
   }
 
