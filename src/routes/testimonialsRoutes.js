@@ -49,23 +49,26 @@ router.post("/", async (req, res) => {
   }
 });
 
-// POST a like to a testimonial
+// POST a  Like endpoint - must match frontend request
 router.post('/:id/likes', async (req, res) => {
   try {
     const testimonial = await Testimonial.findByIdAndUpdate(
       req.params.id,
-      { $inc: { likes: 1 } },
-      { new: true }
+      { $inc: { likes: 1 } }, // Increment likes by 1
+      { new: true } // Return updated document
     );
-    
-    if (!testimonial) return res.status(404).json({ error: "Testimonial not found" });
-    
-    res.json({ 
+
+    if (!testimonial) {
+      return res.status(404).json({ error: "Testimonial not found" });
+    }
+
+    res.json({
       message: "Like added successfully",
-      likes: testimonial.likes 
+      likes: testimonial.likes
     });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    console.error("Error liking testimonial:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 

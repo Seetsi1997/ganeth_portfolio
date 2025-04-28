@@ -20,22 +20,38 @@ const Testimonial = () => {
       .catch(error => console.error("Error fetching testimonials:", error));
   }, []);
 
-  async function likeTestimonial(id) {
+  const likeTestimonial = async (id) => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/testimonials/${id}/likes`
-      );
-      
-      // Update state - ensure you're using numbers, not strings
+      // Optimistic UI update
       setTestimonials(prev => prev.map(t => 
-        t._id === id ? { ...t, likes: Number(response.data.likes) } : t
+        t._id === id ? { ...t, likes: t.likes + 1, isLiking: true } : t
       ));
-      
+  
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/testimonials/${id}/likes`,
+        {}, // Empty body since we're just incrementing
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            // Add if using authentication:
+            // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        }
+      );
+  
+      // Confirm update from server
+      setTestimonials(prev => prev.map(t => 
+        t._id === id ? { ...t, likes: response.data.likes, isLiking: false } : t
+      ));
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
+      // Revert optimistic update on error
+      setTestimonials(prev => prev.map(t => 
+        t._id === id ? { ...t, isLiking: false } : t
+      ));
     }
-  }
-
+  };
+  
   return (
     <section id='testimonials' className="section-emphasis">
       <h5>What people are saying</h5>
