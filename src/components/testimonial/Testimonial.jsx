@@ -43,6 +43,9 @@ const Testimonial = () => {
       setTestimonials(prev => prev.map(t => 
         t._id === id ? { ...t, likes: response.data.likes, isLiking: false } : t
       ));
+
+      const liked = JSON.parse(localStorage.getItem('likedTestimonials') || '[]');
+      localStorage.setItem('likedTestimonials', JSON.stringify([...liked, id]));
     } catch (error) {
       console.error("Error:", error.response?.data || error.message);
       // Revert optimistic update on error
@@ -51,7 +54,7 @@ const Testimonial = () => {
       ));
     }
   };
-  
+
   return (
     <section id='testimonials' className="section-emphasis">
       <h5>What people are saying</h5>
