@@ -23,7 +23,7 @@ const Testimonial = () => {
   async function likeTestimonial(id) {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/testimonials/${id}/like`,
+        `${process.env.REACT_APP_API_URL}/testimonials/${id}/likes`,
         {},
         {
           headers: {
