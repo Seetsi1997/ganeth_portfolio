@@ -24,7 +24,7 @@ const Testimonial = () => {
   async function likeTestimonial(id) {
     try {
       // Send a like request to the API
-      await fetch(`${process.env.REACT_APP_API_URL}/api/testimonials/like/${id}`, { method: "POST" });
+      await fetch(`${process.env.REACT_APP_API_URL}/testimonials/like/${id}`, { method: "POST" });
 
       // Reload testimonials after liking to get updated data (or you could just update the likes count locally)
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/testimonials`);
@@ -74,7 +74,7 @@ const Testimonial = () => {
 
             {/* Like button */}
             <button onClick={() => likeTestimonial(testimonial._id)}>
-              ❤️ Like ({testimonial.likes || 0}) {/* Display likes count */}
+              ❤️ ({testimonial.likes || 0}) {/* Display likes count */}
             </button>
           </SwiperSlide>
         ))}
