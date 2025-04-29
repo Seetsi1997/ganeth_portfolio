@@ -12,46 +12,56 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
   });
   
   const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Enhanced validation with more specific rules
-  const validateForm = () => {
+  const validateForm = (isSubmitted = false) => {
     const newErrors = {};
     const { userName, review, career, rating } = formData;
     
+    const shouldValidate = (field) => isSubmitted || touched[field];
+    
     // Name validation
-    if (!userName.trim()) {
-      newErrors.userName = 'Name is required';
-    } else if (userName.trim().length < 4) {
-      newErrors.userName = 'Name must be at least 4 characters';
-    } else if (!/^[a-zA-Z\s]+$/.test(userName.trim())) {
-      newErrors.userName = 'Name can only contain letters and spaces';
+    if (shouldValidate('userName')) {
+      if (!userName.trim()) {
+        newErrors.userName = 'Name is required';
+      } else if (userName.trim().length < 4) {
+        newErrors.userName = 'Name must be at least 4 characters';
+      } else if (!/^[a-zA-Z\s]+$/.test(userName.trim())) {
+        newErrors.userName = 'Name can only contain letters and spaces';
+      }
     }
     
     // Career validation
-    if (!career.trim()) {
-      newErrors.career = 'Career is required';
-    } else if (career.trim().length < 2) {
-      newErrors.career = 'Career must be at least 2 characters';
-    } else if (career.trim().length > 50) {
-      newErrors.career = 'Career cannot exceed 50 characters';
+    if (shouldValidate('career')) {
+      if (!career.trim()) {
+        newErrors.career = 'Career is required';
+      } else if (career.trim().length < 2) {
+        newErrors.career = 'Career must be at least 2 characters';
+      } else if (career.trim().length > 50) {
+        newErrors.career = 'Career cannot exceed 50 characters';
+      }
     }
 
     // Review validation
-    if (!review.trim()) {
-      newErrors.review = 'Review is required';
-    } else if (review.trim().length < 10) {
-      newErrors.review = 'Review must be at least 10 characters';
-    } else if (review.trim().length > 500) {
-      newErrors.review = 'Review cannot exceed 500 characters';
+    if (shouldValidate('review')) {
+      if (!review.trim()) {
+        newErrors.review = 'Review is required';
+      } else if (review.trim().length < 10) {
+        newErrors.review = 'Review must be at least 10 characters';
+      } else if (review.trim().length > 500) {
+        newErrors.review = 'Review cannot exceed 500 characters';
+      }
     }
     
     // Rating validation
-    if (!rating) {
-      newErrors.rating = 'Rating is required';
-    } else if (isNaN(rating) || rating < 1 || rating > 5) {
-      newErrors.rating = 'Please provide a valid rating (1-5)';
+    if (shouldValidate('rating')) {
+      if (!rating) {
+        newErrors.rating = 'Rating is required';
+      } else if (isNaN(rating) || rating < 1 || rating > 5) {
+        newErrors.rating = 'Please provide a valid rating (1-5)';
+      }
     }
     
     setErrors(newErrors);
@@ -65,16 +75,23 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
       [name]: name === 'rating' ? parseInt(value) || '' : value
     }));
     
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+    setTouched(prev => ({ ...prev, [name]: true }));
+    
+    if (touched[name] || errors[name]) {
+      validateForm();
     }
+  };
+
+  const handleBlur = (e) => {
+    const { name } = e.target;
+    setTouched(prev => ({ ...prev, [name]: true }));
+    validateForm();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!validateForm()) return;
+    if (!validateForm(true)) return;
     
     setIsSubmitting(true);
     setSubmitSuccess(false);
@@ -86,15 +103,12 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
         {
           headers: {
             'Content-Type': 'application/json',
-            // Add authorization if needed:
-            // 'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         }
       );
       
       if (response.status === 201) {
         setSubmitSuccess(true);
-         // Callback to update parent state
         onTestimonialAdded(response.data);
         setTimeout(() => {
           onClose();
@@ -103,18 +117,13 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
     } catch (error) {
       console.error("Submission error:", error);
       
-      // Handle server validation errors
       if (error.response?.data?.errors) {
         setErrors(error.response.data.errors);
-      } 
-      // Handle network errors
-      else if (error.code === 'ERR_NETWORK') {
+      } else if (error.code === 'ERR_NETWORK') {
         setErrors({ 
           server: 'Network error - please check your connection' 
         });
-      }
-      // Handle other errors
-      else {
+      } else {
         setErrors({ 
           server: error.response?.data?.message || 'Failed to submit testimonial' 
         });
@@ -134,7 +143,7 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
             className="close__testimonial-form" 
             onClick={onClose}
           >
-             &times;
+            &times;
           </button>
         </div>
       </div>
@@ -173,7 +182,8 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
               placeholder="Your Name"
               value={formData.userName}
               onChange={handleChange}
-              className={`add__testimonial-form-content ${errors.userName ? 'error' : ''}`}
+              onBlur={handleBlur}
+              className={`${errors.userName ? 'error' : ''}`}
               disabled={isSubmitting}
               required
             />
@@ -189,7 +199,8 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
               placeholder="Your Career (e.g., Software Developer)"
               value={formData.career}
               onChange={handleChange}
-              className={`add__testimonial-form-content ${errors.career ? 'error' : ''}`}
+              onBlur={handleBlur}
+              className={`${errors.career ? 'error' : ''}`}
               disabled={isSubmitting}
               required
             />
@@ -204,7 +215,8 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
               placeholder="Share your experience..."
               value={formData.review}
               onChange={handleChange}
-              className={`add__testimonial-form-content ${errors.review ? 'error' : ''}`}
+              onBlur={handleBlur}
+              className={`${errors.review ? 'error' : ''}`}
               disabled={isSubmitting}
               rows="5"
               required
@@ -225,7 +237,8 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
               max="5"
               value={formData.rating}
               onChange={handleChange}
-              className={`add__testimonial-form-content ${errors.rating ? 'error' : ''}`}
+              onBlur={handleBlur}
+              className={`${errors.rating ? 'error' : ''}`}
               disabled={isSubmitting}
               required
             />
