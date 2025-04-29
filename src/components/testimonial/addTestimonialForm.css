@@ -14,12 +14,12 @@
     visibility: hidden;
     transition: opacity var(--transition), visibility var(--transition);
 }
-  
+
 .add__testimonial-form-popup.active {
     opacity: 1;
     visibility: visible;
 }
-  
+
 .add__testimonial-form-content {
     background: var(--color-bg-variant);
     padding: 1.5rem; 
@@ -32,11 +32,11 @@
     transform: scale(0.9);
     transition: var(--transition);
 }
-  
+
 .add__testimonial-form-popup.active .add__testimonial-form-content {
     transform: scale(1);
 }
-  
+
 .close__testimonial-form {
     position: absolute;
     top: 15px;
@@ -49,19 +49,19 @@
     border: none;
     padding: 0;
 }
-  
+
 .close__testimonial-form:hover {
     color: var(--color-white);
     transform: rotate(90deg);
 }
-  
+
 .add__testimonial-form-content h2 {
     font-size: 1.2rem; 
     color: var(--color-white);
     margin-bottom: 1rem;
     text-align: center;
 }
-  
+
 .add__testimonial-form-content p {
     font-size: 1rem; 
     color: var(--color-light);
@@ -74,7 +74,7 @@
     flex-direction: column;
     gap: 0.5rem;
 }
-  
+
 .add__testimonial-form-content input,
 .add__testimonial-form-content textarea {
     padding: 0.6rem;
@@ -91,12 +91,12 @@
 .add__testimonial-form-content textarea.error {
     border-color: var(--color-red);
 }
-  
+
 .add__testimonial-form-content textarea {
     min-height: 80px;
     resize: none;
 }
-  
+
 .add__testimonial-form-content button[type="submit"] {
     padding: 0.7rem;
     border-radius: 5px;
@@ -109,7 +109,7 @@
     font-size: 0.9rem;
     margin-top: 0.5rem;
 }
-  
+
 .add__testimonial-form-content button[type="submit"]:hover {
     background: var(--color-primary-variant);
 }
@@ -120,7 +120,7 @@
     margin-bottom: 0.5rem;
     width: 100%;
 }
-  
+
 .form-group input.error,
 .form-group textarea.error {
     border-color: var(--color-red) !important;
@@ -136,12 +136,13 @@
     animation: spin var(--transition-2) infinite;
 }
 
+/* ==== IMPROVED ERROR MESSAGE STYLE ==== */
 .error-message {
     color: var(--color-red);
-    font-size: 0.3rem;
+    font-size: 0.75rem;
     display: block;
-    margin-top: 0.4rem;
-    margin-bottom: 0.1rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
 }
 
 @keyframes spin {
