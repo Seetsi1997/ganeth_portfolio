@@ -106,7 +106,7 @@
 
 .form-group {
     position: relative;
-    margin-bottom: 0.8rem;
+   /* margin-bottom: 0.8rem;*/
     width: 100%;
 }
   
@@ -147,14 +147,21 @@
     border-color: var(--color-red)
 }
   
-.form-group .error-message {
+/*.form-group .error-message {
     color: var(--color-red);
     font-size: 0.75rem;
     position: absolute;
     top: 100%;
     left: 0;
     padding-top: 0.4rem;
+}*/
+.form-group .error-message {
+    color: var(--color-red);
+    font-size: 0.75rem;
+    display: block;
+    margin-top: 0.4rem;
 }
+
 
 @keyframes spin {
     to { transform: rotate(360deg); }
