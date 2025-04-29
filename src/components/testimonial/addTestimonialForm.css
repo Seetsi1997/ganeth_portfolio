@@ -138,9 +138,9 @@
 
 .error-message {
     color: var(--color-red);
-    font-size: 0.7rem;
+    font-size: 0.3rem;
     display: block;
-    margin-top: 0.6rem;
+    margin-top: 0.4rem;
     margin-bottom: 0.1rem;
     order: 2;
 }
