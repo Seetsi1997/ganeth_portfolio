@@ -106,7 +106,7 @@
 
 .form-group {
     position: relative;
-    margin-bottom: 0.8rem; /* Reduced from 1rem */
+    margin-bottom: 0.8rem;
     width: 100%;
 }
   
@@ -150,13 +150,10 @@
 .form-group .error-message {
     color: var(--color-red);
     font-size: 0.75rem;
-    display: block;
-    /*margin-top: 0.5rem;*/
-    padding-top: 0.4rem; 
-    top: 0.4rem;
     position: absolute;
+    top: 100%;
     left: 0;
-
+    padding-top: 0.4rem;
 }
 
 @keyframes spin {
