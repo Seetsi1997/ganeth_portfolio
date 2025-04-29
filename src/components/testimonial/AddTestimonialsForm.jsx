@@ -94,7 +94,8 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
       
       if (response.status === 201) {
         setSubmitSuccess(true);
-        onTestimonialAdded(response.data); // Callback to update parent state
+         // Callback to update parent state
+        onTestimonialAdded(response.data);
         setTimeout(() => {
           onClose();
         }, 1500);
