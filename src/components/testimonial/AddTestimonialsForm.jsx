@@ -3,7 +3,7 @@ import { useState } from "react";
 import IMG from '../../assets/me.jpg';
 import './addTestimonialForm.css';
 
-const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
+const AddTestimonialForm = ({ onClose, isActive }) => {
   const [formData, setFormData] = useState({
     userName: "",
     review: "",
@@ -12,56 +12,36 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
   });
   
   const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const validateForm = (isSubmitted = false) => {
+  // Client-side validation
+  const validateForm = () => {
     const newErrors = {};
-    const { userName, review, career, rating } = formData;
     
-    const shouldValidate = (field) => isSubmitted || touched[field];
-    
-    // Name validation
-    if (shouldValidate('userName')) {
-      if (!userName.trim()) {
-        newErrors.userName = 'Name is required';
-      } else if (userName.trim().length < 4) {
-        newErrors.userName = 'Name must be at least 4 characters';
-      } else if (!/^[a-zA-Z\s]+$/.test(userName.trim())) {
-        newErrors.userName = 'Name can only contain letters and spaces';
-      }
+    if (!formData.userName.trim()) {
+      newErrors.userName = 'Name is required';
+    } else if (formData.userName.trim().length < 4) {
+      newErrors.userName = 'Name must be at least 4 characters';
     }
     
-    // Career validation
-    if (shouldValidate('career')) {
-      if (!career.trim()) {
-        newErrors.career = 'Career is required';
-      } else if (career.trim().length < 2) {
-        newErrors.career = 'Career must be at least 2 characters';
-      } else if (career.trim().length > 50) {
-        newErrors.career = 'Career cannot exceed 50 characters';
-      }
+    if (!formData.career.trim()) {
+      newErrors.career = 'Career is required';
+    } else if (formData.career.trim().length < 2) { 
+      newErrors.career = 'Career must be at least 2 characters';
+    } else if (formData.career.trim().length > 50) {  
+      newErrors.career = 'Career cannot exceed 50 characters';
     }
 
-    // Review validation
-    if (shouldValidate('review')) {
-      if (!review.trim()) {
-        newErrors.review = 'Review is required';
-      } else if (review.trim().length < 10) {
-        newErrors.review = 'Review must be at least 10 characters';
-      } else if (review.trim().length > 500) {
-        newErrors.review = 'Review cannot exceed 500 characters';
-      }
+    if (!formData.review.trim()) {
+      newErrors.review = 'Review is required';
+    } else if (formData.review.trim().length < 10) {
+      newErrors.review = 'Review must be at least 10 characters';
     }
     
-    // Rating validation
-    if (shouldValidate('rating')) {
-      if (!rating) {
-        newErrors.rating = 'Rating is required';
-      } else if (isNaN(rating) || rating < 1 || rating > 5) {
-        newErrors.rating = 'Please provide a valid rating (1-5)';
-      }
+    if (!formData.rating) {
+      newErrors.rating = 'Rating is required';
+    } else if (formData.rating < 1 || formData.rating > 5) {
+      newErrors.rating = 'Rating must be between 1-5';
     }
     
     setErrors(newErrors);
@@ -75,80 +55,46 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
       [name]: name === 'rating' ? parseInt(value) || '' : value
     }));
     
-    setTouched(prev => ({ ...prev, [name]: true }));
-    
-    if (touched[name] || errors[name]) {
-      validateForm();
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
     }
-  };
-
-  const handleBlur = (e) => {
-    const { name } = e.target;
-    setTouched(prev => ({ ...prev, [name]: true }));
-    validateForm();
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!validateForm(true)) return;
+    if (!validateForm()) return;
     
     setIsSubmitting(true);
-    setSubmitSuccess(false);
     
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/testimonials`, 
-        formData,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        }
-      );
+      const response = await axios.post("/testimonials", formData);
       
       if (response.status === 201) {
-        setSubmitSuccess(true);
-        onTestimonialAdded(response.data);
-        setTimeout(() => {
-          onClose();
-        }, 1500);
+        alert("Testimonial submitted successfully!");
+        onClose();
+        window.location.reload();
       }
     } catch (error) {
       console.error("Submission error:", error);
       
+      // Handle server validation errors
       if (error.response?.data?.errors) {
         setErrors(error.response.data.errors);
-      } else if (error.code === 'ERR_NETWORK') {
-        setErrors({ 
-          server: 'Network error - please check your connection' 
-        });
-      } else {
-        setErrors({ 
-          server: error.response?.data?.message || 'Failed to submit testimonial' 
-        });
+      } 
+      // Handle network errors
+      else if (error.code === 'ERR_NETWORK') {
+        alert('Network error - please check your connection');
+      }
+      // Handle other errors
+      else {
+        alert(error.response?.data?.message || 'Failed to submit testimonial');
       }
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  if (submitSuccess) {
-    return (
-      <div className={`add__testimonial-form-popup ${isActive ? 'active' : ''}`}>
-        <div className="add__testimonial-form-content success-message">
-          <h2>Thank You!</h2>
-          <p>Your testimonial has been submitted successfully.</p>
-          <button 
-            className="close__testimonial-form" 
-            onClick={onClose}
-          >
-            &times;
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className={`add__testimonial-form-popup ${isActive ? 'active' : ''}`}>
@@ -157,7 +103,6 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
           className="close__testimonial-form" 
           onClick={onClose}
           disabled={isSubmitting}
-          aria-label="Close form"
         >
           &times;
         </button>
@@ -168,97 +113,60 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
           <img src={IMG} alt="User avatar" />
         </div>
         
-        {errors.server && (
-          <div className="server-error-message">
-            {errors.server}
-          </div>
-        )}
-        
-        <form onSubmit={handleSubmit} noValidate>
-          <div className="form-group">
-            <input
-              type="text"
-              name="userName"
-              placeholder="Your Name"
-              value={formData.userName}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={`${errors.userName ? 'error' : ''}`}
-              disabled={isSubmitting}
-              required
-            />
-            {errors.userName && (
-              <span className="error-message">{errors.userName}</span>
-            )}
+        <form onSubmit={handleSubmit}>
+         <div className="form-group">
+           <input
+             type="text"
+             name="userName"
+             placeholder="Your Name"
+             value={formData.userName}
+             onChange={handleChange}
+             className={`add__testimonial-form-content ${errors.userName ? 'error' : ''}`} />
+              {errors.userName && ( <span className="error-message">{errors.userName}</span> )}
           </div>
 
           <div className="form-group">
             <input
               type="text"
               name="career"
-              placeholder="Your Career (e.g., Software Developer)"
+              placeholder="Your Career"
               value={formData.career}
               onChange={handleChange}
-              onBlur={handleBlur}
-              className={`${errors.career ? 'error' : ''}`}
-              disabled={isSubmitting}
-              required
+              className={`add__testimonial-form-content ${errors.career ? 'error' : ''}`}
             />
-            {errors.career && (
-              <span className="error-message">{errors.career}</span>
-            )}
+             {errors.career && ( <span className="error-message">{errors.career}</span> )}
           </div>
           
           <div className="form-group">
             <textarea
               name="review"
-              placeholder="Share your experience..."
+              placeholder="Your Review"
               value={formData.review}
               onChange={handleChange}
-              onBlur={handleBlur}
-              className={`${errors.review ? 'error' : ''}`}
-              disabled={isSubmitting}
-              rows="5"
-              required
+              className={`add__testimonial-form-content ${errors.review ? 'error' : ''}`}
             ></textarea>
-            {errors.review && (
-              <span className="error-message">{errors.review}</span>
-            )}
+            {errors.review &&( <span className="error-message">{errors.review}</span> )}
           </div>
           
-          <div className="form-group rating-group">
-          {/* <label htmlFor="rating">Your Rating:</label>*/}
+          <div className="form-group">
             <input
               type="number"
-              id="rating"
               name="rating"
-              placeholder="1-5"
+              placeholder="Rating (1-5)"
               min="1"
               max="5"
               value={formData.rating}
               onChange={handleChange}
-              onBlur={handleBlur}
-              className={`${errors.rating ? 'error' : ''}`}
-              disabled={isSubmitting}
-              required
+              className={`add__testimonial-form-content ${errors.rating ? 'error' : ''}`}
             />
-            {errors.rating && (
-              <span className="error-message">{errors.rating}</span>
-            )}
+            {errors.rating && (<span className="error-message">{errors.rating}</span>)}
           </div>
           
           <button 
             type="submit" 
-            className="submit-button"
             disabled={isSubmitting}
-            aria-busy={isSubmitting}
           >
-            {isSubmitting ? (
-              <>
-                <span className="spinner"></span>
-                Submitting...
-              </>
-            ) : 'Submit Testimonial'}
+            {isSubmitting ? 'Submitting...' : 'Submit'}
           </button>
         </form>
       </div>
