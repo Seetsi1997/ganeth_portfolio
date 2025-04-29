@@ -227,7 +227,7 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
           </div>
           
           <div className="form-group rating-group">
-            <label htmlFor="rating">Your Rating:</label>
+          {/* <label htmlFor="rating">Your Rating:</label>*/}
             <input
               type="number"
               id="rating"
