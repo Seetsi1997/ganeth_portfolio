@@ -142,7 +142,6 @@
     display: block;
     margin-top: 0.4rem;
     margin-bottom: 0.1rem;
-    order: 2;
 }
 
 @keyframes spin {
