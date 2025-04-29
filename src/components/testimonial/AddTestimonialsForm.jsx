@@ -13,6 +13,7 @@ const AddTestimonialForm = ({ onClose, isActive }) => {
   
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
   // Client-side validation
   const validateForm = () => {
@@ -95,6 +96,23 @@ const AddTestimonialForm = ({ onClose, isActive }) => {
       setIsSubmitting(false);
     }
   };
+  
+  if (submitSuccess) {
+    return (
+      <div className={`add__testimonial-form-popup ${isActive ? 'active' : ''}`}>
+        <div className="add__testimonial-form-content success-message">
+          <h2>Thank You!</h2>
+          <p>Your testimonial has been submitted successfully.</p>
+          <button 
+            className="close__testimonial-form" 
+            onClick={onClose}
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`add__testimonial-form-popup ${isActive ? 'active' : ''}`}>
