@@ -151,7 +151,9 @@
     color: var(--color-red);
     font-size: 0.75rem;
     display: block;
-    margin-top: 0.2rem; 
+    margin-top: 0.5rem;
+    padding-top: 5rem; 
+    padding-right: 1rem;
     margin-right: 1rem;
     top: 3rem;
     position: absolute;
