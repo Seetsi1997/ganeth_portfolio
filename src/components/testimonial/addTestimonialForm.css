@@ -127,6 +127,50 @@
     box-shadow: 0 0 0 2px var(--color-module-list);
 }
 
+/* Add these to your CSS */
+.server-error-message {
+    color: var(--color-red);
+    background: var(--color-bg);
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+  
+  .success-message {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .success-message h2 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+  
+  .client__avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+  }
+  
+  .client__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .rating-group {
+    margin-top: 1rem;
+  }
+  
+  .rating-group label {
+    margin-bottom: 0.5rem;
+    color: var(--color-light);
+  }
+  
 .spinner {
     width: 1rem;
     height: 1rem;
