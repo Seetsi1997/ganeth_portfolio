@@ -140,8 +140,8 @@
     color: var(--color-red);
     font-size: 0.7rem;
     display: block;
-    margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
+    margin-top: 0.6rem;
+    margin-bottom: 0.1rem;
     order: 2;
 }
 
