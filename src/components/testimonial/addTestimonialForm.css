@@ -147,12 +147,13 @@
     border-color: var(--color-red)
 }
   
-.error-message {
+.form-group .error-message {
     color: var(--color-red);
     font-size: 0.75rem;
     display: block;
     margin-top: 0.2rem; 
     margin-right: 1rem;
+    top: 3rem;
     position: absolute;
     left: 0;
 
