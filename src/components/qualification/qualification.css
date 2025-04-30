@@ -647,113 +647,99 @@
     white-space: nowrap;
 }
 
-.skills-section { 
+.skills-section {
     text-align: center;
   }
   
   .skills-list {
-    display: inline-flex; 
-    flex-direction: row;
+    display: inline-flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding-top: 15px;
-    flex-wrap: wrap;
     gap: 0.5rem;
-    padding-top: 1rem;
+    padding: 1rem 0 0;
     margin: 0.5rem auto 0;
     list-style: none;
     max-width: 600px;
   }
   
-.skill-item {
-  display: flex;
-  white-space: nowrap;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  border-radius: 5px;
-  padding: 0.3rem 0.8rem;
-  margin: 0;
-  transition: transform 0.2s, box-shadow 0.2s;
-  white-space: normal; 
-  flex-shrink: 0;
-}
-
-.skill-wrapper {
+  .skill-item {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 0.3rem 0.8rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  
+  .skill-wrapper {
+    display: flex;
     align-items: center;
     gap: 0.3rem;
-}
+  }
   
-.skill-name {
+  .skill-name {
     font-size: 0.8rem;
-    color: inherit;
     opacity: 0.9;
-    margin-right: 0.3rem;
     white-space: nowrap;
-}
-
-.skill-level {
+  }
+  
+  .skill-level {
     font-weight: 600;
     font-size: 0.7rem;
     text-transform: capitalize;
     opacity: 0.9;
-}
-
-.skill-item.beginner {
+  }
+  
+  /* Skill Level Colors */
+  .skill-item.beginner {
     background: var(--color-bg-skill-item-beginner);
     color: var(--color-skill-beginner);
-    border: none;
     border-bottom-left-radius: 24px;
     border-bottom-right-radius: 24px;
-}
-
-.skill-item.intermediate {
+  }
+  
+  .skill-item.intermediate {
     background: var(--color-bg-skill-item-intermediate);
     color: var(--color-skill-intermediate);
-    border: none;
     border-bottom-left-radius: 24px;
     border-bottom-right-radius: 24px;
-}
-
-.skill-item.advanced {
+  }
+  
+  .skill-item.advanced {
     background: var(--color-bg-skill-item-advanced);
     color: var(--color-skill-advanced);
-    border: none;
     border-top-left-radius: 24px;
     border-top-right-radius: 24px;
-}
-
-.skill-item.expert {
+  }
+  
+  .skill-item.expert {
     background: var(--color-bg-skill-item-expert);
     color: var(--color-skill-expert);
-    border: none;
     border-top-left-radius: 24px;
-    border-top-right-radius:24px;
-    
-}
+    border-top-right-radius: 24px;
+  }
 
-.no-records-message {
+  .no-records-message,
+  .qualification__error {
     padding: 2rem;
     text-align: center;
     color: var(--color-light);
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 600px;
+  }
+
+  .no-records-message {
     font-style: italic;
     background: var(--color-primary-variant);
-    border-radius: 8px;
-    margin: 2rem auto;
-    max-width: 600px;
-}
-
-.qualification__error {
-    padding: 2rem;
-    text-align: center;
-    color: var(--color-light);
+  }
+  
+  .qualification__error {
     font-style: normal;
-    border-radius: 8px;
-    margin: 2rem auto;
-    max-width: 600px;
-}
+  }
 
 /* ================= MEDIA QUERIES ================= */
 @media screen and (max-width: 1024px) {
@@ -789,15 +775,11 @@
         columns: 1;
     }
 
-    .skill-item {
-        flex-direction: column; 
-        gap: 0.2rem; 
-    }
- 
+    .skill-item,
     .skill-wrapper {
-        flex-direction: column;
-        gap: 0.2rem;
-    }
+      flex-direction: column;
+      gap: 0.2rem;
+  }
 
     .skill-name {
         margin-right: 0;
@@ -922,13 +904,19 @@
     }
 
     .skills-list {
-        flex-wrap: wrap;
-    }
-
-    .skill-item {
-        flex-direction: column; 
-        gap: 0.2rem; 
-    }
+        gap: 0.4rem;
+      }
+      
+      .skill-item {
+        padding: 0.25rem 0.6rem;
+      }
+      
+      .skill-item.beginner,
+      .skill-item.intermediate,
+      .skill-item.advanced,
+      .skill-item.expert {
+        border-radius: 12px;
+      }
  
     .skill-wrapper {
         flex-direction: column;
