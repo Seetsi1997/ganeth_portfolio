@@ -173,7 +173,7 @@ const AddTestimonialForm = ({ onClose, isActive }) => {
               placeholder="Rating (1-5)"
               min="1"
               max="5"
-              value={formData.rating}
+              value={formData.rating.toString()}
               onChange={handleChange}
               className={`add__testimonial-form-content ${errors.rating ? 'error' : ''}`}
             />
