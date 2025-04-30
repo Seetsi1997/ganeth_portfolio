@@ -776,7 +776,7 @@
 
     .performance-list {
         flex-direction: column;
-        min-width: 70px
+        min-width: 50px
       }
 
     .modules-list {
@@ -869,7 +869,7 @@
 
     .performance-list {
         flex-direction: column;
-        min-width: 70px
+        min-width: 50px
       }
 
     .performance-label {
