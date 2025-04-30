@@ -3,7 +3,7 @@ import { useState } from "react";
 import IMG from '../../assets/me.jpg';
 import './addTestimonialForm.css';
 
-const AddTestimonialForm = ({ onClose, isActive }) => {
+const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
   const [formData, setFormData] = useState({
     userName: "",
     review: "",
@@ -15,7 +15,6 @@ const AddTestimonialForm = ({ onClose, isActive }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Client-side validation
   const validateForm = () => {
     const newErrors = {};
     
@@ -56,7 +55,6 @@ const AddTestimonialForm = ({ onClose, isActive }) => {
       [name]: name === 'rating' ? parseInt(value) || '' : value
     }));
     
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -70,25 +68,36 @@ const AddTestimonialForm = ({ onClose, isActive }) => {
     setIsSubmitting(true);
     
     try {
-      const response = await axios.post("/testimonials", formData);
+      const response = await axios.post("/api/testimonials", formData);
       
       if (response.status === 201) {
-        alert("Testimonial submitted successfully!");
-        onClose();
-        window.location.reload();
+        setSubmitSuccess(true);
+        
+        // Option 1: Call a callback to update parent component
+        if (onTestimonialAdded) {
+          onTestimonialAdded(response.data); // Pass the new testimonial data back
+        }
+        
+        // Option 2: Reset form and close after delay
+        setTimeout(() => {
+          setFormData({
+            userName: "",
+            review: "",
+            career: "",
+            rating: "",
+          });
+          onClose();
+        }, 2000);
       }
     } catch (error) {
       console.error("Submission error:", error);
       
-      // Handle server validation errors
       if (error.response?.data?.errors) {
         setErrors(error.response.data.errors);
       } 
-      // Handle network errors
       else if (error.code === 'ERR_NETWORK') {
         alert('Network error - please check your connection');
       }
-      // Handle other errors
       else {
         alert(error.response?.data?.message || 'Failed to submit testimonial');
       }
@@ -96,7 +105,13 @@ const AddTestimonialForm = ({ onClose, isActive }) => {
       setIsSubmitting(false);
     }
   };
-  
+
+  const handleClose = () => {
+    if (!isSubmitting) {
+      onClose();
+    }
+  };
+
   if (submitSuccess) {
     return (
       <div className={`add__testimonial-form-popup ${isActive ? 'active' : ''}`}>
@@ -105,7 +120,7 @@ const AddTestimonialForm = ({ onClose, isActive }) => {
           <p>Your testimonial has been submitted successfully.</p>
           <button 
             className="close__testimonial-form" 
-            onClick={onClose}
+            onClick={handleClose}
           >
             &times;
           </button>
@@ -119,7 +134,7 @@ const AddTestimonialForm = ({ onClose, isActive }) => {
       <div className="add__testimonial-form-content">
         <button 
           className="close__testimonial-form" 
-          onClick={onClose}
+          onClick={handleClose}
           disabled={isSubmitting}
         >
           &times;
@@ -132,15 +147,16 @@ const AddTestimonialForm = ({ onClose, isActive }) => {
         </div>
         
         <form onSubmit={handleSubmit}>
-         <div className="form-group">
-           <input
-             type="text"
-             name="userName"
-             placeholder="Your Name"
-             value={formData.userName}
-             onChange={handleChange}
-             className={`add__testimonial-form-content ${errors.userName ? 'error' : ''}`} />
-              {errors.userName && ( <span className="error-message">{errors.userName}</span> )}
+          <div className="form-group">
+            <input
+              type="text"
+              name="userName"
+              placeholder="Your Name"
+              value={formData.userName}
+              onChange={handleChange}
+              className={errors.userName ? 'error' : ''}
+            />
+            {errors.userName && <span className="error-message">{errors.userName}</span>}
           </div>
 
           <div className="form-group">
@@ -150,9 +166,9 @@ const AddTestimonialForm = ({ onClose, isActive }) => {
               placeholder="Your Career"
               value={formData.career}
               onChange={handleChange}
-              className={`add__testimonial-form-content ${errors.career ? 'error' : ''}`}
+              className={errors.career ? 'error' : ''}
             />
-             {errors.career && ( <span className="error-message">{errors.career}</span> )}
+            {errors.career && <span className="error-message">{errors.career}</span>}
           </div>
           
           <div className="form-group">
@@ -161,9 +177,9 @@ const AddTestimonialForm = ({ onClose, isActive }) => {
               placeholder="Your Review"
               value={formData.review}
               onChange={handleChange}
-              className={`add__testimonial-form-content ${errors.review ? 'error' : ''}`}
+              className={errors.review ? 'error' : ''}
             ></textarea>
-            {errors.review &&( <span className="error-message">{errors.review}</span> )}
+            {errors.review && <span className="error-message">{errors.review}</span>}
           </div>
           
           <div className="form-group">
@@ -173,18 +189,24 @@ const AddTestimonialForm = ({ onClose, isActive }) => {
               placeholder="Rating (1-5)"
               min="1"
               max="5"
-              value={formData.rating.toString()}
+              value={formData.rating}
               onChange={handleChange}
-              className={`add__testimonial-form-content ${errors.rating ? 'error' : ''}`}
+              className={errors.rating ? 'error' : ''}
             />
-            {errors.rating && (<span className="error-message">{errors.rating}</span>)}
+            {errors.rating && <span className="error-message">{errors.rating}</span>}
           </div>
           
           <button 
             type="submit" 
             disabled={isSubmitting}
+            className={isSubmitting ? 'submitting' : ''}
           >
-            {isSubmitting ? 'Submitting...' : 'Submit'}
+            {isSubmitting ? (
+              <>
+                Submitting...
+                <span className="spinner"></span>
+              </>
+            ) : 'Submit'}
           </button>
         </form>
       </div>
