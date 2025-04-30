@@ -229,8 +229,8 @@ const Qualification = () => {
                                                 </span>
                                             </li>
                                             <li className={`performance-item ${!popupData.failMessage?.includes("Failed")
-                                                    ? "success"
-                                                    : "warning"
+                                                ? "success"
+                                                : "warning"
                                                 }`}>
                                                 <span className="performance-label">Performance</span>
                                                 <span className="performance-value">
@@ -364,12 +364,12 @@ const Qualification = () => {
                                         {popupData.skills?.map((skill, index) => (
                                             <li
                                                 key={index}
-                                                className={`skill-item ${skill.proficiency}`}
+                                                className="skill-item"
                                             >
-                                                <span className="skill-name">{skill.name}</span>
-                                                <span className="skill-level">
-                                                    ({skill.proficiency})
-                                                </span>
+                                                <div className="skill-wrapper"> {/* New wrapper */}
+                                                    <span className="skill-name">{skill.name}</span>
+                                                    <span className="skill-level">({skill.proficiency})</span>
+                                                </div>
                                             </li>
                                         ))}
                                     </ul>

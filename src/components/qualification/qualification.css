@@ -679,6 +679,10 @@
   flex-shrink: 0;
 }
 
+.skill-wrapper {
+    flex-direction: row;
+    gap: 6px;
+}
   
 .skill-name {
     font-size: 0.8rem;
@@ -776,11 +780,25 @@
 
     .performance-list {
         flex-direction: column;
-        min-width: 50px
+        min-width: 70px
       }
 
     .modules-list {
         columns: 1;
+    }
+
+    .skill-item {
+        flex-direction: column; 
+        gap: 0.2rem; 
+    }
+ 
+    .skill-wrapper {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+    
+    .skill-name {
+        margin-right: 0;
     }
 
     .reference-contact {
@@ -869,7 +887,7 @@
 
     .performance-list {
         flex-direction: column;
-        min-width: 50px
+        min-width: 70px
       }
 
     .performance-label {
