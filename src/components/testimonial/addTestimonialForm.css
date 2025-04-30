@@ -37,7 +37,7 @@
     transform: scale(1);
 }
   
-.close__testimonial-form {
+/*.close__testimonial-form {
     position: absolute;
     top: 10px;
     right: 15px;
@@ -51,7 +51,7 @@
   
 .close__testimonial-form:hover {
     color: var(--color-white);
-}
+} */
   
 .add__testimonial-form-content h2 {
     font-size: 1.2rem; /* Reduced from 18px */
@@ -156,10 +156,10 @@
     padding-top: 0.4rem;
 }*/
 .form-group .error-message {
-    color: var(--color-red);
+   color: var(--color-red);
     font-size: 0.75rem;
     display: block;
-    margin-top: 0.4rem;
+    margin-top: 0.3rem;
 }
 
 
