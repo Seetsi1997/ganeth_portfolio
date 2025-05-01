@@ -14,8 +14,8 @@
 form {
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
-  margin-top: 8rem;
+  gap: 1.5rem;
+  margin-top: 6rem;
   width: 100%;
 }
 
@@ -45,7 +45,7 @@ form {
 
 .error-message {
   position: absolute;
-  bottom: -1.25rem; /* Position below input */
+  bottom: -1.55rem; /* Position below input */
   left: 0.5rem;
   color: var(--color-red);
   font-size: 0.75rem; /* More readable than 7px */
