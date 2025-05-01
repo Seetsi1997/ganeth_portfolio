@@ -18,7 +18,7 @@
   }
   
   .add__testimonial-form-content {
-    background: var(--color-primary-variant);
+    background: var(--color-primary);
     padding: 2rem;
     border-radius: 12px;
     width: 90%;
@@ -47,20 +47,20 @@
     border: none;
     background: transparent;
     cursor: pointer;
-    color: #555;
+    color: var(--color-light);
     transition: color 0.2s;
   }
   
   .close__testimonial-form:hover {
-    color: #e74c3c;
+    color: var(--color-white);
   }
   
   .add__testimonial-form-content h2 {
     margin-bottom: 1rem;
     font-size: 1.5rem;
     text-align: center;
-    color: #333;
-  }
+    color: var(--color-white );
+  } 
   
   .client__avatar {
     display: flex;
@@ -89,7 +89,7 @@
   input,
   textarea {
     padding: 0.75rem 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-light);
     border-radius: 8px;
     font-size: 1rem;
     transition: border-color 0.3s;
@@ -98,7 +98,7 @@
   input:focus,
   textarea:focus {
     outline: none;
-    border-color: #007bff;
+    border-color: var(--color-primary-variant);
   }
   
   textarea {
@@ -107,24 +107,24 @@
   }
   
   .error {
-    border-color: #e74c3c;
+    border-color: var(--color-red);
   }
   
   .error-message {
     font-size: 0.85rem;
-    color: #e74c3c;
+    color: var(--color-red);
     margin-top: 0.25rem;
   }
   
   button[type="submit"] {
     padding: 0.75rem 1rem;
     font-size: 1rem;
-    background-color: #007bff;
-    color: white;
+    background: var(--color-bg-variant);
+    color: var(--color-white);
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: var(--transition-2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,19 +132,19 @@
   }
   
   button[type="submit"]:hover {
-    background-color: #0056b3;
+    background: var(--color-light);
   }
   
   button[type="submit"]:disabled {
-    background-color: #999;
+    background: var(--color-light);
     cursor: not-allowed;
   }
   
   .spinner {
     width: 16px;
     height: 16px;
-    border: 2px solid #fff;
-    border-top: 2px solid #007bff;
+    border: 2px solid var(--color-light);
+    border-top: 2px solid var(--color-light);
     border-radius: 50%;
     animation: spin 0.6s linear infinite;
   }
@@ -161,7 +161,7 @@
   }
   
   .success-message h2 {
-    color: #2ecc71;
+    color: var( --color-approved);
   }
   
   .success-message p {
