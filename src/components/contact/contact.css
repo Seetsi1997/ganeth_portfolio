@@ -41,31 +41,25 @@ form {
 /* ===== FORM GROUP & ERROR MESSAGES ===== */
 .form-group {
   position: relative;
-  margin-bottom: 2rem; /* Increased space for errors */
+  margin-bottom: 1rem; 
 }
 
 .error-message {
   position: absolute;
-  top: calc(100% + 0.25rem); /* Positions below input */
+  bottom: -1.75rem;
   left: 0.5rem;
   color: var(--color-red);
   font-size: 0.75rem;
-  background: var(--color-bg); /* Match your form background */
   padding: 0.2rem 0.5rem;
-  border-radius: 0.25rem;
+  border-radius: 0 0 0.25rem 0.25rem;
   z-index: 2;
 }
 
-/* Input/Textarea Error States */
-input.error, 
-textarea.error {
-  border-color: var(--color-red);
-  margin-bottom: 0; /* Reset since we're using top positioning */
-}
 
-/* Textarea Specific Adjustment */
-textarea ~ .error-message {
-  top: calc(100% + 0.5rem); /* Extra space for multi-line fields */
+input.error, textarea.error {
+  border-color: var(--color-red);
+  border-bottom-color: var(--color-primary-variant); 
+  margin-bottom: 1.75rem; 
 }
 
 input, textarea {
