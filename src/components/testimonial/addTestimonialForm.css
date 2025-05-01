@@ -73,9 +73,15 @@
     color: var(--color-white);
     font-size: 0.9rem;
     width: 100%;
-    resize: none;  
     transition: all var(--transition);
     margin-top: 0;
+}
+
+.add__testimonial-form-content .form-group textarea {
+    min-height: 100px;
+    max-height: 100px;
+    overflow-y: auto;
+    resize: none; 
 }
 
 .add__testimonial-form-content .form-group input:focus,
@@ -115,7 +121,7 @@
     display: block;
     width: 100%;
     margin-top: 0;
-    margin-bottom: 0.2rem;
+    margin-bottom: 4rem;
     padding-left: 0.2rem;
     height: 0.1rem; 
 }
