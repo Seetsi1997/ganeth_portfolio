@@ -45,7 +45,7 @@ form {
 
 .error-message {
   position: absolute;
-  bottom: -1.55rem; /* Position below input */
+  bottom: -1.65rem; /* Position below input */
   left: 0.5rem;
   color: var(--color-red);
   font-size: 0.75rem; /* More readable than 7px */
@@ -58,7 +58,7 @@ form {
 input.error, textarea.error {
   border-color: var(--color-red);
   border-bottom-color: var(--color-primary-variant); /* Keep bottom border normal */
-  margin-bottom: 1.55rem; 
+  margin-bottom: 1.65rem; 
 }
 
 input, textarea {
