@@ -53,6 +53,7 @@
   
   .close__testimonial-form:hover {
     color: var(--color-white);
+    transform: rotate(90deg);
   }
   
   .add__testimonial-form-content h2 {
