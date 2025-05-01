@@ -1,68 +1,53 @@
-/* ================= TESTIMONIAL FORM POPUP ================= */
-
-/* Popup overlay */
+/* addTestimonialForm.css */
 .add__testimonial-form-popup {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.6);
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease;
   }
   
   .add__testimonial-form-popup.active {
-    opacity: 1;
-    visibility: visible;
+    display: flex;
   }
   
-  /* Card styling */
   .add__testimonial-form-content {
-    position: relative;
     background: #fff;
+    padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     width: 90%;
     max-width: 500px;
-    padding: 2rem;
-    animation: fadeInUp 0.4s ease;
-    transform: translateY(20px);
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
   }
   
-  @keyframes fadeInUp {
+  @keyframes fadeIn {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: scale(0.95);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: scale(1);
     }
   }
   
-  .add__testimonial-form-content h2 {
-    text-align: center;
-    color: #2c3e50;
-    margin-bottom: 1.5rem;
-    font-size: 1.8rem;
-  }
-  
-  /* Close button */
   .close__testimonial-form {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 1rem;
+    right: 1rem;
     font-size: 1.5rem;
-    background: none;
     border: none;
+    background: transparent;
     cursor: pointer;
-    color: #7f8c8d;
+    color: #555;
     transition: color 0.2s;
   }
   
@@ -70,338 +55,91 @@
     color: #e74c3c;
   }
   
-  .close__testimonial-form:disabled {
-    color: #bdc3c7;
-    cursor: not-allowed;
+  .add__testimonial-form-content h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #333;
   }
   
-  /* Client avatar */
   .client__avatar {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1.5rem;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid #3498db;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
   }
   
   .client__avatar img {
-    width: 100%;
-    height: 100%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
     object-fit: cover;
   }
   
-  /* Form styling */
-  .form-group {
-    margin-bottom: 1.2rem;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
   
-  .form-group input,
-  .form-group textarea {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input, textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: border-color 0.3s;
   }
   
-  .form-group input:focus,
-  .form-group textarea:focus {
-    border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+  input:focus, textarea:focus {
     outline: none;
+    border-color: #007bff;
   }
   
-  .form-group textarea {
-    min-height: 120px;
+  textarea {
     resize: vertical;
+    min-height: 100px;
   }
   
-  /* Error styling */
-  .form-group input.error,
-  .form-group textarea.error {
+  .error {
     border-color: #e74c3c;
   }
   
   .error-message {
-    display: block;
-    color: #e74c3c;
     font-size: 0.85rem;
-    margin-top: 5px;
+    color: #e74c3c;
+    margin-top: 0.25rem;
   }
   
-  /* Submit button */
   button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    background-color: #3498db;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 0.5rem;
   }
   
   button[type="submit"]:hover {
-    background-color: #2980b9;
+    background-color: #0056b3;
   }
   
   button[type="submit"]:disabled {
-    background-color: #bdc3c7;
+    background-color: #999;
     cursor: not-allowed;
   }
   
-  /* Spinner animation */
   .spinner {
-    width: 18px;
-    height: 18px;
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: white;
-    animation: spin 1s ease-in-out infinite;
+    width: 16px;
+    height: 16px;
   }
   
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  /* Success message styling */
-  .success-message {
-    text-align: center;
-    padding: 2rem;
-  }
-  
-  .success-message h2 {
-    color: #27ae60;
-    margin-bottom: 1rem;
-  }
-  
-  .success-message p {
-    color: #2c3e50;
-    font-size: 1.1rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 600px) {
-    .add__testimonial-form-content {
-      width: 95%;
-      padding: 1.5rem;
-    }
-    
-    .add__testimonial-form-content h2 {
-      font-size: 1.5rem;
-    }
-  }/* addTestimonialForm.css */
-
-/* Popup overlay */
-.add__testimonial-form-popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-}
-
-.add__testimonial-form-popup.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Card styling */
-.add__testimonial-form-content {
-  position: relative;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 500px;
-  padding: 2rem;
-  animation: fadeInUp 0.4s ease;
-  transform: translateY(20px);
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.add__testimonial-form-content h2 {
-  text-align: center;
-  color: #2c3e50;
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
-}
-
-/* Close button */
-.close__testimonial-form {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: #7f8c8d;
-  transition: color 0.2s;
-}
-
-.close__testimonial-form:hover {
-  color: #e74c3c;
-}
-
-.close__testimonial-form:disabled {
-  color: #bdc3c7;
-  cursor: not-allowed;
-}
-
-/* Client avatar */
-.client__avatar {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 1.5rem;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3px solid #3498db;
-}
-
-.client__avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Form styling */
-.form-group {
-  margin-bottom: 1.2rem;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
-  outline: none;
-}
-
-.form-group textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
-/* Error styling */
-.form-group input.error,
-.form-group textarea.error {
-  border-color: #e74c3c;
-}
-
-.error-message {
-  display: block;
-  color: #e74c3c;
-  font-size: 0.85rem;
-  margin-top: 5px;
-}
-
-/* Submit button */
-button[type="submit"] {
-  width: 100%;
-  padding: 12px;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-}
-
-button[type="submit"]:hover {
-  background-color: #2980b9;
-}
-
-button[type="submit"]:disabled {
-  background-color: #bdc3c7;
-  cursor: not-allowed;
-}
-
-/* Spinner animation */
-.spinner {
-  width: 18px;
-  height: 18px;
-  border: 3px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  border-top-color: white;
-  animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* Success message styling */
-.success-message {
-  text-align: center;
-  padding: 2rem;
-}
-
-.success-message h2 {
-  color: #27ae60;
-  margin-bottom: 1rem;
-}
-
-.success-message p {
-  color: #2c3e50;
-  font-size: 1.1rem;
-  margin-bottom: 1.5rem;
-}
-
-/* Responsive adjustments */
-@media (max-width: 600px) {
-  .add__testimonial-form-content {
-    width: 95%;
-    padding: 1.5rem;
-  }
-  
-  .add__testimonial-form-content h2 {
-    font-size: 1.5rem;
-  }
-}
