@@ -22,7 +22,7 @@
   
 .add__testimonial-form-content {
     background: var(--color-bg-variant);
-    padding: 0.5rem;
+    padding: 1.5rem;
     border-radius: 12px;
     position: relative;
     max-width: 450px;
@@ -35,6 +35,21 @@
     text-align: center;
     font-size: 1.5rem;
 }
+
+.client__avatar {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1.5rem;
+    border: 0.3rem solid var(--color-primary-variant);
+}
+
+.client__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
   
 .add__testimonial-form-content form {
     display: flex;
@@ -46,7 +61,6 @@
     position: relative;
     width: 100%;
     text-align: left;
-    margin-bottom: 0.5rem;
 }
 
 .add__testimonial-form-content form .form-group input,
@@ -59,7 +73,12 @@
     font-size: 0.9rem;
     width: 100%;
     transition: all var(--transition);
-    margin-top: 0;
+}
+
+.add__testimonial-form-content form .form-group input::placeholder,
+.add__testimonial-form-content form .form-group textarea::placeholder {
+    color: var(--color-light);
+    opacity: 0.7;
 }
 
 .add__testimonial-form-content form .form-group textarea {
@@ -90,25 +109,45 @@
 }
   
 .add__testimonial-form-content form button[type="submit"]:hover {
-    background: var(--color-bg);
+    background: var(--color-primary-variant);
     transform: translateY(-2px);
+}
+
+.add__testimonial-form-content form button[type="submit"]:disabled {
+    background: var(--color-primary-variant);
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none;
 }
 
 .add__testimonial-form-content form .form-group .error-message {
     color: var(--color-red);
     font-size: 0.75rem;
-    text-align: left;
     display: block;
-    width: 100%;
-    padding: 0.2rem 0 0 0.2rem;
-    height: auto;
+    margin-top: 0.3rem;
+    padding-left: 0.2rem;
 }
 
-/*.add__testimonial-form-content form .form-group input.error,
+.add__testimonial-form-content form .form-group input.error,
 .add__testimonial-form-content form .form-group textarea.error {
     border-color: var(--color-red);
-    background: rgba(var(--color-red), 0.1);
-}*/
+    background: rgba(var(--color-red), 0.05);
+}
+
+.success-message {
+    text-align: center;
+    padding: 2rem;
+}
+
+.success-message h2 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+}
+
+.success-message p {
+    color: var(--color-white);
+    margin-bottom: 1.5rem;
+}
 
 .close__testimonial-form {
     position: absolute;
@@ -126,6 +165,12 @@
 .close__testimonial-form:hover {
     color: var(--color-white);
     transform: rotate(90deg);
+}
+
+.close__testimonial-form:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .spinner {
@@ -147,15 +192,11 @@
 /* ================= MEDIA QUERIES ================= */
 @media screen and (max-width: 480px) {
     .add__testimonial-form-content {
-        padding: 1.5rem;
+        padding: 1.2rem;
     }
     
     .add__testimonial-form-content h2 {
         font-size: 1.3rem;
-    }
-    
-    .add__testimonial-form-content form .form-group {
-        margin-bottom: 0.65rem;
     }
     
     .add__testimonial-form-content form .form-group input,
