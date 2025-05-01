@@ -156,7 +156,7 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
               onChange={handleChange}
               className={errors.userName ? 'error' : ''}
             />
-            {/*errors.userName && <span className="error-message">{errors.userName}</span>*/}
+            {errors.userName && <span className="error-message">{errors.userName}</span>}
           </div>
 
           <div className="form-group">
