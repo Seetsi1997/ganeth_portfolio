@@ -95,6 +95,26 @@
     transform: translateY(-2px);
 }
 
+.add__testimonial-form-content form .form-group .error-message {
+    color: var(--color-red);
+    font-size: 0.75rem;
+    text-align: left;
+    display: block;
+    width: 100%;
+    padding-top: 0;
+    padding-bottom: 6rem;
+    padding-left: 0.2rem;
+    height: 0.1rem; 
+}
+
+.add__testimonial-form-content form .form-group input.error,
+.add__testimonial-form-content form .form-group textarea.error {
+    border-color: var(--color-red);
+    background: rgba(var(--color-red),); 
+    padding-bottom: 6rem;;
+}
+
+
 .close__testimonial-form {
   position: absolute;
   top: 15px;
