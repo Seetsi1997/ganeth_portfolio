@@ -40,23 +40,24 @@
 .add__testimonial-form-content form {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem; /* Reduce spacing between fields */
+    gap: 1rem; 
 }
 
 .form-group {
     position: relative;
     width: 100%;
     text-align: left;
-    margin-bottom: 0; /* Remove bottom margin to keep error tight */
+    margin-bottom: 0.5rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.25rem; /* Reduced from 0.5rem */
     color: var(--color-light);
     font-size: 0.9rem;
     font-weight: 500;
 }
+
 
 .form-group .required {
     color: var(--color-red);
@@ -72,7 +73,7 @@
     color: var(--color-white);
     font-size: 0.9rem;
     width: 100%;
-    resize: none;
+    resize: none;  
     transition: all var(--transition);
     margin-top: 0;
 }
@@ -83,12 +84,12 @@
     border-color: var(--color-primary);
     box-shadow: 0 0 0 2px rgba(var(--color-primary-variant), 0.2);
 }
-
+  
 .add__testimonial-form-content .form-group textarea {
     min-height: 100px;
-    resize: none; /* prevent user resizing */
+    resize: vertical;
 }
-
+  
 .add__testimonial-form-content button[type="submit"] {
     padding: 0.9rem;
     border-radius: 6px;
@@ -101,7 +102,7 @@
     margin-top: 0.5rem;
     transition: all var(--transition);
 }
-
+  
 .add__testimonial-form-content button[type="submit"]:hover {
     background: var(--color-bg);
     transform: translateY(-2px);
@@ -110,10 +111,13 @@
 .add__testimonial-form-content .form-group .error-message {
     color: var(--color-red);
     font-size: 0.75rem;
-    margin-top: 0.25rem;
-    margin-bottom: 0;
+    text-align: left;
+    display: block;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 0.2rem;
     padding-left: 0.2rem;
-    line-height: 1.2;
+    height: 0.1rem; 
 }
 
 .add__testimonial-form-content .form-group input.error,
@@ -166,15 +170,19 @@
         font-size: 1.3rem;
     }
     
+    .add__testimonial-form-content .form-group {
+        gap: 0.75rem;
+    }
+    
     .add__testimonial-form-content .form-group input,
     .add__testimonial-form-content .form-group textarea {
         padding: 0.7rem;
     }
 
-    .add__testimonial-form-content .form-group .error-message {
-        font-size: 0.7rem;
-        margin-top: 0.1rem;
+   .add__testimonial-form-content .form-group .error-message {
+        font-size: 0.7rem; 
     }
 }
+
 /* =================  END OF MEDIA QUERIES ================= */
 /* =================  END OF TESTIMONIAL FORM POPUP ================= */

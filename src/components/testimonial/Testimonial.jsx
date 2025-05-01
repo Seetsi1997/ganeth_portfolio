@@ -93,8 +93,8 @@ const Testimonial = () => {
             </div>
 
             {/* Like button */}
-            <button onClick={() => likeTestimonial(testimonial._id)}>
-              ❤️ ({testimonial.likes || 0}) {/* Display likes count */}
+            <button onClick={() => likeTestimonial(testimonial._id)} className="like-button">
+              ❤️ ({testimonial.likes || 0}) 
             </button>
           </SwiperSlide>
         ))}
