@@ -141,9 +141,7 @@ const Contact = () => {
               placeholder="Enter Your Message"
               className={errors.message ? "error" : ""}
             />
-            {errors.message && (
               <span className="error-message">{errors.message}</span>
-            )}
           </div>
 
           {showSuccess && (
