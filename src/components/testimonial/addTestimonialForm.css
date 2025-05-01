@@ -171,7 +171,7 @@
     }
     
     .add__testimonial-form-content .form-group {
-        gap: 0.75rem;
+        gap: 0.65rem;
     }
     
     .add__testimonial-form-content .form-group input,
@@ -185,4 +185,4 @@
 }
 
 /* =================  END OF MEDIA QUERIES ================= */
-/* =================  END OF TESTIMONIAL FORM POPUP ================= */
+/* =================  END OF TESTIMONIAL FORM POPUP ================= */ 
