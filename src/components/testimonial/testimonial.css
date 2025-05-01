@@ -129,16 +129,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.2rem;
-    background-color: var(--color-bg-variant);
-    border-radius: 12px;
-    box-shadow: 0 4px 10px var(--color-bg-popup);
+    padding: 0.5rem;
+    background: var(--color-primary-variant);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px var(--color-bg-popup);
     margin: 1.5rem auto;
     width: fit-content;
   }
   
   .like-button {
-    background: var(--color-primary);
+    background: var(--color-light);
     color: var(--color-white);
     border: none;
     cursor: pointer;
