@@ -14,7 +14,7 @@
 form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem; /* Increased gap for error messages */
   margin-top: 6rem;
   width: 100%;
 }
@@ -37,24 +37,29 @@ form {
   width: 100%; 
 }
 
+/* ================= FORM ELEMENTS ================= */
 .form-group {
-  position: relative; 
-  margin-bottom: 1rem;
+  position: relative;
+  margin-bottom: 0.5rem; /* Reduced since we have gap in form */
 }
 
 .error-message {
   position: absolute;
-  top: 0.5rem;
-  left: 0;
-  right: 0.5rem;
+  bottom: -1.25rem; /* Position below input */
+  left: 0.5rem;
   color: var(--color-red);
-  font-size: 7px;
-  padding: 0;
-  margin: 0;
+  font-size: 0.75rem; /* More readable than 7px */
+  background: var(--color-bg); /* Match your background */
+  padding: 0.2rem 0.5rem;
+  border-radius: 0 0 0.25rem 0.25rem;
+  z-index: 2;
 }
 
-textarea .error-message {
-  top: 2rem;
+/* Error state for inputs */
+input.error, textarea.error {
+  border-color: var(--color-red);
+  border-bottom-color: var(--color-primary-variant); /* Keep bottom border normal */
+  margin-bottom: 1.25rem; /* Space for error message */
 }
 
 input, textarea {
@@ -65,11 +70,21 @@ input, textarea {
   border: 2px solid var(--color-primary-variant);
   resize: none;
   color: var(--color-light);
+  transition: var(--transition);
+}
+
+/* Textarea specific styling */
+textarea {
+  min-height: 150px;
+}
+
+textarea ~ .error-message {
+  bottom: -1.5rem; /* Slightly lower for textarea */
 }
 
 .btn.btn-primary {
   width: 100%;
-  margin: 0;
+  margin: 1rem 0 0; /* Added top margin */
   padding: 1rem;
 }
 
@@ -95,9 +110,24 @@ input, textarea {
 
   form, .contact__options {
       margin-top: 2rem; 
+      gap: 1.25rem; /* Adjusted for mobile */
   }
 
   .contact__option {
       padding: 1rem; 
+  }
+
+  /* Mobile form adjustments */
+  input, textarea {
+      padding: 1.2rem;
+  }
+
+  .error-message {
+      font-size: 0.7rem;
+      bottom: -1.1rem;
+  }
+
+  textarea ~ .error-message {
+      bottom: -1.3rem;
   }
 }
