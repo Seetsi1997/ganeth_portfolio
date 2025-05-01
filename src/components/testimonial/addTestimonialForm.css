@@ -127,16 +127,16 @@
 }
 
 .close__testimonial-form {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--color-light);
-    background: none;
-    border: none;
-    padding: 0.2rem;
-    transition: all var(--transition);
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--color-light);
+  transition: var(--transition);
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .close__testimonial-form:hover {
