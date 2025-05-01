@@ -42,8 +42,8 @@
     flex-direction: column;
     gap: 0.5rem;
 }
-  
-/*.form-group {
+
+.form-group {
     position: relative;
     width: 100%;
     text-align: left;
@@ -60,7 +60,7 @@
 .form-group .required {
     color: var(--color-red);
     margin-left: 0.2rem;
-}*/
+}
 
 .add__testimonial-form-content input,
 .add__testimonial-form-content textarea,
