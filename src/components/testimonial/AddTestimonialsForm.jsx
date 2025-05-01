@@ -73,12 +73,10 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
       if (response.status === 201) {
         setSubmitSuccess(true);
         
-        // Option 1: Call a callback to update parent component
         if (onTestimonialAdded) {
-          onTestimonialAdded(response.data); // Pass the new testimonial data back
+          onTestimonialAdded(response.data);
         }
         
-        // Option 2: Reset form and close after delay
         setTimeout(() => {
           setFormData({
             userName: "",
@@ -199,7 +197,6 @@ const AddTestimonialForm = ({ onClose, isActive, onTestimonialAdded }) => {
           <button 
             type="submit" 
             disabled={isSubmitting}
-            className={isSubmitting ? 'submitting' : ''}
           >
             {isSubmitting ? (
               <>
