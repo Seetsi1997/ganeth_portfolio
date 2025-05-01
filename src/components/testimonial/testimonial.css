@@ -137,7 +137,7 @@
   }
   
   .like-button {
-    background: var(--color-light);
+    background: var(--color-bg-2);
     color: var(--color-white);
     border: none;
     cursor: pointer;
