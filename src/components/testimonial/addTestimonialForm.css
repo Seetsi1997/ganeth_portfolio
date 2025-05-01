@@ -70,12 +70,11 @@
 }
 
 .add__testimonial-form-content form .form-group input:focus,
-.add__testimonial-form-content  form .form-group textarea:focus {
+.add__testimonial-form-content form .form-group textarea:focus {
     outline: none;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 2px rgba(var(--color-primary-variant), 0.2);
 }
-  
   
 .add__testimonial-form-content form button[type="submit"] {
     padding: 0.9rem;
@@ -101,31 +100,27 @@
     text-align: left;
     display: block;
     width: 100%;
-    padding-top: 0;
-    padding-bottom: 6rem;
-    padding-left: 0.2rem;
-    height: 0.1rem; 
+    padding: 0.2rem 0 0 0.2rem;
+    height: auto;
 }
 
 .add__testimonial-form-content form .form-group input.error,
 .add__testimonial-form-content form .form-group textarea.error {
     border-color: var(--color-red);
-    background: rgba(var(--color-red),); 
-    padding-bottom: 6rem;;
+    background: rgba(var(--color-red), 0.1);
 }
 
-
 .close__testimonial-form {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: var(--color-light);
-  transition: var(--transition);
-  background: none;
-  border: none;
-  padding: 0;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--color-light);
+    transition: var(--transition);
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 .close__testimonial-form:hover {
@@ -160,18 +155,17 @@
     }
     
     .add__testimonial-form-content form .form-group {
-        gap: 0.65rem;
+        margin-bottom: 0.65rem;
     }
     
-    .add__testimonial-form-content  form .form-group input,
+    .add__testimonial-form-content form .form-group input,
     .add__testimonial-form-content form .form-group textarea {
         padding: 0.7rem;
     }
 
-   .add__testimonial-form-content form .form-group .error-message {
+    .add__testimonial-form-content form .form-group .error-message {
         font-size: 0.7rem; 
     }
 }
 
-/* =================  END OF MEDIA QUERIES ================= */
-/* =================  END OF TESTIMONIAL FORM POPUP ================= */ 
+/* ================= END OF TESTIMONIAL FORM POPUP ================= */
