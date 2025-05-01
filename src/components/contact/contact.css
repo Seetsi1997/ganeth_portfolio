@@ -58,7 +58,7 @@ form {
 input.error, textarea.error {
   border-color: var(--color-red);
   border-bottom-color: var(--color-primary-variant); /* Keep bottom border normal */
-  margin-bottom: 1.25rem; 
+  margin-bottom: 1.55rem; 
 }
 
 input, textarea {
