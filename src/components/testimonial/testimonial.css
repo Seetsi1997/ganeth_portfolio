@@ -125,17 +125,31 @@
     color: var(--color-red);
   }
   
+  .like-button-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.2rem;
+    background-color: var(--color-bg-variant);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--color-bg-popup);
+    margin: 1.5rem auto;
+    width: fit-content;
+  }
+  
   .like-button {
-    background: none;
+    background: var(--color-primary);
+    color: var(--color-white);
     border: none;
     cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     font-size: 1rem;
-    padding-top: 2rem;
-    margin-top: 1rem;
-    transition: all 0.2s;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
   }
   
   .like-button:disabled {
@@ -146,6 +160,7 @@
   .like-button:hover:not(:disabled) {
     transform: scale(1.05);
   }
+  
   
   /* =================  MEDIA QUERIES (MEDIUM DEVICES)  ================= */
   @media screen and (max-width: 1024px) {

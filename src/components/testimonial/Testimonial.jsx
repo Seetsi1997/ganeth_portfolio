@@ -33,12 +33,12 @@ const Testimonial = () => {
           }
         }
       );
-  
+
       // Update UI immediately (optimistic update)
-      setTestimonials(prev => prev.map(t => 
+      setTestimonials(prev => prev.map(t =>
         t._id === id ? { ...t, likes: response.data.likes } : t
       ));
-      
+
     } catch (error) {
       console.error("Error liking testimonial:", error);
       if (error.response) {
@@ -93,9 +93,16 @@ const Testimonial = () => {
             </div>
 
             {/* Like button */}
-            <button onClick={() => likeTestimonial(testimonial._id)} className="like-button">
-              ❤️ ({testimonial.likes || 0}) 
-            </button>
+            <div className="like-button-card">
+              <button
+                onClick={() => likeTestimonial(testimonial._id)}
+                className="like-button"
+              >
+                ❤️ ({testimonial.likes || 0})
+              </button>
+            </div>
+
+
           </SwiperSlide>
         ))}
       </Swiper>
