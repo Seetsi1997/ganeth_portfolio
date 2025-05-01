@@ -22,7 +22,7 @@
   
 .add__testimonial-form-content {
     background: var(--color-bg-variant);
-    padding: 1.5rem;
+    padding: 0.5rem;
     border-radius: 12px;
     position: relative;
     max-width: 450px;
@@ -45,17 +45,8 @@
 .form-group {
     position: relative;
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.form-group label {
-    width: 100%;
-    color: var(--color-white);
-    margin-bottom: 0.25rem;
-    font-size: 0.9rem;
+    text-align: left;
+    margin-bottom: 0.5rem;
 }
 
 .add__testimonial-form-content form .form-group input,
@@ -68,6 +59,7 @@
     font-size: 0.9rem;
     width: 100%;
     transition: all var(--transition);
+    margin-top: 0;
 }
 
 .add__testimonial-form-content form .form-group textarea {
@@ -105,18 +97,18 @@
 .add__testimonial-form-content form .form-group .error-message {
     color: var(--color-red);
     font-size: 0.75rem;
-    margin-left: 0.5rem;
-    display: inline-block;
-    vertical-align: middle;
+    text-align: left;
+    display: block;
+    width: 100%;
+    padding: 0.2rem 0 0 0.2rem;
+    height: auto;
 }
 
-.add__testimonial-form-content form .form-group input.error,
+/*.add__testimonial-form-content form .form-group input.error,
 .add__testimonial-form-content form .form-group textarea.error {
     border-color: var(--color-red);
     background: rgba(var(--color-red), 0.1);
-    flex: 1;
-    min-width: 60%;
-}
+}*/
 
 .close__testimonial-form {
     position: absolute;
@@ -173,12 +165,6 @@
 
     .add__testimonial-form-content form .form-group .error-message {
         font-size: 0.7rem; 
-        margin-left: 0.3rem;
-    }
-
-    .add__testimonial-form-content form .form-group input.error,
-    .add__testimonial-form-content form .form-group textarea.error {
-        min-width: 50%;
     }
 }
 
