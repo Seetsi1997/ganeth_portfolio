@@ -74,7 +74,7 @@
     width: 100%;
     resize: none;  
     transition: all var(--transition);
-    margin-top: 0.25rem; /* Added space after label */
+    margin-top: 0.25rem;
 }
 
 .add__testimonial-form-content input:focus,
@@ -107,17 +107,16 @@
     transform: translateY(-2px);
 }
 
-/* Updated error message styling */
 .form-group .error-message {
     color: var(--color-red);
     font-size: 0.75rem;
     text-align: left;
     display: block;
     width: 100%;
-    margin-top: 0.25rem;
-    margin-bottom: 0.25rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
     padding-left: 0.2rem;
-    height: 0.9rem; /* Fixed height to prevent layout shift */
+    height: 0.1rem; 
 }
 
 .form-group input.error,
