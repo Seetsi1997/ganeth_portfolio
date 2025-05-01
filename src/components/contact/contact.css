@@ -14,7 +14,7 @@
 form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* Increased gap for error messages */
+  gap: 1.9rem;
   margin-top: 6rem;
   width: 100%;
 }
@@ -49,17 +49,16 @@ form {
   left: 0.5rem;
   color: var(--color-red);
   font-size: 0.75rem; /* More readable than 7px */
-  background: var(--color-bg); /* Match your background */
   padding: 0.2rem 0.5rem;
   border-radius: 0 0 0.25rem 0.25rem;
   z-index: 2;
 }
 
-/* Error state for inputs */
+
 input.error, textarea.error {
   border-color: var(--color-red);
   border-bottom-color: var(--color-primary-variant); /* Keep bottom border normal */
-  margin-bottom: 1.25rem; /* Space for error message */
+  margin-bottom: 1.25rem; 
 }
 
 input, textarea {
