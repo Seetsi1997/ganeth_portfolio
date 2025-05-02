@@ -39,14 +39,15 @@ form {
 
 /* ================= FORM ELEMENTS ================= */
 /* ===== FORM GROUP & ERROR MESSAGES ===== */
+/* ===== FORM GROUP & ERROR MESSAGES ===== */
 .form-group {
   position: relative;
-  margin-bottom: 1rem; 
+  margin-bottom: 2.5rem; /* Increased from 1rem to create more space */
 }
 
 .error-message {
   position: absolute;
-  bottom: -1.75rem;
+  bottom: -2rem; /* Increased from -1.75rem to move further down */
   left: 0.5rem;
   color: var(--color-red);
   font-size: 0.75rem;
@@ -55,11 +56,14 @@ form {
   z-index: 2;
 }
 
-
 input.error, textarea.error {
   border-color: var(--color-red);
   border-bottom-color: var(--color-primary-variant); 
-  margin-bottom: 1.75rem; 
+  margin-bottom: 2rem; /* Increased from 1.75rem to match new spacing */
+}
+
+textarea ~ .error-message {
+  bottom: -1.8rem; /* Increased from -1.5rem for textarea */
 }
 
 input, textarea {
@@ -75,10 +79,6 @@ input, textarea {
 
 textarea {
   min-height: 150px;
-}
-
-textarea ~ .error-message {
-  bottom: -1.5rem; /* Slightly lower for textarea */
 }
 
 .btn.btn-primary {
@@ -97,36 +97,20 @@ textarea ~ .error-message {
 
 /* =================  MEDIA QUERIES (SMALL DEVICES)  ================= */
 @media screen and (max-width: 600px) {
-  #contact {
-      padding: 3rem 0.5rem; 
+  .form-group {
+    margin-bottom: 2rem; /* Slightly less on mobile */
   }
-
-  .contact__container {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      padding: 0 0.5rem; 
-  }
-
-  form, .contact__options {
-      margin-top: 2rem; 
-      gap: 1.25rem; /* Adjusted for mobile */
-  }
-
-  .contact__option {
-      padding: 1rem; 
-  }
-
-  /* Mobile form adjustments */
-  input, textarea {
-      padding: 1.2rem;
-  }
-
+  
   .error-message {
-      font-size: 0.7rem;
-      bottom: -1.1rem;
+    bottom: -1.5rem; /* Adjusted for mobile */
+    font-size: 0.7rem;
   }
-
+  
   textarea ~ .error-message {
-      bottom: -1.3rem;
+    bottom: -1.4rem; /* Adjusted for mobile */
+  }
+  
+  input.error, textarea.error {
+    margin-bottom: 1.8rem; /* Adjusted for mobile */
   }
 }
