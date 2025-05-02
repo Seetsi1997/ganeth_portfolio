@@ -38,35 +38,33 @@ form {
 }
 
 /* ================= FORM ELEMENTS ================= */
-/* ===== FORM GROUP & ERROR MESSAGES ===== */
-/* ===== FORM GROUP & ERROR MESSAGES ===== */
-.form-group {
+form .form-group {
   position: relative;
   margin-bottom: 2.5rem; /* Increased from 1rem to create more space */
 }
 
-.error-message {
+form .form-group .error-message {
   position: absolute;
   bottom: -2rem; /* Increased from -1.75rem to move further down */
   left: 0.5rem;
   color: var(--color-red);
-  font-size: 0.75rem;
+  font-size: 0.45rem;
   padding: 0.2rem 0.5rem;
   border-radius: 0 0 0.25rem 0.25rem;
   z-index: 2;
 }
 
-input.error, textarea.error {
+form .form-group input.error, textarea.error {
   border-color: var(--color-red);
   border-bottom-color: var(--color-primary-variant); 
   margin-bottom: 2rem; /* Increased from 1.75rem to match new spacing */
 }
 
-textarea ~ .error-message {
+form .form-group textarea ~ .error-message {
   bottom: -1.8rem; /* Increased from -1.5rem for textarea */
 }
 
-input, textarea {
+form .form-group input,form .form-group  textarea {
   width: 100%;
   padding: 1.5rem;
   border-radius: 0.5rem;
@@ -77,7 +75,7 @@ input, textarea {
   transition: var(--transition);
 }
 
-textarea {
+form .form-group textarea {
   min-height: 150px;
 }
 
@@ -97,20 +95,20 @@ textarea {
 
 /* =================  MEDIA QUERIES (SMALL DEVICES)  ================= */
 @media screen and (max-width: 600px) {
-  .form-group {
+ form .form-group {
     margin-bottom: 2rem; /* Slightly less on mobile */
   }
   
-  .error-message {
+  form .form-group .error-message {
     bottom: -1.5rem; /* Adjusted for mobile */
     font-size: 0.7rem;
   }
   
-  textarea ~ .error-message {
-    bottom: -1.4rem; /* Adjusted for mobile */
+form .form-group textarea ~ .error-message {
+    bottom: -1.8rem;
   }
   
-  input.error, textarea.error {
-    margin-bottom: 1.8rem; /* Adjusted for mobile */
+form .form-group input.error, form .form-group textarea.error {
+    margin-bottom: 1.8rem; 
   }
 }
