@@ -65,22 +65,27 @@ router.get('/', async (req, res) => {
       }
 
       const enrichedData = education.map(educ => {
-          // Safely handle dates
-          const startDate = educ.startDate ? new Date(educ.startDate) : null;
-          const endDate = educ.endDate ? new Date(educ.endDate) : null;
-          
-          return {
+        // Safely handle dates
+        const startDate = educ.startDate ? new Date(educ.startDate) : null;
+        const endDate = educ.endDate ? new Date(educ.endDate) : null;
+        
+        // Calculate calendar string
+        let calendar = 'N/A';
+        if (startDate) {
+            const startYear = startDate.getFullYear();
+            const endYear = endDate ? endDate.getFullYear() : 'Present';
+            calendar = `${startYear} - ${endYear}`;
+        }
+        
+        return {
             ...educ,
             id: educ._id,
             startDate: startDate ? startDate.toISOString().split('T')[0] : null,
             endDate: endDate ? endDate.toISOString().split('T')[0] : 'Present',
             ...calculateModuleStats(educ.modules, educ.institutionType),
-            calendar: startDate 
-                ? `${startDate.getFullYear()} - ${endDate ? endDate.getFullYear() : 'Present'}`
-                : 'N/A'
-          };
-          
-      });
+            calendar: calendar
+        };
+    });
 
       console.log(`Fetched ${enrichedData.length} education records`, enrichedData);
 
