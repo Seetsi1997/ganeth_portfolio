@@ -150,7 +150,7 @@ const Qualification = () => {
                                 <span className="qualification__calendar">
                                     <FaCalendarAlt />
                                     {item.startDate
-                                        ? `${new Date(item.startDate).getFullYear()} - ${activeTab === "work" && item.currentlyWorking
+                                        ? `${new Date(item.startDate).getFullYear()} - ${!item.endDate || item.endDate === "" || (activeTab === "work" && item.currentlyWorking)
                                             ? "Present"
                                             : new Date(item.endDate).getFullYear()
                                         }`
