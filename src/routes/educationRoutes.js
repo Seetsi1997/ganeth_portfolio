@@ -70,17 +70,16 @@ router.get('/', async (req, res) => {
           const endDate = educ.endDate ? new Date(educ.endDate) : null;
           
           return {
-              ...educ,
-              id: educ._id,
-              // Format dates safely
-              startDate: startDate ? startDate.toISOString().split('T')[0] : null,
-              endDate: endDate ? endDate.toISOString().split('T')[0] : null,
-              ...calculateModuleStats(educ.modules, educ.institutionType),
-              // Safely calculate calendar years
-              calendar: startDate && endDate 
-                  ? `${startDate.getFullYear()} - ${endDate.getFullYear()}`
-                  : 'N/A'
+            ...educ,
+            id: educ._id,
+            startDate: startDate ? startDate.toISOString().split('T')[0] : null,
+            endDate: endDate ? endDate.toISOString().split('T')[0] : 'Present',
+            ...calculateModuleStats(educ.modules, educ.institutionType),
+            calendar: startDate 
+                ? `${startDate.getFullYear()} - ${endDate ? endDate.getFullYear() : 'Present'}`
+                : 'N/A'
           };
+          
       });
 
       console.log(`Fetched ${enrichedData.length} education records`, enrichedData);
