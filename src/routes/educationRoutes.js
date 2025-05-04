@@ -20,9 +20,9 @@ const calculateModuleStats = (modules, institutionType) => {
     modules.forEach(module => {
         // Check if module failed
         const isFailed = (institutionType === 'highSchool' && module.percent < 30) ||
-                        (institutionType === 'university' && module.percent < 50) || 
-                        (institutionType === 'certificates' && module.percent < 700) ||  
-                        (institutionType === 'learnership' && module.percent < 70) ;
+            (institutionType === 'university' && module.percent < 50) ||
+            (institutionType === 'certificates' && module.percent < 700) ||
+            (institutionType === 'learnership' && module.percent < 70);
 
         if (isFailed) {
             fails.push(`${module.name} (${module.percent}%)`);
@@ -42,63 +42,61 @@ const calculateModuleStats = (modules, institutionType) => {
     return {
         highest: `${highest.name} (${highest.percent}%)`,
         lowest: `${lowest.name} (${lowest.percent}%)`,
-        failMessage: fails.length > 0 
-            ? `Failed: ${fails.join(', ')}` 
+        failMessage: fails.length > 0
+            ? `Failed: ${fails.join(', ')}`
             : 'No failed modules'
     };
 };
 
 // GET all Education records(High School, Universities, Certificates and Learnership) (READ operation)
 router.get('/', async (req, res) => {
-  try {
-      const education = await Educations.find()
-          .sort({ startDate: 1 })
-          .lean()
-          .maxTimeMS(5000)
-          .exec();
+    try {
+        const education = await Educations.find()
+            .sort({ startDate: 1 })
+            .lean()
+            .maxTimeMS(5000)
+            .exec();
 
-      if (!education.length) {
-          return res.status(404).json({ 
-              success: false,
-              message: 'No education records found' 
-          });
-      }
-
-      const enrichedData = education.map(educ => {
-        // Safely handle dates
-        const startDate = educ.startDate ? new Date(educ.startDate) : null;
-        const endDate = educ.endDate ? new Date(educ.endDate) : null;
-        
-        // Calculate calendar string
-        let calendar = 'N/A';
-        if (startDate) {
-            const startYear = startDate.getFullYear();
-            const endYear = endDate ? endDate.getFullYear() : 'Present';
-            calendar = `${startYear} - ${endYear}`;
+        if (!education.length) {
+            return res.status(404).json({
+                success: false,
+                message: 'No education records found'
+            });
         }
-        
-        return {
-            ...educ,
-            id: educ._id,
-            startDate: startDate ? startDate.toISOString().split('T')[0] : null,
-            endDate: endDate ? endDate.toISOString().split('T')[0] : 'Present',
-            ...calculateModuleStats(educ.modules, educ.institutionType),
-            calendar: calendar
-        };
-    });
 
-      console.log(`Fetched ${enrichedData.length} education records`, enrichedData);
+        const enrichedData = education.map(educ => {
+            const startDate = educ.startDate ? new Date(educ.startDate) : null;
+            const endDate = educ.endDate && educ.endDate !== "" ? new Date(educ.endDate) : null;  // ✅ Check for empty string
 
-      res.json({ success: true, data: enrichedData });
+            let calendar = 'N/A';
+            if (startDate) {
+                const startYear = startDate.getFullYear();
+                const endYear = endDate ? endDate.getFullYear() : 'Present';  // Will show "Present" if endDate is "" or null
+                calendar = `${startYear} - ${endYear}`;
+            }
 
-  } catch (err) {
-      console.error('Education route error:', err);
-      res.status(500).json({ 
-          success: false,
-          error: 'Internal server error',
-          message: err.message 
-      });
-  }
+            return {
+                ...educ,
+                id: educ._id,
+                startDate: startDate ? startDate.toISOString().split('T')[0] : null,
+                endDate: endDate ? endDate.toISOString().split('T')[0] : 'Present',  // Frontend will see "Present"
+                ...calculateModuleStats(educ.modules, educ.institutionType),
+                calendar: calendar  // Will now show "2025 - Present"
+            };
+        });
+
+        console.log(`Fetched ${enrichedData.length} education records`, enrichedData);
+
+        res.json({ success: true, data: enrichedData });
+
+    } catch (err) {
+        console.error('Education route error:', err);
+        res.status(500).json({
+            success: false,
+            error: 'Internal server error',
+            message: err.message
+        });
+    }
 });
 
 export default router;
