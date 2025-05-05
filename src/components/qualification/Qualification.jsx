@@ -94,22 +94,22 @@ const Qualification = () => {
         const displayedData = activeTab === "education" ? educationData : workData;
         const hasData = displayedData && displayedData.length > 0;
         const tabError = errors[activeTab];
-
+    
         // Handle loading state (only when no data exists yet)
         if (isLoading && !educationData.length && !workData.length) {
             return <div className="qualification__loading">Loading data...</div>;
         }
-
+    
         // Handle errors - check for specific tab error first
         if (tabError) {
             return <div className="qualification__error">{tabError}</div>;
         }
-
+    
         // Handle case where both datasets are empty
         if (!educationData.length && !workData.length) {
             return <div className="error-not-found">No records found.</div>;
         }
-
+    
         // Handle case where current tab has no data
         if (!hasData) {
             return (
@@ -120,8 +120,22 @@ const Qualification = () => {
                 </div>
             );
         }
-
-        // Render the timeline (simplified with shared logic)
+    
+        // Date formatting helper function
+        const formatDateRange = (startDate, endDate, isCurrentlyWorking = false) => {
+            if (!startDate) return "N/A";
+            
+            const startYear = new Date(startDate).getFullYear();
+            
+            if (!endDate || isCurrentlyWorking) return `${startYear} - Present`;
+            
+            const endDateObj = new Date(endDate);
+            if (isNaN(endDateObj.getTime())) return `${startYear} - Present`;
+            
+            return `${startYear} - ${endDateObj.getFullYear()}`;
+        };
+    
+        // Render the timeline
         return (
             <div className="qualification__timeline">
                 {displayedData.map((item, index) => (
@@ -149,12 +163,11 @@ const Qualification = () => {
                             <span className="qualification__meta">
                                 <span className="qualification__calendar">
                                     <FaCalendarAlt />
-                                    {item.startDate
-                                        ? `${new Date(item.startDate).getFullYear()} - ${!item.endDate || item.endDate === "" || (activeTab === "work" && item.currentlyWorking)
-                                            ? "Present"
-                                            : new Date(item.endDate).getFullYear()
-                                        }`
-                                        : "N/A"}
+                                    {formatDateRange(
+                                        item.startDate,
+                                        item.endDate,
+                                        activeTab === "work" && item.currentlyWorking
+                                    )}
                                 </span>
                                 <span className="qualification__separator">•</span>
                                 <span className="work-type-tag">
