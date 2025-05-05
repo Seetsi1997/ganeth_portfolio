@@ -94,8 +94,7 @@ const Qualification = () => {
         const displayedData = activeTab === "education" ? educationData : workData;
         const hasData = displayedData && displayedData.length > 0;
         const tabError = errors[activeTab];
-
-         const isValidDate = date => !isNaN(new Date(date).getTime());
+        const isValidDate = date => !isNaN(new Date(date).getTime());
 
         // Handle loading state (only when no data exists yet)
         if (isLoading && !educationData.length && !workData.length) {
@@ -149,25 +148,18 @@ const Qualification = () => {
                                     : item.position || ""}
                             </p>
                             <span className="qualification__meta">
-                           
-
-<span className="qualification__calendar">
-  <FaCalendarAlt />
-  {item.startDate ? (
-    <>
-      {isValidDate(item.startDate) ? new Date(item.startDate).getFullYear() : "Unknown"} -{" "}
-      {!item.endDate || item.endDate === "Present" || (activeTab === "work" && item.currentlyWorking)
-        ? "Present"
-        : isValidDate(item.endDate)
-        ? new Date(item.endDate).getFullYear()
-        : "Unknown"}
-    </>
-  ) : (
-    "N/A"
-  )}
-</span>
-
-
+                             <span className="qualification__calendar">
+                                 <FaCalendarAlt />
+                                  {item.startDate && isValidDate(item.startDate)
+                                      ? new Date(item.startDate).getFullYear()
+                                  : "Unknown"}{" "}
+                                 -{" "}
+                                 {item.endDate === "Present" || item.endDate === undefined || item.endDate === null || item.currentlyWorking
+                                     ? "Present"
+                                     : isValidDate(item.endDate)
+                                     ? new Date(item.endDate).getFullYear()
+                                 : "Unknown"}
+                             </span>
                                 <span className="qualification__separator">•</span>
                                 <span className="work-type-tag">
                                     {activeTab === "education"
