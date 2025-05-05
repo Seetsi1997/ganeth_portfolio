@@ -147,15 +147,20 @@ const Qualification = () => {
                                     : item.position || ""}
                             </p>
                             <span className="qualification__meta">
-                                <span className="qualification__calendar">
-                                    <FaCalendarAlt />
-                                    {item.startDate
-                                        ? `${new Date(item.startDate).getFullYear()} - ${!item.endDate || item.endDate === "" || (activeTab === "work" && item.currentlyWorking)
-                                            ? "Present"
-                                            : new Date(item.endDate).getFullYear()
-                                        }`
-                                        : "N/A"}
-                                </span>
+                               <span className="qualification__calendar">
+                                  <FaCalendarAlt />
+                                    {item.startDate ? (
+                                     <>
+                                       {new Date(item.startDate).getFullYear()} -{" "}
+                                       {!item.endDate || item.endDate === "" || (activeTab === "work" && item.currentlyWorking)
+                                       ? "Present"
+                                       : new Date(item.endDate).getFullYear()}
+                                     </>
+                                       ) : (
+                                          "N/A"
+                                        )}
+                                 </span>
+
                                 <span className="qualification__separator">•</span>
                                 <span className="work-type-tag">
                                     {activeTab === "education"
