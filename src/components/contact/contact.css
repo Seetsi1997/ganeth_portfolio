@@ -40,7 +40,7 @@ form {
 /* ================= FORM ELEMENTS ================= */
 form .form-group {
   position: relative;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 form .form-group .error-message {
@@ -48,7 +48,7 @@ form .form-group .error-message {
   bottom: -1.75rem; 
   left: 0.5rem;
   color: var(--color-red);
-  font-size: 0.45rem;
+  font-size: 0.75rem;
   padding: 0.2rem 0.5rem;
   border-radius: 0 0 0.25rem 0.25rem;
   z-index: 2;
@@ -58,10 +58,11 @@ form .form-group input.error, textarea.error {
   border-color: var(--color-red);
   border-bottom-color: var(--color-primary-variant); 
   margin-bottom: 1.75rem;
+  color: var(--color-red);
 }
 
 form .form-group textarea ~ .error-message {
-  bottom: -1.8rem; 
+  bottom: -1.6rem; 
 }
 
 form .form-group input,form .form-group  textarea {
