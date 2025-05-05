@@ -152,7 +152,7 @@ const Qualification = () => {
                                     {item.startDate ? (
                                      <>
                                        {new Date(item.startDate).getFullYear()} -{" "}
-                                       {!item.endDate || item.endDate === "" || (activeTab === "work" && item.currentlyWorking)
+                                       {!item.endDate || item.endDate === "Present" || (activeTab === "work" && item.currentlyWorking)
                                        ? "Present"
                                        : new Date(item.endDate).getFullYear()}
                                      </>
