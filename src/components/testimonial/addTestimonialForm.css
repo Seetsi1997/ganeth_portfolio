@@ -51,7 +51,7 @@
     object-fit: cover;
 }
   
-.add__testimonial-form-content form {
+form {
     display: flex;
     flex-direction: column;
     gap: 1rem; 
@@ -63,8 +63,8 @@
     text-align: left;
 }
 
-.add__testimonial-form-content form .form-group input,
-.add__testimonial-form-content form .form-group textarea {
+form .form-group input,
+form .form-group textarea {
     padding: 0.8rem;
     border-radius: 6px;
     border: 1px solid var(--color-primary-variant);
@@ -75,27 +75,27 @@
     transition: all var(--transition);
 }
 
-.add__testimonial-form-content form .form-group input::placeholder,
-.add__testimonial-form-content form .form-group textarea::placeholder {
+ form .form-group input::placeholder,
+ form .form-group textarea::placeholder {
     color: var(--color-light);
     opacity: 0.7;
 }
 
-.add__testimonial-form-content form .form-group textarea {
+ form .form-group textarea {
     min-height: 100px;
     max-height: 100px;
     overflow-y: auto;
     resize: none; 
 }
 
-.add__testimonial-form-content form .form-group input:focus,
-.add__testimonial-form-content form .form-group textarea:focus {
+ form .form-group input:focus,
+ form .form-group textarea:focus {
     outline: none;
     border-color: var(--color-primary);
     box-shadow: 0 0 0 2px rgba(var(--color-primary-variant), 0.2);
 }
   
-.add__testimonial-form-content form button[type="submit"] {
+form button[type="submit"] {
     padding: 0.9rem;
     border-radius: 6px;
     background: var(--color-primary);
@@ -108,28 +108,28 @@
     transition: all var(--transition);
 }
   
-.add__testimonial-form-content form button[type="submit"]:hover {
+ form button[type="submit"]:hover {
     background: var(--color-primary-variant);
     transform: translateY(-2px);
 }
 
-.add__testimonial-form-content form button[type="submit"]:disabled {
+ form button[type="submit"]:disabled {
     background: var(--color-primary-variant);
     cursor: not-allowed;
     opacity: 0.7;
     transform: none;
 }
 
-.add__testimonial-form-content form .form-group .error-message {
+ form .form-group .error-message {
     color: var(--color-red);
     font-size: 0.75rem;
     display: block;
-    margin-top: 0.3rem;
+    margin-top: 0.2rem;
     padding-left: 0.2rem;
 }
 
-.add__testimonial-form-content form .form-group input.error,
-.add__testimonial-form-content form .form-group textarea.error {
+ form .form-group input.error,
+ form .form-group textarea.error {
     border-color: var(--color-red);
     background: rgba(var(--color-red), 0.05);
 }
