@@ -40,12 +40,12 @@ form {
 /* ================= FORM ELEMENTS ================= */
 form .form-group {
   position: relative;
-  margin-bottom: 2.5rem; /* Increased from 1rem to create more space */
+  margin-bottom: 2.5rem;
 }
 
 form .form-group .error-message {
   position: absolute;
-  bottom: -2rem; /* Increased from -1.75rem to move further down */
+  bottom: -1.75rem; 
   left: 0.5rem;
   color: var(--color-red);
   font-size: 0.45rem;
@@ -57,11 +57,11 @@ form .form-group .error-message {
 form .form-group input.error, textarea.error {
   border-color: var(--color-red);
   border-bottom-color: var(--color-primary-variant); 
-  margin-bottom: 2rem; /* Increased from 1.75rem to match new spacing */
+  margin-bottom: 1.75rem;
 }
 
 form .form-group textarea ~ .error-message {
-  bottom: -1.8rem; /* Increased from -1.5rem for textarea */
+  bottom: -1.8rem; 
 }
 
 form .form-group input,form .form-group  textarea {
@@ -81,7 +81,7 @@ form .form-group textarea {
 
 .btn.btn-primary {
   width: 100%;
-  margin: 1rem 0 0; /* Added top margin */
+  margin: 1rem 0 0; 
   padding: 1rem;
 }
 
@@ -95,20 +95,37 @@ form .form-group textarea {
 
 /* =================  MEDIA QUERIES (SMALL DEVICES)  ================= */
 @media screen and (max-width: 600px) {
- form .form-group {
-    margin-bottom: 2rem; /* Slightly less on mobile */
+  .contact__container {
+    grid-template-columns: 1fr; 
+    gap: 2rem;
+  }
+
+  form, .contact__options {
+    margin-top: 0; 
+  }
+
+  .contact__options {
+    order: 1; 
+  }
+
+  form {
+    order: 2; 
+  }
+
+  form .form-group {
+    margin-bottom: 2rem;
   }
   
   form .form-group .error-message {
-    bottom: -1.5rem; /* Adjusted for mobile */
+    bottom: -1.5rem;
     font-size: 0.7rem;
   }
   
-form .form-group textarea ~ .error-message {
+  form .form-group textarea ~ .error-message {
     bottom: -1.8rem;
   }
   
-form .form-group input.error, form .form-group textarea.error {
+  form .form-group input.error, form .form-group textarea.error {
     margin-bottom: 1.8rem; 
   }
 }
