@@ -80,10 +80,10 @@ form .form-group textarea {
   min-height: 150px;
 }
 
-.btn.btn-primary {
+.btn {
   width: 100%;
   margin: 1rem 0 0; 
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 /* =================  MEDIA QUERIES (MEDIUM DEVICES)  ================= */
