@@ -17,6 +17,7 @@ const Skills = () => {
         { name: 'HTML', percentage: 80 },
         { name: 'CSS', percentage: 70 },
         { name: 'JavaScript', percentage: 25 },
+        { name: 'Flutter', percentage: 60 },
         {name: 'Angular', percentage: 50},
       ],
     },
