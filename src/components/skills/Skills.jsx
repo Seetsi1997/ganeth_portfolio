@@ -18,6 +18,7 @@ const Skills = () => {
         { name: 'CSS', percentage: 70 },
         { name: 'JavaScript', percentage: 25 },
         { name: 'Flutter', percentage: 60 },
+        {name: 'Angular', percentage: 50},
       ],
     },
     {
@@ -27,6 +28,7 @@ const Skills = () => {
         { name: 'ASP-NET', percentage: 35 },
         { name: 'Dart', percentage: 35 },
         { name: 'Java', percentage: 25 },
+        {name: 'Spring Boot', percentage: 45},
       ],
     },
     {
@@ -37,6 +39,7 @@ const Skills = () => {
         { name: 'Firebase', percentage: 25 },
         { name: 'SQL', percentage: 50 },
         { name: 'MongoDB', percentage: 10 },
+        { name: 'PostgreSQL', percentage:  55},
       ],
     },
   ];
