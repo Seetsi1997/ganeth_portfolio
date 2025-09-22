@@ -94,7 +94,8 @@ const allowedOrigins = [
   'https://seetsi1997.github.io',
   'https://seetsi1997.github.io/ganeth_portfolio',
   'http://localhost:3000',
-  'http://localhost:5173'
+  'http://localhost:5173',
+  'http://localhost:5000'
 ];
 
 const corsOptions = {
@@ -146,14 +147,22 @@ app.use('/portfolios', portfoliosRoutes);
 
 // Serve static files with base path for React Router
 const staticPath = path.join(__dirname, 'build');
-app.use('/ganeth_portfolio', express.static(staticPath));
+// Serve React frontend
+const buildPath = path.join(__dirname, 'build');
+app.use(express.static(buildPath));
+
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(buildPath, 'index.html'));
+});
+
+/*app.use('/ganeth_portfolio', express.static(staticPath));
 app.get('/ganeth_portfolio/*', (req, res) => {
   res.sendFile(path.join(staticPath, 'index.html'), (err) => {
     if (err) {
       res.status(404).json({ message: 'Not found' });
     }
   });
-});
+});*/
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {
