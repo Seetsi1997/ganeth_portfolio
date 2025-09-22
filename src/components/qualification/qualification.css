@@ -426,14 +426,14 @@
     color: var(--color-primary);
     font-weight: 500;
     margin-bottom: 0.5rem;
-    animation:  bounce 8s infinite; 
+    animation:  bounce 9s infinite; 
 }
 
 .qualification-type {
   color: var(--color-light);
   font-style: italic;
   font-size: 0.9rem;
-  animation:  bounce 8s infinite; 
+  animation:  bounce 9s infinite; 
 }
 
 @keyframes bounce  {
@@ -447,6 +447,7 @@
     text-shadow: 0 0 20px var(--really-green);
     animation-timing-function: ease-in-out;
   }
+
   100% {
     transform: scale(1) translateY(0) perspective(1px);
     text-shadow: none;
