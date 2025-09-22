@@ -161,7 +161,7 @@ const Portfolio = () => {
             >
               <div className="portfolio__item-image">
                 <img
-                  /*src={`${process.env.REACT_APP_API_URL || ''}${project.imageUrl}`}*/src={project.imageUrl}
+                  src={`${process.env.REACT_APP_API_URL || ''}${project.imageUrl}`}
                   alt={project.projectName}
                 />
               </div>
