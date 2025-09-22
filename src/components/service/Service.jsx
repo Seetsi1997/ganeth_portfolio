@@ -17,7 +17,7 @@ const Service = () => {
     const fetchServices = async () => {
       setIsLoading(true);
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/services`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}services`);
         console.log('API Response:', response); // Debug log
 
         // Handle both wrapped and unwrapped responses

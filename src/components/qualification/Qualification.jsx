@@ -16,7 +16,7 @@ const Qualification = () => {
             setIsLoading(true);
             try {
                 const response = await axios.get(
-                    `${process.env.REACT_APP_API_URL}/educations`
+                    `${process.env.REACT_APP_API_URL}educations`
                 );
                 if (response.data.success) {
                     setEducationData(response.data.data || []);
@@ -43,7 +43,7 @@ const Qualification = () => {
         const fetchWorkData = async () => {
             try {
                 const response = await axios.get(
-                    `${process.env.REACT_APP_API_URL}/works`
+                    `${process.env.REACT_APP_API_URL}works`
                 );
 
                 // Successful request
@@ -217,7 +217,7 @@ const Qualification = () => {
                                 {/*Performance */}
                                 <div className="popup-header">
                                     <h1>Performance</h1>
-                                    <p className="qualification-type">{popupData.schoolName}</p>
+                                    <p className="qualification-type  animate-bounce">{popupData.schoolName}</p>
                                 </div>
                                 {/*Performance I Managed through My Educations */}
                                 <div className="performance-summary">

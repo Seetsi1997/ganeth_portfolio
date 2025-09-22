@@ -19,20 +19,21 @@
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
     "react-scripts": "^5.0.1",
+    "serve": "^14.0.1",
     "swiper": "^11.2.6",
-    "web-vitals": "^2.1.4",
-    "serve": "^14.0.1"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "node server.js",              
-    "build": "react-scripts build",   
+    "start": "node server.js",
+    "react-start": "react-scripts start",
+    "build": "react-scripts build",
     "build:admin": "REACT_APP_IS_ADMIN=true react-scripts build",
-  "build:public": "REACT_APP_IS_ADMIN=false react-scripts build",    
-    "heroku-postbuild": "npm run build",     
-    "predeploy": "npm run build",           
-    "deploy": "gh-pages -d build",          
-    "serve": "serve -s build -l 5000",      
-    "test": "react-scripts test",            
+    "build:public": "REACT_APP_IS_ADMIN=false react-scripts build",
+    "heroku-postbuild": "npm run build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "serve": "serve -s build -l 5000",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -57,8 +58,11 @@
   "proxy": "https://ganeth-portfolio.onrender.com",
   "main": "src/index.js",
   "devDependencies": {
+    "autoprefixer": "^10.4.21",
     "cross-env": "^7.0.3",
-    "gh-pages": "^6.3.0"
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.13"
   },
   "engines": {
     "node": "18.x",

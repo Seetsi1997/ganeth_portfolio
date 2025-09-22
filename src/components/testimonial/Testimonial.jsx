@@ -15,7 +15,7 @@ const Testimonial = () => {
 
   // Fetch testimonials when the component mounts
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/testimonials`)
+    axios.get(`${process.env.REACT_APP_API_URL}testimonials`)
       .then(response => setTestimonials(response.data))
       .catch(error => console.error("Error fetching testimonials:", error));
   }, []);
@@ -23,7 +23,7 @@ const Testimonial = () => {
   async function likeTestimonial(id) {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/testimonials/${id}/likes`,
+        `${process.env.REACT_APP_API_URL}testimonials/${id}/likes`,
         {},
         {
           headers: {

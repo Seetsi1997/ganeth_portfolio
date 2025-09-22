@@ -86,6 +86,10 @@ form .form-group textarea {
   padding: 0.5rem;
 }
 
+.error-message{
+  margin-bottom: 30px;
+}
+
 /* =================  MEDIA QUERIES (MEDIUM DEVICES)  ================= */
 @media screen and (max-width: 1024px) {
   .contact__container {

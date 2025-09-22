@@ -470,7 +470,7 @@ const About = () => {
       ]);
 
       const response = await axios.post(
-        `${process.env.REACT_APP_API_URL}/companies`,
+        `${process.env.REACT_APP_API_URL}companies`,
         { companyName: trimmedCompanyName },
         {
           params: {
@@ -522,7 +522,7 @@ const About = () => {
     setApprovingId(projectId);
     try {
       const response = await axios.patch(
-        `${process.env.REACT_APP_API_URL}/projects/${projectId}/approve`,
+        `${process.env.REACT_APP_API_URL}projects/${projectId}/approve`,
         {},
         {
           params: { secret: process.env.REACT_APP_ADMIN_SECRET },
@@ -553,7 +553,7 @@ const About = () => {
     setApprovingId(companyId);
     try {
       const response = await axios.patch(
-        `${process.env.REACT_APP_API_URL}/companies/${companyId}/approve`,
+        `${process.env.REACT_APP_API_URL}companies/${companyId}/approve`,
         {},
         {
           params: { secret: process.env.REACT_APP_ADMIN_SECRET },
@@ -584,7 +584,7 @@ const About = () => {
     setApprovingId(certificateId);
     try {
       const response = await axios.patch(
-        `${process.env.REACT_APP_API_URL}/certificates/${certificateId}/approve`,
+        `${process.env.REACT_APP_API_URL}certificates/${certificateId}/approve`,
         {},
         {
           params: { secret: process.env.REACT_APP_ADMIN_SECRET },

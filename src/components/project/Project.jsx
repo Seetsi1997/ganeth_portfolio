@@ -34,7 +34,7 @@ const Portfolio = () => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/portfolios`);
+        const response = await axios.get(`${process.env.REACT_APP_API_URL}portfolios`);
         
         if (isMounted) {
           if (response.data.success) {
@@ -96,7 +96,7 @@ const Portfolio = () => {
     setIsUpdating(true);
     try {
       const response = await axios.patch(
-        `${process.env.REACT_APP_API_URL}/portfolios/${projectId}/approve`
+        `${process.env.REACT_APP_API_URL}portfolios/${projectId}/approve`
       );
 
       if (response.data.success) {
@@ -161,7 +161,7 @@ const Portfolio = () => {
             >
               <div className="portfolio__item-image">
                 <img
-                  src={`${process.env.REACT_APP_API_URL || ''}${project.imageUrl}`}
+                  /*src={`${process.env.REACT_APP_API_URL || ''}${project.imageUrl}`}*/src={project.imageUrl}
                   alt={project.projectName}
                 />
               </div>
