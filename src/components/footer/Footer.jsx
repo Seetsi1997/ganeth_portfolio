@@ -42,7 +42,7 @@ useEffect(() => {
               {formattedDateTime}
             </span>
             <h1 className="footer__title">Ganeth Seetsi</h1>
-            <span className="footer__subtitle">Frontend Developer</span>
+            <span className="footer__subtitle">Full Stack Developer</span>
           </div>
 
           <ul className="footer__links">
