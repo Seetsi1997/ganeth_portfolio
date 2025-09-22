@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/ganeth_portfolio/static/css/main.932f6c18.css",
-    "main.js": "/ganeth_portfolio/static/js/main.968e8ffe.js",
-    "static/media/me.jpg": "/ganeth_portfolio/static/media/me.fb045fa93fcf3665f76d.jpg",
-    "static/media/about_me.jpg": "/ganeth_portfolio/static/media/about_me.c227e791145bdc26bda7.jpg",
-    "static/media/GanethCV.pdf": "/ganeth_portfolio/static/media/GanethCV.588ef727514ba1602f64.pdf",
-    "index.html": "/ganeth_portfolio/index.html",
-    "main.932f6c18.css.map": "/ganeth_portfolio/static/css/main.932f6c18.css.map",
-    "main.968e8ffe.js.map": "/ganeth_portfolio/static/js/main.968e8ffe.js.map"
+    "main.css": "./static/css/main.cc53fff2.css",
+    "main.js": "./static/js/main.87c3bc63.js",
+    "static/media/me.jpg": "./static/media/me.fb045fa93fcf3665f76d.jpg",
+    "static/media/about_me.jpg": "./static/media/about_me.c227e791145bdc26bda7.jpg",
+    "static/media/GanethCV.pdf": "./static/media/GanethCV.588ef727514ba1602f64.pdf",
+    "index.html": "./index.html",
+    "main.cc53fff2.css.map": "./static/css/main.cc53fff2.css.map",
+    "main.87c3bc63.js.map": "./static/js/main.87c3bc63.js.map"
   },
   "entrypoints": [
-    "static/css/main.932f6c18.css",
-    "static/js/main.968e8ffe.js"
+    "static/css/main.cc53fff2.css",
+    "static/js/main.87c3bc63.js"
   ]
 }
