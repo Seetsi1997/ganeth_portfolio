@@ -149,20 +149,19 @@ app.use('/portfolios', portfoliosRoutes);
 const staticPath = path.join(__dirname, 'build');
 // Serve React frontend
 const buildPath = path.join(__dirname, 'build');
-app.use(express.static(buildPath));
-
+/*app.use(express.static(buildPath));
 app.get('/*', (req, res) => {
   res.sendFile(path.join(buildPath, 'index.html'));
-});
+});*/
 
-/*app.use('/ganeth_portfolio', express.static(staticPath));
+app.use('/ganeth_portfolio', express.static(staticPath));
 app.get('/ganeth_portfolio/*', (req, res) => {
   res.sendFile(path.join(staticPath, 'index.html'), (err) => {
     if (err) {
       res.status(404).json({ message: 'Not found' });
     }
   });
-});*/
+});
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {

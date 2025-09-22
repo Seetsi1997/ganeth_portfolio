@@ -1,9 +1,8 @@
-
 {
   "name": "ganeth_seetsi_portfolio",
   "version": "0.1.0",
   "private": true,
-  "homepage":  ".",
+  "homepage": "https://Seetsi1997.github.io/ganeth_portfolio",
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
