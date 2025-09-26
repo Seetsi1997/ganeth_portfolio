@@ -63,7 +63,7 @@ const connectDB = async () => {
     });
     
   } catch (err) {
-    console.error("❌ MongoDB connection error:", err.message);
+    console.error("MongoDB connection error:", err.message);
     
     // More specific error handling
     if (err.name === 'MongoNetworkError') {
@@ -95,6 +95,8 @@ const allowedOrigins = [
   'https://seetsi1997.github.io/ganeth_portfolio',
   'http://localhost:3000',
   'http://localhost:5173',
+  'http://localhost:5000', 
+  'http://127.0.0.1:5000'
 ];
 
 const corsOptions = {
@@ -127,8 +129,8 @@ app.use((req, res, next) => {
   res.setHeader('X-Frame-Options', 'DENY');
   res.setHeader('X-XSS-Protection', '1; mode=block');
   // Add CORS headers manually for additional assurance
-  res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
-  res.header('Access-Control-Allow-Credentials', 'true');
+ /* res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+  res.header('Access-Control-Allow-Credentials', 'true');*/
   next();
 });
 
